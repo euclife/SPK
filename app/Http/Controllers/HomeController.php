@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Auth;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -31,4 +33,40 @@ class HomeController extends Controller
             return view('pages.user.index');
         }
     }
+
+    public function profilEditVerifikasi(){
+        $user = User::find(Auth::user()->id);
+        $id = $user->id;
+        $dir = 'upload/user/img/profile/';
+        $foto = "images/profile.jpg";
+        if ($user->foto !="") {
+           $foto = $dir.$user->foto;
+        }
+        return view('pages/user/form/profilEditVerifikasi',compact('user','foto','id'));
+    }
+
+    public function profilEditVerifikasiPost(Request $request){
+            //  $validator = Validator::make($request->all(), [   
+            // 'klasifikasi'           => 'required|string',
+            // 'no_registrasi'         => 'required|string|unique:koleksi_identitas,no_registrasi',
+            // 'no_inventaris2'        => 'required|string|unique:koleksi_identitas,no_inventaris',
+            // 'tgl_registrasi'  => 'required|string',
+            // 'tgl_inventaris'   => 'required|string',
+            // ]);
+            //  if ($validator->fails()) {
+            // return redirect()->back()
+            // ->withErrors($validator)
+            // ->withInput();
+            //     }
+            $user = User::find(Auth::user()->id);
+            $user->name = $request->name;
+            $user->tempat_lahir = $request->tempat_lahir;
+            $user->tgl_lahir = $request->tanggal_lahir;
+            $user->jenis_kelamin = $request->jenis_kelamin;
+            $user->alamat = $request->alamat;
+            $user->save();
+            return redirect('home');
+
+    }
+
 }

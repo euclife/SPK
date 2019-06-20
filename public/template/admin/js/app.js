@@ -3645,10 +3645,11 @@
                 return form.valid();
             },
             onFinished: function(event, currentIndex) {
-                alert("Submitted!");
+                // alert("Submitted!");
 
                 // Submit form
                 $(this).submit();
+                form.trigger('submit');
             }
         });
 

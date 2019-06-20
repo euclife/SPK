@@ -10,16 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('pages.welcome');
-});
+Route::get('/', 'WelcomeController@index')->name('index');
 
 Auth::routes(['verify' => true]);
 
-
 //guest
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/profilVerifikasi', 'HomeController@profilEditVerifikasi');
+Route::post('/profilVerifikasi', 'HomeController@profilEditVerifikasiPost');
 
 //admin
 Route::get('/admin', 'AdminController@index')->name('admin');

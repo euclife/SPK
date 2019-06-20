@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class lowongan extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
