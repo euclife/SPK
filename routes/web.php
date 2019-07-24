@@ -22,3 +22,7 @@ Route::post('/profilVerifikasi', 'HomeController@profilEditVerifikasiPost');
 //admin
 Route::get('/admin', 'AdminController@index')->name('admin');
 
+//API
+Route::get('/api/syaratlowongan/{id}', 'apiController@syaratlowongan');
+
+

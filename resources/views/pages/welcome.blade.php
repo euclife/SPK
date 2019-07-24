@@ -110,6 +110,8 @@
                     <span>Informasi</span>
                        Posisi pekerjaan terkini</h3>
                     <!---728x90--->
+                                        
+                                        @foreach($lowongan as $l)
                                         <div class="job-post-main row my-3">
                                             <div class="col-md-9 job-post-info text-left">
                                                 <div class="job-post-icon">
@@ -118,7 +120,7 @@
                                                 <div class="job-single-sec">
                                                     <h4>
                                                         <a href="#">
-                                                            Administrasi</a>
+                                                            {{ $l->posisi  }}</a>
                                                     </h4>
                                                     <ul class="job-list-info d-flex">
                                                         <li>
@@ -129,109 +131,11 @@
                                             </div>
                                             <div class="col-md-3 job-single-time text-right">
                                                 <span class="job-time">
-                                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Syarat1">Syarat</button>
+                                                <button type="button" class="btn btn-info btn-lg btn-lowongan" data-id="{{ $l->id_lowongan  }}" >Syarat</button>
                                             </div>
                                         </div>
-                                        <!--//job2-->
-                                        <!--/job3-->
+                                        @endforeach
 
-                                        <div class="job-post-main row">
-                                            <div class="col-md-9 job-post-info text-left">
-                                                <div class="job-post-icon">
-                                                    <i class="fas fa-briefcase"></i>
-                                                </div>
-                                                <div class="job-single-sec">
-                                                    <h4>
-                                                        <a href="#">
-                                                            Staff Keuangan</a>
-                                                    </h4>
-                                                    <ul class="job-list-info d-flex">
-                                                        <li>
-                                                            <i class="fas fa-bullhorn"></i> Login Untuk Melamar</li>
-                                                    </ul>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                            <div class="col-md-3 job-single-time text-right">
-                                                <span class="job-time">
-                                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Syarat2">Syarat</button>
-                                            </div>
-                                        </div>
-                                        <!--//job3-->
-                                        <!--/job4-->
-
-                                        <div class="job-post-main row mt-3">
-                                            <div class="col-md-9 job-post-info text-left">
-                                                <div class="job-post-icon">
-                                                    <i class="fas fa-briefcase"></i>
-                                                </div>
-                                                <div class="job-single-sec">
-                                                    <h4>
-                                                        <a href="#">
-                                                            Staff IT</a>
-                                                    </h4>
-                                                   <ul class="job-list-info d-flex">
-                                                        <li>
-                                                            <i class="fas fa-bullhorn"></i> Login Untuk Melamar</li>
-                                                    </ul>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                            <div class="col-md-3 job-single-time text-right">
-                                                <span class="job-time">
-                                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Syarat3">Syarat</button>
-                                            </div>
-                                        </div>
-                                        <!--//job4-->
-                                    </div>
-                                        <!--/job1-->
-
-                                        <div class="job-post-main row">
-                                            <div class="col-md-9 job-post-info text-left">
-                                                <div class="job-post-icon">
-                                                    <i class="fas fa-briefcase"></i>
-                                                </div>
-                                                <div class="job-single-sec">
-                                                    <h4>
-                                                        <a href="#">Resepsionis </a>
-                                                    </h4>
-                                                    <ul class="job-list-info d-flex">
-                                                        <li>
-                                                            <i class="fas fa-bullhorn"></i> Login Untuk Melamar</li>
-                                                    </ul>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                            <div class="col-md-3 job-single-time text-right">
-                                                <span class="job-time">
-                                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Syarat4">Syarat</button>
-                                            </div>
-                                        </div>
-                                        <!--//job1-->
-                                        <!--/job2-->
-
-                                        <div class="job-post-main row my-3">
-                                            <div class="col-md-9 job-post-info text-left">
-                                                <div class="job-post-icon">
-                                                    <i class="fas fa-briefcase"></i>
-                                                </div>
-                                                <div class="job-single-sec">
-                                                    <h4>
-                                                        <a href="#">
-                                                            Cleaning Service</a>
-                                                    </h4>
-                                                    <ul class="job-list-info d-flex">
-                                                        <li>
-                                                            <i class="fas fa-bullhorn"></i> Login Untuk Melamar</li>
-                                                    </ul>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                            <div class="col-md-3 job-single-time text-right">
-                                                <span class="job-time">
-                                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Syarat5">Syarat</button>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -473,9 +377,8 @@
     <!-- //footer -->
 
     <!--model-forms-->
-    @extends('pages.form.authModal')
     <!--// Syarat1-->
-    <div class="modal fade" id="Syarat1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="mdlSyarat" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header text-center">
@@ -486,9 +389,8 @@
                 <div class="modal-body">
                     <div class="login px-4 mx-auto mw-100">
                         <h5 class="text-center mb-4">Persyaratan</h5>
-                        <p>1. Lulusan D3/S1 Manajemen/Administrasi</p>
-                        <p>2. Perempuan Usia 21th-26th</p>
-                        <p>3. Menguasai Microsoft Office</p>
+                           <div id="syarat">
+                           </div>
                     </div>
                 </div>
 
@@ -496,89 +398,7 @@
         </div>
     </div>
       <!--// Syarat2-->
-    <div class="modal fade" id="Syarat2" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header text-center">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="login px-4 mx-auto mw-100">
-                        <h5 class="text-center mb-4">Persyaratan</h5>
-                        <p>1. Lulusan S1 Akuntansi</p>
-                        <p>2. Perempuan Usia 22th-26th</p>
-                        <p>3. Menguasai Microsoft Office</p>
-                        <p>4. Menguasai Pembukuan Dan Akuntansi Keuangan</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-      <!--// Syarat3-->
-    <div class="modal fade" id="Syarat3" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header text-center">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="login px-4 mx-auto mw-100">
-                        <h5 class="text-center mb-4">Persyaratan</h5>
-                        <p>1. Lulusan S1 Teknologi Informasi</p>
-                        <p>2. Laki-Laki Usia 24th-29th</p>
-                        <p>3. Menguasai Jaringan , Sistem Database</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-      <!--// Syarat4-->
-    <div class="modal fade" id="Syarat4" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header text-center">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="login px-4 mx-auto mw-100">
-                        <h5 class="text-center mb-4">Persyaratan</h5>
-                        <p>1. Lulusan D3/S1 Manajemen/Administrasi</p>
-                        <p>2. Perempuan Usia 21th-26th</p>
-                        <p>3. Menguasai Komputer Dengan Baik</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-      <!--// Syarat5-->
-    <div class="modal fade" id="Syarat5" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header text-center">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="login px-4 mx-auto mw-100">
-                        <h5 class="text-center mb-4">Persyaratan</h5>
-                        <p>1. Smk/Sma </p>
-                        <p>2. Laki-Laki/Perempuan Usia 19th-30th</p>
-                        <p>3. Mampu Bekerja Dalam Tekanan</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
+    
     <!--//model-form-->
     <!-- js -->
   
@@ -665,7 +485,29 @@
             $().UItoTop({
                 easingType: 'easeOutQuart'
             });
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+            });
 
+            $(document).on("click", ".btn-lowongan", function () {
+                var id = $(this).data('id');
+                var url = '{{ url('api/syaratlowongan/') }}/'+id
+                $.ajax({
+                    url : url,
+                    type : 'GET',
+                    datatype : 'json',
+                    success:function(data){
+                        $('#syarat').empty();
+                        for (var i=0; i<data.length; i++) {
+                             $('#syarat').append("<p>"+(i+1)+" "+data[i].nama_syarat+"</p>");
+                            }
+                        $('#mdlSyarat').modal('show');
+                    }
+                });
+
+            });
         });
     </script>
     <!--// end-smoth-scrolling -->

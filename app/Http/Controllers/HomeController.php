@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 use Auth;
 use App\User;
+use App\Lowongan;
+use App\Syarat;
 
 class HomeController extends Controller
 {
@@ -30,7 +33,13 @@ class HomeController extends Controller
         if($level == "ADMIN"){
             return redirect('admin');
         }else{
-            return view('pages.user.index');
+            $today = Carbon::today()->formatLocalized('%A, %d %B %Y');
+            $now = Carbon::now()->format('Y-m-d H:i:00');
+
+            $lowongan = Lowongan::select('*')
+            ->where('tanggal_selesai','>=',$now)
+            ->get();
+            return view('pages.user.index', compact('lowongan','today','now'));
         }
     }
 

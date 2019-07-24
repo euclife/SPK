@@ -133,24 +133,26 @@
                   <!-- START chart-->
                   <div class="row">
                      <div class="col-xl-12">
-                        <!-- START card-->
-                        <div class="card card-default card-demo" id="cardChart9">
-                           <div class="card-header">
-                              <a class="float-right" href="#" data-tool="card-refresh" data-toggle="tooltip" title="Refresh card">
-                                 <em class="fa fa-refresh"></em>
-                              </a>
-                              <a class="float-right" href="#" data-tool="card-collapse" data-toggle="tooltip" title="Collapse card">
-                                 <em class="fa fa-minus"></em>
-                              </a>
-                              <div class="card-title">Inbound visitor statistics</div>
-                           </div>
-                           <div class="card-wrapper collapse show">
-                              <div class="card-body">
-                                 <div class="chart-spline flot-chart"></div>
-                              </div>
-                           </div>
-                        </div>
-                        <!-- END card-->
+                        <h2>LILST LOWONGAN</h2>
+                        <table class="table">
+                           <thead>
+                              <tr>
+                                 <td>No</td>
+                                 <td>Posisi</td>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              @php
+                              $i=1; 
+                              @endphp
+                              @foreach($lowongan as $l)
+                                 <tr>
+                                    <td>{{ $i++ }}</td>
+                                    <td>{{ $l->posisi }}</td>
+                                 </tr>
+                              @endforeach
+                           </tbody>
+                        </table>
                      </div>
                   </div>
                   <!-- END chart-->
