@@ -16,7 +16,6 @@
     <a href="{{url('/')}}" class="button button-close" role="button"></a>
 
     @yield('content')
-
   </main>
 
   <script src="{{asset('template/auth/js/jquery.min.js')}}"></script>
