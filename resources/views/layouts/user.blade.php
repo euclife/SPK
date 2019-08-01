@@ -95,18 +95,11 @@
 									</div>
 									</button>
 								</div>
-								<!-- END list group-->
 							</div>
 						</div>
-						<!-- END Dropdown menu-->
 					</li>
-					<!-- END Alert menu-->
-					<!-- START Offsidebar button-->
-				  
-					<!-- END Offsidebar menu-->
 				</ul>
-				<!-- END Right Navbar-->
-				<!-- START Search form-->
+				
 				<form class="navbar-form" role="search" action="search.html">
 					<div class="form-group">
 						<input class="form-control" type="text" placeholder="Type and hit enter ...">
@@ -114,11 +107,8 @@
 					</div>
 					<button class="d-none" type="submit">Submit</button>
 				</form>
-				<!-- END Search form-->
 			</nav>
-			<!-- END Top Navbar-->
 		</header>
-		<!-- sidebar-->
 		<aside class="aside-container">
 			<!-- START Sidebar (left)-->
 			<div class="aside-inner">
@@ -127,7 +117,6 @@
 					<ul class="sidebar-nav">
 						<!-- START user info-->
 						<!-- END user info-->
-						<!-- Iterates over all sidebar items-->
 						<li class="nav-heading ">
 							<span data-localize="sidebar.heading.HEADER">UTAMA</span>
 						</li>
@@ -137,8 +126,27 @@
 								<span data-localize="sidebar.nav.DASHBOARD">Dashboard</span>
 							</a>
 						</li>
+						
 						<li class="nav-heading ">
 							<span data-localize="sidebar.heading.COMPONENTS">Komponen</span>
+						</li>
+						<li class=" ">
+							<a href= "{{url('lowongan')}}" title="Cari Lowongan Kerja" >
+								<em class="icon-speedometer"></em>
+								<span data-localize="sidebar.nav.DASHBOARD">Cari Lowongan Kerja</span>
+							</a>
+						</li>
+						<li class=" ">
+							<a href= "{{url('tawaran')}}" title="Cari Lowongan Kerja" >
+								<em class="icon-speedometer"></em>
+								<span data-localize="sidebar.nav.DASHBOARD">Tawaran Kerja</span>
+							</a>
+						</li>
+						<li class=" ">
+							<a href= "{{url('profil')}}" title="Cari Lowongan Kerja" >
+								<em class="icon-speedometer"></em>
+								<span data-localize="sidebar.nav.DASHBOARD">Edit Profil</span>
+							</a>
 						</li>
 					</ul>
 					<!-- END sidebar nav-->

@@ -16,6 +16,7 @@ Auth::routes(['verify' => true]);
 
 //guest
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/profil', 'PelamarController@profil');
 Route::get('/profilVerifikasi', 'HomeController@profilEditVerifikasi');
 Route::post('/profilVerifikasi', 'HomeController@profilEditVerifikasiPost');
 
