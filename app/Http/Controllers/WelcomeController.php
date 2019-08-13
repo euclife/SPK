@@ -25,4 +25,8 @@ class WelcomeController extends Controller
 			return redirect()->route('home');
 		}
 	}
+
+	public function tes(){
+		return view('pages.user.dashboard');
+	}
 }

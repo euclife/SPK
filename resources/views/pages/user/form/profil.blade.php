@@ -1,108 +1,231 @@
-@extends('layouts.user')
+@extends('layouts.dashboardMaster')
 
-@section('title','Edit Profil')
+@section('title','| Profile')
+@section('profileActive','active')
 
-@section('css')
-   <!-- FONT AWESOME-->
-   <!-- FONT AWESOME-->
-   <link rel="stylesheet" href="{{asset('template/admin/vendor/font-awesome/css/font-awesome.css')}}">
-   <!-- SIMPLE LINE ICONS-->
-   <link rel="stylesheet" href="{{asset('template/admin/vendor/simple-line-icons/css/simple-line-icons.css')}}">
-   <!-- ANIMATE.CSS-->
-   <link rel="stylesheet" href="{{asset('template/admin/vendor/animate.css/animate.css')}}">
-   <!-- WHIRL (spinners)-->
-   <link rel="stylesheet" href="{{asset('template/admin/vendor/whirl/dist/whirl.css')}}">
-   <!-- =============== PAGE VENDOR STYLES ===============-->
-   <!-- =============== BOOTSTRAP STYLES ===============-->
-   <link rel="stylesheet" href="{{asset('template/admin/css/bootstrap.css')}}" id="bscss">
-   <!-- =============== APP STYLES ===============-->
-   <link rel="stylesheet" href="{{asset('template/admin/css/app.css')}}" id="maincss">
-   
+@section('script')
+  <script type="text/javascript" src="{{asset('template/material/assets/js/plugins/notifications/jgrowl.min.js')}}"></script>
+  <script type="text/javascript" src="{{asset('template/material/assets/js/plugins/ui/moment/moment.min.js')}}"></script>
+  <script type="text/javascript" src="{{asset('template/material/assets/js/plugins/pickers/daterangepicker.js')}}"></script>
+  <script type="text/javascript" src="{{asset('template/material/assets/js/plugins/pickers/anytime.min.js')}}"></script>
+  <script type="text/javascript" src="{{asset('template/material/assets/js/plugins/pickers/pickadate/picker.js')}}"></script>
+  <script type="text/javascript" src="{{asset('template/material/assets/js/plugins/pickers/pickadate/picker.date.js')}}"></script>
+  <script type="text/javascript" src="{{asset('template/material/assets/js/plugins/pickers/pickadate/picker.time.js')}}"></script>
+  <script type="text/javascript" src="{{asset('template/material/assets/js/plugins/pickers/pickadate/legacy.js')}}"></script>
+  <script type="text/javascript" src="{{asset('template/material/assets/js/plugins/forms/styling/uniform.min.js')}}"></script>
+  <script type="text/javascript" src="{{asset('template/material/assets/js/plugins/forms/selects/select2.min.js')}}"></script>
 
-   {{-- Js --}}
+  <script type="text/javascript" src="{{asset('template/material/assets/js/plugins/media/fancybox.min.js')}}"></script>
+  <script type="text/javascript" src="{{asset('template/material/assets/js/pages/components_thumbnails.js')}}"></script>
 
-    <!-- =============== VENDOR SCRIPTS ===============-->
-   <!-- MODERNIZR-->
-   <script src="{{asset('template/admin/vendor/modernizr/modernizr.custom.js')}}"></script>
-   <!-- JQUERY-->
-   <script src="{{asset('template/admin/vendor/jquery/dist/jquery.js')}}"></script>
-   <!-- BOOTSTRAP-->
-   <script src="{{asset('template/admin/vendor/popper.js/dist/umd/popper.js')}}"></script>
-   <script src="{{asset('template/admin/vendor/bootstrap/dist/js/bootstrap.js')}}"></script>
-   <!-- STORAGE API-->
-   <script src="{{asset('template/admin/vendor/js-storage/js.storage.js')}}"></script>
-   <!-- JQUERY EASING-->
-   <script src="{{asset('template/admin/vendor/jquery.easing/jquery.easing.js')}}"></script>
-   <!-- ANIMO-->
-   <script src="{{asset('template/admin/vendor/animo/animo.js')}}"></script>
-   <!-- SCREENFULL-->
-   <script src="{{asset('template/admin/vendor/screenfull/dist/screenfull.js')}}"></script>
-   <!-- LOCALIZE-->
-   <script src="{{asset('template/admin/vendor/jquery-localize/dist/jquery.localize.js')}}"></script>
-   <!-- =============== PAGE VENDOR SCRIPTS ===============-->
-   <!-- JQUERY VALIDATE-->
-   <script src="{{asset('template/admin/vendor/jquery-validation/dist/jquery.validate.js')}}"></script>
-   <script src="{{asset('template/admin/vendor/jquery-validation/dist/additional-methods.js')}}"></script>
-   <!-- JQUERY STEPS-->
-   <script src="{{asset('template/admin/vendor/jquery-steps/build/jquery.steps.js')}}"></script>
-   <!-- =============== APP SCRIPTS ===============-->
-   <script src="{{asset('template/admin/js/app.js')}}"></script>
+  <script type="text/javascript" src="{{asset('template/material/assets/js/plugins/forms/styling/switch.min.js')}}"></script>
+
+  <script type="text/javascript" src="{{asset('template/material/assets/js/plugins/uploaders/dropzone.min.js') }}"></script>
+  <script type="text/javascript" src="{{asset('template/material/assets/js/core/app.js') }}"></script>
+  <script type="text/javascript" src="{{asset('template/material/assets/js/pages/form_select2.js')}}"></script>
+  
+  <script type="text/javascript" src="{{asset('template/material/assets/js/pages/picker_date.js')}}"></script>
+
+
+   <script type="text/javascript" src="{{ asset('template/material/assets/js/pages/uploader_dropzone.js') }}"></script>
+
+<script type="text/javascript" src="{{ asset('template/material/assets/js/plugins/ui/ripple.min.js') }}"></script>
+@endsection
+
+
+@section('header')
+<!-- Page header -->
+<div class="page-header">
+   <div class="page-header-content">
+      <div class="page-title">
+         <h4>
+            <i class="icon-arrow-left52 position-left"></i>
+            <span class="text-semibold">Home</span> - Profile
+         </h4>
+      </div>
+
+   </div>
+</div>
+<!-- /page header -->
 @endsection
 
 @section('content')
-<!-- Main section-->
-      <section class="section-container">
-         
-         <!-- Page content-->
-         <div class="content-wrapper">
-            <div class="content-heading">Edit Profil</div>
-            <div class="card card-default">
-               <div class="card-header"></div>
-               <div class="card-body">
-                  <form id="example-form"  action="{{url('profilVerifikasi')}}" method="post">
-                     @csrf
-                     <div>
-                        <h4>Profile
-                           <br>
-                        </h4>
-                        <fieldset>
-                           <label for="name">Nama Lengkap *</label>
-                           <input class="form-control required"  name="name" type="text" value="{{$user->name}}">
-                           <label for="surname">Tempat Lahir *</label>
-                           <input class="form-control required"  name="tempat_lahir" type="text">
-                           <label for="email">Tanggal Lahir *</label>
-                           <input class="form-control required"  name="tanggal_lahir" type="date">
-                           <div class="form-group ">
-                           <label class="col-md-10 col-form-label">Jenis Kelamin</label>
-                           <div class="col-md-2">
-                              <label class="c-radio">
-                                 <input id="inlineradio1" type="radio" name="jenis_kelamin" value="Pria" checked="">
-                                 <span class="fa fa-circle"></span>Pria</label>
-                              <label class="c-radio">
-                                 <input id="inlineradio2" type="radio" name="jenis_kelamin" value="Wanita">
-                                 <span class="fa fa-circle"></span>Wanita</label>
-                           </div>
-                           </div>
-                        </fieldset>
-                        <h4>Tempat Tinggal
-                           <br>
-                        </h4>
-                        <fieldset>
-                           <label for="name">Alamat *</label>
-                           <input class="form-control required"  name="alamat" type="text">
-                           <label for="surname">RT *</label>
-                           <input class="form-control required"  name="rt" type="text">
-                           <label for="email">RW *</label>
-                           <input class="form-control required"  name="rw" type="text">
-                           <label for="address">Kab/Kota*</label>
-                           <input class="form-control"  name="Kab/Kota" type="text">
-                        </fieldset>
-                     </div>
-                  </form>
-               </div>
-            </div>
+
+<h6 class="content-group text-semibold">
+   My Profile
+   <small class="display-block">Masukan Data Anda dengan benar!</small>
+</h6>
+<div class="row">
+   <div class="col-md-3">
+    @if(Auth::user()->foto != "")
+    <div class="col-md-12">
+      <div class="thumbnail">
+                  <h6 class="text-semibold no-margin">Foto Profil</h6>
+
+              <div class="thumb thumb-rounded thumb-slide">
+                <img src="{{ asset($foto) }}" alt="">
+                <div class="caption">
+                  <span>
+                <a href="{{ asset($foto) }}" class="btn bg-green-300 btn-icon" data-popup="lightbox"><i class="icon-zoomin3"></i></a>
+                    
+                  </span>
+                </div>
+              </div>
+            
+                <div class="caption text-center">
+                  <h6 class="text-semibold no-margin">{{ $user->name }}</h6>
+                  <ul class="icons-list mt-15">
+                          </ul>
+                </div>
+              </div>
+    </div>
+   @endif
+    <div class="col-md-12">
+       <div class="panel panel-flat border-top-blue">
+         <div class="panel-heading">
+            <h6 class="panel-title"><span class="text-semibold">Mengganti</span> Foto Profil</h6>
          </div>
-      
-      </section>
-      <!-- Page footer-->
+
+         <div class="panel-body">
+           <form action="{{ url('profileFoto') }}" class="dropzone" id="dropzone_foto" method="POST" enctype="multipart/form-data">
+              @csrf
+           </form>
+         </div>
+      </div>
+    </div>
+   </div>
+   <div class="col-md-9">
+     <div class="panel panel-flat">
+          <div class="panel-heading">
+            <h5 class="panel-title">Identitas</h5>
+            <div class="heading-elements">
+              <ul class="icons-list">
+              </ul>
+            </div>
+          </div>
+
+          <div class="panel-body">
+            <p class="content-group-lg">Harap Masukkan data yang sebenar-benarnya. Kami tidak bertanggung jawab bila di waktu mendatang terjadi pelanggaran bilamana data yang di masukkan tidak benar</p>
+
+            <form class="form-horizontal" action="{{ url('profile') }}" method="POST">
+              @csrf
+              <fieldset class="content-group">
+                <legend class="text-bold">Identitas Diri</legend>
+
+                <div class="form-group">
+                  <label class="control-label col-lg-2">Nama Lengkap</label>
+                  <div class="col-lg-10">
+                    <input type="text" class="form-control text-uppercase" name="name" value="{{ $user->name }}">
+                    @if ($errors->has('name'))
+                      <div class="form-control-feedback">
+                        <i class="icon-cancel-circle2"></i>
+                      </div>
+                      <span class="help-block text-danger">{{ $errors->first('name') }}</span>
+                    @endif
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label col-lg-2">No Telepon</label>
+                  <div class="col-lg-10">
+                    <input type="numeric" class="form-control text-uppercase" name="no_telp" value="{{ $user->no_telp }}">
+                    @if ($errors->has('no_telp'))
+                      <div class="form-control-feedback">
+                        <i class="icon-cancel-circle2"></i>
+                      </div>
+                      <span class="help-block text-danger">{{ $errors->first('no_telp') }}</span>
+                    @endif
+                  </div>
+                </div>
+
+                 <div class="form-group">
+                  <label class="control-label col-lg-2">Tempat Lahir</label>
+                  <div class="col-lg-10">
+                    <input type="text" class="form-control text-uppercase" name="tempat_lahir" value="{{ $user->tempat_lahir }}" >
+                    @if ($errors->has('tempat_lahir'))
+                      <div class="form-control-feedback">
+                        <i class="icon-cancel-circle2"></i>
+                      </div>
+                      <span class="help-block text-danger">{{ $errors->first('tempat_lahir') }}</span>
+                    @endif
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label col-lg-2">Tanggal Lahir</label>
+                  <div class="col-lg-10">
+                    <input type="text" class="form-control" id="tgl_lahir" placeholder="" name="tgl_lahir" value="{{ $user->tgl_lahir }}">
+                    @if ($errors->has('tgl_lahir'))
+                      <div class="form-control-feedback">
+                        <i class="icon-cancel-circle2"></i>
+                      </div>
+                      <span class="help-block text-danger">{{ $errors->first('tgl_lahir') }}</span>
+                    @endif
+                  </div>
+                </div>
+
+                 <div class="form-group">
+                  <label class="control-label col-lg-2"> Jenis Kelamin </label>
+                  <div class="col-lg-10">
+                   <label class="radio-inline radio-right">
+                    <input type="radio" name="jenis_kelamin" {{ $user->jenis_kelamin == "PRIA" || old('jenis_kelamin') == ""? "checked='checked'" : "" }} value="PRIA">
+                    Pria
+                  </label>
+
+                  <label class="radio-inline radio-right">
+                    <input type="radio" name="jenis_kelamin" value="WANITA"  {{ $user->jenis_kelamin == "WANITA" ? "checked='checked'" : "" }}>
+                    Wanita
+                  </label>
+                    @if ($errors->has('jenis_kelamin'))
+                      <div class="form-control-feedback">
+                        <i class="icon-cancel-circle2"></i>
+                      </div>
+                      <span class="help-block text-danger">{{ $errors->first('jenis_kelamin') }}</span>
+                    @endif
+                  </div>
+                </div>
+
+                 <div class="form-group">
+                  <label class="control-label col-lg-2">Alamat</label>
+                  <div class="col-lg-10">
+                    <textarea class="form-control" name="alamat" >{{ $user->alamat }}</textarea>
+                    @if ($errors->has('alamat'))
+                      <div class="form-control-feedback">
+                        <i class="icon-cancel-circle2"></i>
+                      </div>
+                      <span class="help-block text-danger">{{ $errors->first('alamat') }}</span>
+                    @endif
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label col-lg-2">Agama</label>
+                  <div class="col-lg-10">
+                    <select class="select-menu-color" name="agama" required="">
+                        <option value="ISLAM" {{$user->agama == "ISLAM" ? "selected=''" : "" }}>ISLAM</option>
+                        <option value="KRISTEN" {{ $user->agama == "KRISTEN" ? "selected=''" : "" }}>KRISTEN</option>
+                        <option value="HINDU" {{ $user->agama == "HINDU" ? "selected=''" : "" }}>HINDU</option>
+                        <option value="BUDHA" {{ $user->agama == "BUDHA" ? "selected=''" : "" }}>BUDHA</option>
+                        <option value="KONGHUCU" {{ $user->agama == "KONGHUCU" ? "selected=''" : "" }}>KONGHUCU</option>
+                    </select>
+                    @if ($errors->has('agama'))
+                      <div class="form-control-feedback">
+                        <i class="icon-cancel-circle2"></i>
+                      </div>
+                      <span class="help-block text-danger">{{ $errors->first('agama') }}</span>
+                    @endif
+                  </div>
+                </div>
+
+
+              </fieldset>
+              <div class="text-right">
+                <button type="submit" class="btn btn-primary">Simpan </button>
+              </div>
+            </form>
+          </div>
+        </div>
+   </div>
+</div>
+
 @endsection

@@ -1,521 +1,1658 @@
-@extends('layouts.user')
+@extends('layouts.dashboardMaster')
+@section('title','| Dashboard Admin')
+@section('dashboardActive','active')
 
-@section('title','Dashboard')
+@section('script')
 
-@section('css')
-<!-- FONT AWESOME-->
-   <link rel="stylesheet" href="{{asset('template/admin/vendor/font-awesome/css/font-awesome.css')}}">
-   <!-- SIMPLE LINE ICONS-->
-   <link rel="stylesheet" href="{{asset('template/admin/vendor/simple-line-icons/css/simple-line-icons.css')}}">
-   <!-- ANIMATE.CSS-->
-   <link rel="stylesheet" href="{{asset('template/admin/vendor/animate.css/animate.css')}}">
-   <!-- WHIRL (spinners)-->
-   <link rel="stylesheet" href="{{asset('template/admin/vendor/whirl/dist/whirl.css')}}">
-   <!-- =============== PAGE VENDOR STYLES ===============-->
-   <!-- WEATHER ICONS-->
-   <link rel="stylesheet" href="{{asset('template/admin/vendor/weather-icons/css/weather-icons.css')}}">
-   <!-- =============== BOOTSTRAP STYLES ===============-->
-   <link rel="stylesheet" href="{{asset('template/admin/css/bootstrap.css')}}" id="bscss">
-   <!-- =============== APP STYLES ===============-->
-   <link rel="stylesheet" href="{{asset('template/admin/css/app.css')}}" id="maincss">
-   <!-- MODERNIZR-->
-   <script src="{{asset('template/admin/vendor/modernizr/modernizr.custom.js')}}"></script>
-   <!-- JQUERY-->
-   <script src="{{asset('template/admin/vendor/jquery/dist/jquery.js')}}"></script>
-   <!-- BOOTSTRAP-->
-   <script src="{{asset('template/admin/vendor/popper.js/dist/umd/popper.js')}}"></script>
-   <script src="{{asset('template/admin/vendor/bootstrap/dist/js/bootstrap.js')}}"></script>
-   <!-- STORAGE API-->
-   <script src="{{asset('template/admin/vendor/js-storage/js.storage.js')}}"></script>
-   <!-- JQUERY EASING-->
-   <script src="{{asset('template/admin/vendor/jquery.easing/jquery.easing.js')}}"></script>
-   <!-- ANIMO-->
-   <script src="{{asset('template/admin/vendor/animo/animo.js')}}"></script>
-   <!-- SCREENFULL-->
-   <script src="v{{asset('template/admin/vendor/screenfull/dist/screenfull.js')}}"></script>
-   <!-- LOCALIZE-->
-   <script src="{{asset('template/admin/vendor/jquery-localize/dist/jquery.localize.js')}}"></script>
-   <!-- =============== PAGE VENDOR SCRIPTS ===============-->
-   <!-- SLIMSCROLL-->
-   <script src="{{asset('template/admin/vendor/jquery-slimscroll/jquery.slimscroll.js')}}"></script>
-   <!-- SPARKLINE-->
-   <script src="{{asset('template/admin/vendor/jquery-sparkline/jquery.sparkline.js')}}"></script>
-   <!-- MOMENT JS-->
-   <script src="{{asset('template/admin/vendor/moment/min/moment-with-locales.js')}}"></script>
-   <!-- =============== APP SCRIPTS ===============-->
-   <script src="{{asset('template/admin/js/app.js')}}"></script>
+	<!-- Theme JS files -->
+	<script type="text/javascript" src="{{asset('template/material/assets/js/plugins/visualization/d3/d3.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('template/material/assets/js/plugins/visualization/d3/d3_tooltip.js')}}"></script>
+	<script type="text/javascript" src="{{asset('template/material/assets/js/plugins/forms/styling/switchery.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('template/material/assets/js/plugins/forms/styling/uniform.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('template/material/assets/js/plugins/forms/selects/bootstrap_multiselect.js')}}"></script>
+	<script type="text/javascript" src="{{asset('template/material/assets/js/plugins/ui/moment/moment.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('template/material/assets/js/plugins/pickers/daterangepicker.js')}}"></script>
+
+	<script type="text/javascript" src="{{asset('template/material/assets/js/core/app.js')}}"></script>
+	<script type="text/javascript" src="{{asset('template/material/assets/js/pages/dashboard.js')}}"></script>
+
+	<script type="text/javascript" src="{{asset('template/material/assets/js/plugins/ui/ripple.min.js')}}"></script>
+	<!-- /theme JS files -->
+@endsection
+@section('header')
+<!-- Page header -->
+	<div class="page-header">
+		<div class="page-header-content">
+			<div class="page-title">
+				<h4>
+					<i class="icon-arrow-left52 position-left"></i>
+					<span class="text-semibold">Home</span> - Admin Dashboard
+					<small class="display-block">Hello, {{ Auth::user()->name }}!</small>
+				</h4>
+			</div>
+
+		</div>
+	</div>
+	<!-- /page header -->
 @endsection
 
 @section('content')
-<!-- Main section-->
-      <section class="section-container">
-         <!-- Page content-->
-         <div class="content-wrapper">
-            <div class="content-heading">
-               <div>Dashboard
-                  <small data-localize="dashboard.WELCOME"></small>
-               </div>
-               <!-- START Language list-->
-               <div class="ml-auto">
-                  <div class="btn-group">
-                     <button class="btn btn-secondary dropdown-toggle dropdown-toggle-nocaret" type="button" data-toggle="dropdown">English</button>
-                     <div class="dropdown-menu dropdown-menu-right-forced animated fadeInUpShort" role="menu"><a class="dropdown-item" href="#" data-set-lang="en">English</a><a class="dropdown-item" href="#" data-set-lang="es">Spanish</a>
-                     </div>
-                  </div>
-               </div>
-               <!-- END Language list-->
-            </div>
-            <!-- START cards box-->
-            <div class="row">
-               <div class="col-xl-3 col-md-6">
-                  <!-- START card-->
-                  <div class="card flex-row align-items-center align-items-stretch border-0">
-                     <div class="col-4 d-flex align-items-center bg-primary-dark justify-content-center rounded-left">
-                        <em class="icon-cloud-upload fa-3x"></em>
-                     </div>
-                     <div class="col-8 py-3 bg-primary rounded-right">
-                        <div class="h2 mt-0">1700</div>
-                        <div class="text-uppercase">Uploads</div>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-xl-3 col-md-6">
-                  <!-- START card-->
-                  <div class="card flex-row align-items-center align-items-stretch border-0">
-                     <div class="col-4 d-flex align-items-center bg-purple-dark justify-content-center rounded-left">
-                        <em class="icon-globe fa-3x"></em>
-                     </div>
-                     <div class="col-8 py-3 bg-purple rounded-right">
-                        <div class="h2 mt-0">700
-                           <small>GB</small>
-                        </div>
-                        <div class="text-uppercase">Quota</div>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-xl-3 col-lg-6 col-md-12">
-                  <!-- START card-->
-                  <div class="card flex-row align-items-center align-items-stretch border-0">
-                     <div class="col-4 d-flex align-items-center bg-green-dark justify-content-center rounded-left">
-                        <em class="icon-bubbles fa-3x"></em>
-                     </div>
-                     <div class="col-8 py-3 bg-green rounded-right">
-                        <div class="h2 mt-0">500</div>
-                        <div class="text-uppercase">Reviews</div>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-xl-3 col-lg-6 col-md-12">
-                  <!-- START date widget-->
-                  <div class="card flex-row align-items-center align-items-stretch border-0">
-                     <div class="col-4 d-flex align-items-center bg-green justify-content-center rounded-left">
-                        <div class="text-center">
-                           <!-- See formats: https://docs.angularjs.org/api/ng/filter/date-->
-                           <div class="text-sm" data-now="" data-format="MMMM"></div>
-                           <br>
-                           <div class="h2 mt-0" data-now="" data-format="D"></div>
-                        </div>
-                     </div>
-                     <div class="col-8 py-3 rounded-right">
-                        <div class="text-uppercase" data-now="" data-format="dddd"></div>
-                        <br>
-                        <div class="h2 mt-0" data-now="" data-format="h:mm"></div>
-                        <div class="text-muted text-sm" data-now="" data-format="a"></div>
-                     </div>
-                  </div>
-                  <!-- END date widget-->
-               </div>
-            </div>
-            <!-- END cards box-->
-            <div class="row">
-               <!-- START dashboard main content-->
-               <div class="col-xl-9">
-                  <!-- START chart-->
-                  <div class="row">
-                     <div class="col-xl-12">
-                        <!-- START card-->
-                        <div class="card card-default card-demo" id="cardChart9">
-                           <div class="card-header">
-                              <a class="float-right" href="#" data-tool="card-refresh" data-toggle="tooltip" title="Refresh card">
-                                 <em class="fa fa-refresh"></em>
-                              </a>
-                              <a class="float-right" href="#" data-tool="card-collapse" data-toggle="tooltip" title="Collapse card">
-                                 <em class="fa fa-minus"></em>
-                              </a>
-                              <div class="card-title">Inbound visitor statistics</div>
-                           </div>
-                           <div class="card-wrapper collapse show">
-                              <div class="card-body">
-                                 <div class="chart-spline flot-chart"></div>
-                              </div>
-                           </div>
-                        </div>
-                        <!-- END card-->
-                     </div>
-                  </div>
-                  <!-- END chart-->
-                  <div class="row">
-                     <div class="col-xl-12">
-                        <div class="card border-0">
-                           <div class="row row-flush">
-                              <div class="col-lg-2 col-md-3 col-6 bg-info py-4 d-flex align-items-center justify-content-center rounded-left">
-                                 <em class="wi wi-day-sunny fa-4x"></em>
-                              </div>
-                              <div class="col-lg-2 col-md-3 col-6 py-2 br d-flex align-items-center justify-content-center">
-                                 <div>
-                                    <div class="h1 m-0 text-bold">32&deg;</div>
-                                    <div class="text-uppercase">Clear</div>
-                                 </div>
-                              </div>
-                              <div class="col-lg-2 col-md-3 d-none d-md-block py-2 text-center br">
-                                 <div class="text-info text-sm">10 AM</div>
-                                 <div class="text-muted text-md">
-                                    <em class="wi wi-day-cloudy"></em>
-                                 </div>
-                                 <div class="text-info">
-                                    <span class="text-muted">20%</span>
-                                 </div>
-                                 <div class="text-muted">27&deg;</div>
-                              </div>
-                              <div class="col-lg-2 col-md-3 d-none d-md-block py-2 text-center br">
-                                 <div class="text-info text-sm">11 AM</div>
-                                 <div class="text-muted text-md">
-                                    <em class="wi wi-day-cloudy"></em>
-                                 </div>
-                                 <div class="text-info">
-                                    <span class="text-muted">30%</span>
-                                 </div>
-                                 <div class="text-muted">28&deg;</div>
-                              </div>
-                              <div class="col-lg-2 py-2 text-center br d-none d-lg-block">
-                                 <div class="text-info text-sm">12 PM</div>
-                                 <div class="text-muted text-md">
-                                    <em class="wi wi-day-cloudy"></em>
-                                 </div>
-                                 <div class="text-info">
-                                    <span class="text-muted">20%</span>
-                                 </div>
-                                 <div class="text-muted">30&deg;</div>
-                              </div>
-                              <div class="col-lg-2 py-2 text-center d-none d-lg-block">
-                                 <div class="text-info text-sm">1 PM</div>
-                                 <div class="text-muted text-md">
-                                    <em class="wi wi-day-sunny-overcast"></em>
-                                 </div>
-                                 <div class="text-info">
-                                    <span class="text-muted">0%</span>
-                                 </div>
-                                 <div class="text-muted">30&deg;</div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="row">
-                     <div class="col-xl-4">
-                        <!-- START card-->
-                        <div class="card border-0">
-                           <div class="card-body">
-                              <div class="d-flex">
-                                 <h3 class="text-muted mt-0">300</h3>
-                                 <em class="ml-auto text-muted fa fa-coffee fa-2x"></em>
-                              </div>
-                              <div class="py-4" data-sparkline="" data-type="line" data-height="80" data-width="100%" data-line-width="2" data-line-color="#7266ba" data-spot-color="#888" data-min-spot-color="#7266ba" data-max-spot-color="#7266ba" data-fill-color=""
-                              data-highlight-line-color="#fff" data-spot-radius="3" data-values="1,3,4,7,5,9,4,4,7,5,9,6,4" data-resize="true"></div>
-                              <p>
-                                 <small class="text-muted">Actual progress</small>
-                              </p>
-                              <div class="progress progress-xs mb-3">
-                                 <div class="progress-bar bg-info progress-bar-striped" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
-                                    <span class="sr-only">80% Complete</span>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <!-- END card-->
-                     </div>
-                     <div class="col-xl-8">
-                        <div class="card card-default">
-                           <div class="card-header">
-                              <div class="px-2 float-right badge badge-danger">5</div>
-                              <div class="px-2 mr-2 float-right badge badge-success">12</div>
-                              <div class="card-title">Team messages</div>
-                           </div>
-                           <!-- START list group-->
-                           <div class="list-group" data-height="180" data-scrollable="">
-                              <!-- START list group item-->
-                              <div class="list-group-item list-group-item-action">
-                                 <div class="media">
-                                    <img class="align-self-start mx-2 circle thumb32" src="img/user/02.jpg" alt="Image">
-                                    <div class="media-body text-truncate">
-                                       <p class="mb-1">
-                                          <strong class="text-primary">
-                                             <span class="circle bg-success circle-lg text-left"></span>
-                                             <span>Catherine Ellis</span>
-                                          </strong>
-                                       </p>
-                                       <p class="mb-1 text-sm">Cras sit amet nibh libero, in gravida nulla. Nulla...</p>
-                                    </div>
-                                    <div class="ml-auto">
-                                       <small class="text-muted ml-2">2h</small>
-                                    </div>
-                                 </div>
-                              </div>
-                              <!-- END list group item-->
-                              <!-- START list group item-->
-                              <div class="list-group-item list-group-item-action">
-                                 <div class="media">
-                                    <img class="align-self-start mx-2 circle thumb32" src="img/user/03.jpg" alt="Image">
-                                    <div class="media-body text-truncate">
-                                       <p class="mb-1">
-                                          <strong class="text-primary">
-                                             <span class="circle bg-success circle-lg text-left"></span>
-                                             <span>Jessica Silva</span>
-                                          </strong>
-                                       </p>
-                                       <p class="mb-1 text-sm">Cras sit amet nibh libero, in gravida nulla. Nulla...</p>
-                                    </div>
-                                    <div class="ml-auto">
-                                       <small class="text-muted ml-2">3h</small>
-                                    </div>
-                                 </div>
-                              </div>
-                              <!-- END list group item-->
-                              <!-- START list group item-->
-                              <div class="list-group-item list-group-item-action">
-                                 <div class="media">
-                                    <img class="align-self-start mx-2 circle thumb32" src="img/user/09.jpg" alt="Image">
-                                    <div class="media-body text-truncate">
-                                       <p class="mb-1">
-                                          <strong class="text-primary">
-                                             <span class="circle bg-danger circle-lg text-left"></span>
-                                             <span>Jessie Wells</span>
-                                          </strong>
-                                       </p>
-                                       <p class="mb-1 text-sm">Cras sit amet nibh libero, in gravida nulla. Nulla...</p>
-                                    </div>
-                                    <div class="ml-auto">
-                                       <small class="text-muted ml-2">4h</small>
-                                    </div>
-                                 </div>
-                              </div>
-                              <!-- END list group item-->
-                              <!-- START list group item-->
-                              <div class="list-group-item list-group-item-action">
-                                 <div class="media">
-                                    <img class="align-self-start mx-2 circle thumb32" src="img/user/12.jpg" alt="Image">
-                                    <div class="media-body text-truncate">
-                                       <p class="mb-1">
-                                          <strong class="text-primary">
-                                             <span class="circle bg-danger circle-lg text-left"></span>
-                                             <span>Rosa Burke</span>
-                                          </strong>
-                                       </p>
-                                       <p class="mb-1 text-sm">Cras sit amet nibh libero, in gravida nulla. Nulla...</p>
-                                    </div>
-                                    <div class="ml-auto">
-                                       <small class="text-muted ml-2">1d</small>
-                                    </div>
-                                 </div>
-                              </div>
-                              <!-- END list group item-->
-                              <!-- START list group item-->
-                              <div class="list-group-item list-group-item-action">
-                                 <div class="media">
-                                    <img class="align-self-start mx-2 circle thumb32" src="img/user/10.jpg" alt="Image">
-                                    <div class="media-body text-truncate">
-                                       <p class="mb-1">
-                                          <strong class="text-primary">
-                                             <span class="circle bg-danger circle-lg text-left"></span>
-                                             <span>Michelle Lane</span>
-                                          </strong>
-                                       </p>
-                                       <p class="mb-1 text-sm">Mauris eleifend, libero nec cursus lacinia...</p>
-                                    </div>
-                                    <div class="ml-auto">
-                                       <small class="text-muted ml-2">2d</small>
-                                    </div>
-                                 </div>
-                              </div>
-                              <!-- END list group item-->
-                           </div>
-                           <!-- END list group-->
-                           <!-- START card footer-->
-                           <div class="card-footer">
-                              <div class="input-group">
-                                 <input class="form-control form-control-sm" type="text" placeholder="Search message ..">
-                                 <span class="input-group-btn">
-                                    <button class="btn btn-secondary btn-sm" type="submit"><i class="fa fa-search"></i>
-                                    </button>
-                                 </span>
-                              </div>
-                           </div>
-                           <!-- END card-footer-->
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <!-- END dashboard main content-->
-               <!-- START dashboard sidebar-->
-               <aside class="col-xl-3">
-                  <!-- START loader widget-->
-                  <div class="card card-default">
-                     <div class="card-body">
-                        <a class="text-muted float-right" href="#">
-                           <em class="fa fa-arrow-right"></em>
-                        </a>
-                        <div class="text-info">Average Monthly Uploads</div>
-                        <div class="text-center py-4">
-                           <div class="easypie-chart easypie-chart-lg" data-easypiechart data-percent="70" data-animate="{&quot;duration&quot;: &quot;800&quot;, &quot;enabled&quot;: &quot;true&quot;}" data-bar-color="#23b7e5" data-track-Color="rgba(200,200,200,0.4)"
-                           data-scale-Color="false" data-line-width="10" data-line-cap="round" data-size="145">
-                              <span>70%</span>
-                           </div>
-                        </div>
-                        <div class="text-center" data-sparkline="" data-bar-color="#23b7e5" data-height="30" data-bar-width="5" data-bar-spacing="2" data-values="5,4,8,7,8,5,4,6,5,5,9,4,6,3,4,7,5,4,7"></div>
-                     </div>
-                     <div class="card-footer">
-                        <p class="text-muted">
-                           <em class="fa fa-upload fa-fw"></em>
-                           <span>This Month</span>
-                           <span class="text-dark">1000 Gb</span>
-                        </p>
-                     </div>
-                  </div>
-                  <!-- END loader widget-->
-                  <!-- START messages and activity-->
-                  <div class="card card-default">
-                     <div class="card-header">
-                        <div class="card-title">Latest activities</div>
-                     </div>
-                     <!-- START list group-->
-                     <div class="list-group">
-                        <!-- START list group item-->
-                        <div class="list-group-item">
-                           <div class="media">
-                              <div class="align-self-start mr-2">
-                                 <span class="fa-stack">
-                                    <em class="fa fa-circle fa-stack-2x text-purple"></em>
-                                    <em class="fa fa-cloud-upload fa-stack-1x fa-inverse text-white"></em>
-                                 </span>
-                              </div>
-                              <div class="media-body text-truncate">
-                                 <p class="mb-1"><a class="text-purple m-0" href="#">NEW FILE</a>
-                                 </p>
-                                 <p class="m-0">
-                                    <small><a href="#">Bootstrap.xls</a>
-                                    </small>
-                                 </p>
-                              </div>
-                              <div class="ml-auto">
-                                 <small class="text-muted ml-2">15m</small>
-                              </div>
-                           </div>
-                        </div>
-                        <!-- END list group item-->
-                        <!-- START list group item-->
-                        <div class="list-group-item">
-                           <div class="media">
-                              <div class="align-self-start mr-2">
-                                 <span class="fa-stack">
-                                    <em class="fa fa-circle fa-stack-2x text-info"></em>
-                                    <em class="fa fa-file-text-o fa-stack-1x fa-inverse text-white"></em>
-                                 </span>
-                              </div>
-                              <div class="media-body text-truncate">
-                                 <p class="mb-1"><a class="text-info m-0" href="#">NEW DOCUMENT</a>
-                                 </p>
-                                 <p class="m-0">
-                                    <small><a href="#">Bootstrap.doc</a>
-                                    </small>
-                                 </p>
-                              </div>
-                              <div class="ml-auto">
-                                 <small class="text-muted ml-2">2h</small>
-                              </div>
-                           </div>
-                        </div>
-                        <!-- END list group item-->
-                        <!-- START list group item-->
-                        <div class="list-group-item">
-                           <div class="media">
-                              <div class="align-self-start mr-2">
-                                 <span class="fa-stack">
-                                    <em class="fa fa-circle fa-stack-2x text-danger"></em>
-                                    <em class="fa fa-exclamation fa-stack-1x fa-inverse text-white"></em>
-                                 </span>
-                              </div>
-                              <div class="media-body text-truncate">
-                                 <p class="mb-1"><a class="text-danger m-0" href="#">BROADCAST</a>
-                                 </p>
-                                 <p class="m-0"><a href="#">Read</a>
-                                 </p>
-                              </div>
-                              <div class="ml-auto">
-                                 <small class="text-muted ml-2">5h</small>
-                              </div>
-                           </div>
-                        </div>
-                        <!-- END list group item-->
-                        <!-- START list group item-->
-                        <div class="list-group-item">
-                           <div class="media">
-                              <div class="align-self-start mr-2">
-                                 <span class="fa-stack">
-                                    <em class="fa fa-circle fa-stack-2x text-success"></em>
-                                    <em class="fa fa-clock-o fa-stack-1x fa-inverse text-white"></em>
-                                 </span>
-                              </div>
-                              <div class="media-body text-truncate">
-                                 <p class="mb-1"><a class="text-success m-0" href="#">NEW MEETING</a>
-                                 </p>
-                                 <p class="m-0">
-                                    <small>On
-                                       <em>10/12/2015 09:00 am</em>
-                                    </small>
-                                 </p>
-                              </div>
-                              <div class="ml-auto">
-                                 <small class="text-muted ml-2">15h</small>
-                              </div>
-                           </div>
-                        </div>
-                        <!-- END list group item-->
-                        <!-- START list group item-->
-                        <div class="list-group-item">
-                           <div class="media">
-                              <div class="align-self-start mr-2">
-                                 <span class="fa-stack">
-                                    <em class="fa fa-circle fa-stack-2x text-warning"></em>
-                                    <em class="fa fa-tasks fa-stack-1x fa-inverse text-white"></em>
-                                 </span>
-                              </div>
-                              <div class="media-body text-truncate">
-                                 <p class="mb-1"><a class="text-warning m-0" href="#">TASKS COMPLETION</a>
-                                 </p>
-                                 <div class="progress progress-xs m-0">
-                                    <div class="progress-bar bg-warning progress-bar-striped" role="progressbar" aria-valuenow="22" aria-valuemin="0" aria-valuemax="100" style="width: 22%;">
-                                       <span class="sr-only">22% Complete</span>
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="ml-auto">
-                                 <small class="text-muted ml-2">1w</small>
-                              </div>
-                           </div>
-                        </div>
-                        <!-- END list group item-->
-                     </div>
-                     <!-- END list group-->
-                     <!-- START card footer-->
-                     <div class="card-footer"><a class="text-sm" href="#">Load more</a>
-                     </div>
-                     <!-- END card-footer-->
-                  </div>
-                  <!-- END messages and activity-->
-               </aside>
-               <!-- END dashboard sidebar-->
-            </div>
-         </div>
-      </section>
-      <!-- Page footer-->
+				<!-- Dashboard content -->
+				<div class="row">
+					<div class="col-lg-8">
+						<!-- Marketing campaigns -->
+						<div class="panel panel-flat">
+							<div class="panel-heading">
+								<h6 class="panel-title">Status Lowongan</h6>
+								<div class="heading-elements">
+									<ul class="icons-list">
+				                		<li class="dropdown">
+				                			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i> <span class="caret"></span></a>
+											<ul class="dropdown-menu dropdown-menu-right">
+												<li><a href="#"><i class="icon-sync"></i> Update data</a></li>
+												<li class="divider"></li>
+											</ul>
+				                		</li>
+				                	</ul>
+			                	</div>
+							</div>
+
+							<div class="table-responsive">
+								<table class="table table-lg text-nowrap">
+									<tbody>
+										<tr>
+											<td class="col-md-5">
+												<div class="media-left">
+													<div id="campaigns-donut"></div>
+												</div>
+
+												<div class="media-left">
+													<h5 class="text-semibold no-margin">38,289 <small class="text-success text-size-base"><i class="icon-arrow-up12"></i> (+16.2%)</small></h5>
+													<ul class="list-inline list-inline-condensed no-margin">
+														<li>
+															<span class="status-mark border-success"></span>
+														</li>
+														<li>
+															<span class="text-muted">May 12, 12:30 am</span>
+														</li>
+													</ul>
+												</div>
+											</td>
+
+											<td class="col-md-5">
+												<div class="media-left">
+													<div id="campaign-status-pie"></div>
+												</div>
+
+												<div class="media-left">
+													<h5 class="text-semibold no-margin">2,458 <small class="text-danger text-size-base"><i class="icon-arrow-down12"></i> (- 4.9%)</small></h5>
+													<ul class="list-inline list-inline-condensed no-margin">
+														<li>
+															<span class="status-mark border-danger"></span>
+														</li>
+														<li>
+															<span class="text-muted">Jun 4, 4:00 am</span>
+														</li>
+													</ul>
+												</div>
+											</td>
+
+											<td class="text-right col-md-2">
+												<a href="#" class="btn bg-indigo-300"><i class="icon-statistics position-left"></i> View report</a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+							<div class="table-responsive">
+								<table class="table text-nowrap">
+									<thead>
+										<tr>
+											<th>Campaign</th>
+											<th class="col-md-2">Client</th>
+											<th class="col-md-2">Changes</th>
+											<th class="col-md-2">Budget</th>
+											<th class="col-md-2">Status</th>
+											<th class="text-center" style="width: 20px;"><i class="icon-arrow-down12"></i></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="active border-double">
+											<td colspan="5">Today</td>
+											<td class="text-right">
+												<span class="progress-meter" id="today-progress" data-progress="30"></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="media-left media-middle">
+													<a href="#"><img src="assets/images/brands/facebook.png" class="img-circle img-xs" alt=""></a>
+												</div>
+												<div class="media-left">
+													<div class=""><a href="#" class="text-default text-semibold">Facebook</a></div>
+													<div class="text-muted text-size-small">
+														<span class="status-mark border-blue position-left"></span>
+														02:00 - 03:00
+													</div>
+												</div>
+											</td>
+											<td><span class="text-muted">Mintlime</span></td>
+											<td><span class="text-success-600"><i class="icon-stats-growth2 position-left"></i> 2.43%</span></td>
+											<td><h6 class="text-semibold">$5,489</h6></td>
+											<td><span class="label bg-blue">Active</span></td>
+											<td class="text-center">
+												<ul class="icons-list">
+													<li class="dropdown">
+														<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+														<ul class="dropdown-menu dropdown-menu-right">
+															<li><a href="#"><i class="icon-file-stats"></i> View statement</a></li>
+															<li><a href="#"><i class="icon-file-text2"></i> Edit campaign</a></li>
+															<li><a href="#"><i class="icon-file-locked"></i> Disable campaign</a></li>
+															<li class="divider"></li>
+															<li><a href="#"><i class="icon-gear"></i> Settings</a></li>
+														</ul>
+													</li>
+												</ul>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="media-left media-middle">
+													<a href="#"><img src="assets/images/brands/youtube.png" class="img-circle img-xs" alt=""></a>
+												</div>
+												<div class="media-left">
+													<div class=""><a href="#" class="text-default text-semibold">Youtube videos</a></div>
+													<div class="text-muted text-size-small">
+														<span class="status-mark border-danger position-left"></span>
+														13:00 - 14:00
+													</div>
+												</div>
+											</td>
+											<td><span class="text-muted">CDsoft</span></td>
+											<td><span class="text-success-600"><i class="icon-stats-growth2 position-left"></i> 3.12%</span></td>
+											<td><h6 class="text-semibold">$2,592</h6></td>
+											<td><span class="label bg-danger">Closed</span></td>
+											<td class="text-center">
+												<ul class="icons-list">
+													<li class="dropdown">
+														<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+														<ul class="dropdown-menu dropdown-menu-right">
+															<li><a href="#"><i class="icon-file-stats"></i> View statement</a></li>
+															<li><a href="#"><i class="icon-file-text2"></i> Edit campaign</a></li>
+															<li><a href="#"><i class="icon-file-locked"></i> Disable campaign</a></li>
+															<li class="divider"></li>
+															<li><a href="#"><i class="icon-gear"></i> Settings</a></li>
+														</ul>
+													</li>
+												</ul>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="media-left media-middle">
+													<a href="#"><img src="assets/images/brands/spotify.png" class="img-circle img-xs" alt=""></a>
+												</div>
+												<div class="media-left">
+													<div class=""><a href="#" class="text-default text-semibold">Spotify ads</a></div>
+													<div class="text-muted text-size-small">
+														<span class="status-mark border-grey-400 position-left"></span>
+														10:00 - 11:00
+													</div>
+												</div>
+											</td>
+											<td><span class="text-muted">Diligence</span></td>
+											<td><span class="text-danger"><i class="icon-stats-decline2 position-left"></i> - 8.02%</span></td>
+											<td><h6 class="text-semibold">$1,268</h6></td>
+											<td><span class="label bg-grey-400">Hold</span></td>
+											<td class="text-center">
+												<ul class="icons-list">
+													<li class="dropdown">
+														<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+														<ul class="dropdown-menu dropdown-menu-right">
+															<li><a href="#"><i class="icon-file-stats"></i> View statement</a></li>
+															<li><a href="#"><i class="icon-file-text2"></i> Edit campaign</a></li>
+															<li><a href="#"><i class="icon-file-locked"></i> Disable campaign</a></li>
+															<li class="divider"></li>
+															<li><a href="#"><i class="icon-gear"></i> Settings</a></li>
+														</ul>
+													</li>
+												</ul>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="media-left media-middle">
+													<a href="#"><img src="assets/images/brands/twitter.png" class="img-circle img-xs" alt=""></a>
+												</div>
+												<div class="media-left">
+													<div class=""><a href="#" class="text-default text-semibold">Twitter ads</a></div>
+													<div class="text-muted text-size-small">
+														<span class="status-mark border-grey-400 position-left"></span>
+														04:00 - 05:00
+													</div>
+												</div>
+											</td>
+											<td><span class="text-muted">Deluxe</span></td>
+											<td><span class="text-success-600"><i class="icon-stats-growth2 position-left"></i> 2.78%</span></td>
+											<td><h6 class="text-semibold">$7,467</h6></td>
+											<td><span class="label bg-grey-400">Hold</span></td>
+											<td class="text-center">
+												<ul class="icons-list">
+													<li class="dropdown">
+														<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+														<ul class="dropdown-menu dropdown-menu-right">
+															<li><a href="#"><i class="icon-file-stats"></i> View statement</a></li>
+															<li><a href="#"><i class="icon-file-text2"></i> Edit campaign</a></li>
+															<li><a href="#"><i class="icon-file-locked"></i> Disable campaign</a></li>
+															<li class="divider"></li>
+															<li><a href="#"><i class="icon-gear"></i> Settings</a></li>
+														</ul>
+													</li>
+												</ul>
+											</td>
+										</tr>
+
+										<tr class="active border-double">
+											<td colspan="5">Yesterday</td>
+											<td class="text-right">
+												<span class="progress-meter" id="yesterday-progress" data-progress="65"></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="media-left media-middle">
+													<a href="#"><img src="assets/images/brands/bing.png" class="img-circle img-xs" alt=""></a>
+												</div>
+												<div class="media-left">
+													<div class=""><a href="#" class="text-default text-semibold">Bing campaign</a></div>
+													<div class="text-muted text-size-small">
+														<span class="status-mark border-success position-left"></span>
+														15:00 - 16:00
+													</div>
+												</div>
+											</td>
+											<td><span class="text-muted">Metrics</span></td>
+											<td><span class="text-danger"><i class="icon-stats-decline2 position-left"></i> - 5.78%</span></td>
+											<td><h6 class="text-semibold">$970</h6></td>
+											<td><span class="label bg-success-400">Pending</span></td>
+											<td class="text-center">
+												<ul class="icons-list">
+													<li class="dropup">
+														<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+														<ul class="dropdown-menu dropdown-menu-right">
+															<li><a href="#"><i class="icon-file-stats"></i> View statement</a></li>
+															<li><a href="#"><i class="icon-file-text2"></i> Edit campaign</a></li>
+															<li><a href="#"><i class="icon-file-locked"></i> Disable campaign</a></li>
+															<li class="divider"></li>
+															<li><a href="#"><i class="icon-gear"></i> Settings</a></li>
+														</ul>
+													</li>
+												</ul>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="media-left media-middle">
+													<a href="#"><img src="assets/images/brands/amazon.png" class="img-circle img-xs" alt=""></a>
+												</div>
+												<div class="media-left">
+													<div class=""><a href="#" class="text-default text-semibold">Amazon ads</a></div>
+													<div class="text-muted text-size-small">
+														<span class="status-mark border-danger position-left"></span>
+														18:00 - 19:00
+													</div>
+												</div>
+											</td>
+											<td><span class="text-muted">Blueish</span></td>
+											<td><span class="text-success-600"><i class="icon-stats-growth2 position-left"></i> 6.79%</span></td>
+											<td><h6 class="text-semibold">$1,540</h6></td>
+											<td><span class="label bg-blue">Active</span></td>
+											<td class="text-center">
+												<ul class="icons-list">
+													<li class="dropup">
+														<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+														<ul class="dropdown-menu dropdown-menu-right">
+															<li><a href="#"><i class="icon-file-stats"></i> View statement</a></li>
+															<li><a href="#"><i class="icon-file-text2"></i> Edit campaign</a></li>
+															<li><a href="#"><i class="icon-file-locked"></i> Disable campaign</a></li>
+															<li class="divider"></li>
+															<li><a href="#"><i class="icon-gear"></i> Settings</a></li>
+														</ul>
+													</li>
+												</ul>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="media-left media-middle">
+													<a href="#"><img src="assets/images/brands/dribbble.png" class="img-circle img-xs" alt=""></a>
+												</div>
+												<div class="media-left">
+													<div class=""><a href="#" class="text-default text-semibold">Dribbble ads</a></div>
+													<div class="text-muted text-size-small">
+														<span class="status-mark border-blue position-left"></span>
+														20:00 - 21:00
+													</div>
+												</div>
+											</td>
+											<td><span class="text-muted">Teamable</span></td>
+											<td><span class="text-danger"><i class="icon-stats-decline2 position-left"></i> 9.83%</span></td>
+											<td><h6 class="text-semibold">$8,350</h6></td>
+											<td><span class="label bg-danger">Closed</span></td>
+											<td class="text-center">
+												<ul class="icons-list">
+													<li class="dropup">
+														<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+														<ul class="dropdown-menu dropdown-menu-right">
+															<li><a href="#"><i class="icon-file-stats"></i> View statement</a></li>
+															<li><a href="#"><i class="icon-file-text2"></i> Edit campaign</a></li>
+															<li><a href="#"><i class="icon-file-locked"></i> Disable campaign</a></li>
+															<li class="divider"></li>
+															<li><a href="#"><i class="icon-gear"></i> Settings</a></li>
+														</ul>
+													</li>
+												</ul>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<!-- /marketing campaigns -->
+
+
+						<!-- Quick stats boxes -->
+						<div class="row">
+							<div class="col-lg-4">
+
+								<!-- Members online -->
+								<div class="panel bg-teal-400">
+									<div class="panel-body">
+										<div class="heading-elements">
+											<span class="heading-text badge bg-teal-800">+53,6%</span>
+										</div>
+
+										<h3 class="no-margin">3,450</h3>
+										Members online
+										<div class="text-muted text-size-small">489 avg</div>
+									</div>
+
+									<div class="container-fluid">
+										<div id="members-online"></div>
+									</div>
+								</div>
+								<!-- /members online -->
+
+							</div>
+
+							<div class="col-lg-4">
+
+								<!-- Current server load -->
+								<div class="panel bg-pink-400">
+									<div class="panel-body">
+										<div class="heading-elements">
+											<ul class="icons-list">
+						                		<li class="dropdown">
+						                			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog3"></i> <span class="caret"></span></a>
+													<ul class="dropdown-menu dropdown-menu-right">
+														<li><a href="#"><i class="icon-sync"></i> Update data</a></li>
+														<li><a href="#"><i class="icon-list-unordered"></i> Detailed log</a></li>
+														<li><a href="#"><i class="icon-pie5"></i> Statistics</a></li>
+														<li><a href="#"><i class="icon-cross3"></i> Clear list</a></li>
+													</ul>
+						                		</li>
+						                	</ul>
+										</div>
+
+										<h3 class="no-margin">49.4%</h3>
+										Current server load
+										<div class="text-muted text-size-small">34.6% avg</div>
+									</div>
+
+									<div id="server-load"></div>
+								</div>
+								<!-- /current server load -->
+
+							</div>
+
+							<div class="col-lg-4">
+
+								<!-- Today's revenue -->
+								<div class="panel bg-blue-400">
+									<div class="panel-body">
+										<div class="heading-elements">
+											<ul class="icons-list">
+						                		<li><a data-action="reload"></a></li>
+						                	</ul>
+					                	</div>
+
+										<h3 class="no-margin">$18,390</h3>
+										Today's revenue
+										<div class="text-muted text-size-small">$37,578 avg</div>
+									</div>
+
+									<div id="today-revenue"></div>
+								</div>
+								<!-- /today's revenue -->
+
+							</div>
+						</div>
+						<!-- /quick stats boxes -->
+
+
+						<!-- Support tickets -->
+						<div class="panel panel-flat">
+							<div class="panel-heading">
+								<h6 class="panel-title">Support tickets</h6>
+								<div class="heading-elements">
+									<button type="button" class="btn btn-link daterange-ranges heading-btn text-semibold">
+										<i class="icon-calendar3 position-left"></i> <span></span> <b class="caret"></b>
+									</button>
+			                	</div>
+							</div>
+
+							<div class="table-responsive">
+								<table class="table table-xlg text-nowrap">
+									<tbody>
+										<tr>
+											<td class="col-md-4">
+												<div class="media-left media-middle">
+													<div id="tickets-status"></div>
+												</div>
+
+												<div class="media-left">
+													<h5 class="text-semibold no-margin">14,327 <small class="text-success text-size-base"><i class="icon-arrow-up12"></i> (+2.9%)</small></h5>
+													<span class="text-muted"><span class="status-mark border-success position-left"></span> Jun 16, 10:00 am</span>
+												</div>
+											</td>
+
+											<td class="col-md-3">
+												<div class="media-left media-middle">
+													<a href="#" class="btn border-indigo-400 text-indigo-400 btn-flat btn-rounded btn-xs btn-icon"><i class="icon-alarm-add"></i></a>
+												</div>
+
+												<div class="media-left">
+													<h5 class="text-semibold no-margin">
+														1,132 <small class="display-block no-margin">total tickets</small>
+													</h5>
+												</div>
+											</td>
+
+											<td class="col-md-3">
+												<div class="media-left media-middle">
+													<a href="#" class="btn border-indigo-400 text-indigo-400 btn-flat btn-rounded btn-xs btn-icon"><i class="icon-spinner11"></i></a>
+												</div>
+
+												<div class="media-left">
+													<h5 class="text-semibold no-margin">
+														06:25:00 <small class="display-block no-margin">response time</small>
+													</h5>
+												</div>
+											</td>
+
+											<td class="text-right col-md-2">
+												<a href="#" class="btn bg-teal-400"><i class="icon-statistics position-left"></i> Report</a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+							<div class="table-responsive">
+								<table class="table text-nowrap">
+									<thead>
+										<tr>
+											<th style="width: 50px">Due</th>
+											<th style="width: 300px;">User</th>
+											<th>Description</th>
+											<th class="text-center" style="width: 20px;"><i class="icon-arrow-down12"></i></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="active border-double">
+											<td colspan="3">Active tickets</td>
+											<td class="text-right">
+												<span class="badge bg-blue">24</span>
+											</td>
+										</tr>
+
+										<tr>
+											<td class="text-center">
+												<h6 class="no-margin">12 <small class="display-block text-size-small no-margin">hours</small></h6>
+											</td>
+											<td>
+												<div class="media-left media-middle">
+													<a href="#" class="btn bg-teal-400 btn-rounded btn-icon btn-xs">
+														<span class="letter-icon"></span>
+													</a>
+												</div>
+
+												<div class="media-body">
+													<a href="#" class="display-inline-block text-default text-semibold letter-icon-title">Annabelle Doney</a>
+													<div class="text-muted text-size-small"><span class="status-mark border-blue position-left"></span> Active</div>
+												</div>
+											</td>
+											<td>
+												<a href="#" class="text-default display-inline-block">
+													<span class="text-semibold">[#1183] Workaround for OS X selects printing bug</span>
+													<span class="display-block text-muted">Chrome fixed the bug several versions ago, thus rendering this...</span>
+												</a>
+											</td>
+											<td class="text-center">
+												<ul class="icons-list">
+													<li class="dropdown">
+														<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+														<ul class="dropdown-menu dropdown-menu-right">
+															<li><a href="#"><i class="icon-undo"></i> Quick reply</a></li>
+															<li><a href="#"><i class="icon-history"></i> Full history</a></li>
+															<li class="divider"></li>
+															<li><a href="#"><i class="icon-checkmark3 text-success"></i> Resolve issue</a></li>
+															<li><a href="#"><i class="icon-cross2 text-danger"></i> Close issue</a></li>
+														</ul>
+													</li>
+												</ul>
+											</td>
+										</tr>
+
+										<tr>
+											<td class="text-center">
+												<h6 class="no-margin">16 <small class="display-block text-size-small no-margin">hours</small></h6>
+											</td>
+											<td>
+												<div class="media-left media-middle">
+													<a href="#"><img src="assets/images/placeholder.jpg" class="img-circle img-xs" alt=""></a>
+												</div>
+
+												<div class="media-body">
+													<a href="#" class="display-inline-block text-default text-semibold letter-icon-title">Chris Macintyre</a>
+													<div class="text-muted text-size-small"><span class="status-mark border-blue position-left"></span> Active</div>
+												</div>
+											</td>
+											<td>
+												<a href="#" class="text-default display-inline-block">
+													<span class="text-semibold">[#1249] Vertically center carousel controls</span>
+													<span class="display-block text-muted">Try any carousel control and reduce the screen width below...</span>
+												</a>
+											</td>
+											<td class="text-center">
+												<ul class="icons-list">
+													<li class="dropdown">
+														<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+														<ul class="dropdown-menu dropdown-menu-right">
+															<li><a href="#"><i class="icon-undo"></i> Quick reply</a></li>
+															<li><a href="#"><i class="icon-history"></i> Full history</a></li>
+															<li class="divider"></li>
+															<li><a href="#"><i class="icon-checkmark3 text-success"></i> Resolve issue</a></li>
+															<li><a href="#"><i class="icon-cross2 text-danger"></i> Close issue</a></li>
+														</ul>
+													</li>
+												</ul>
+											</td>
+										</tr>
+
+										<tr>
+											<td class="text-center">
+												<h6 class="no-margin">20 <small class="display-block text-size-small no-margin">hours</small></h6>
+											</td>
+											<td>
+												<div class="media-left media-middle">
+													<a href="#" class="btn bg-blue btn-rounded btn-icon btn-xs">
+														<span class="letter-icon"></span>
+													</a>
+												</div>
+
+												<div class="media-body">
+													<a href="#" class="display-inline-block text-default text-semibold letter-icon-title">Robert Hauber</a>
+													<div class="text-muted text-size-small"><span class="status-mark border-blue position-left"></span> Active</div>
+												</div>
+											</td>
+											<td>
+												<a href="#" class="text-default display-inline-block">
+													<span class="text-semibold">[#1254] Inaccurate small pagination height</span>
+													<span class="display-block text-muted">The height of pagination elements is not consistent with...</span>
+												</a>
+											</td>
+											<td class="text-center">
+												<ul class="icons-list">
+													<li class="dropdown">
+														<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+														<ul class="dropdown-menu dropdown-menu-right">
+															<li><a href="#"><i class="icon-undo"></i> Quick reply</a></li>
+															<li><a href="#"><i class="icon-history"></i> Full history</a></li>
+															<li class="divider"></li>
+															<li><a href="#"><i class="icon-checkmark3 text-success"></i> Resolve issue</a></li>
+															<li><a href="#"><i class="icon-cross2 text-danger"></i> Close issue</a></li>
+														</ul>
+													</li>
+												</ul>
+											</td>
+										</tr>
+
+										<tr>
+											<td class="text-center">
+												<h6 class="no-margin">40 <small class="display-block text-size-small no-margin">hours</small></h6>
+											</td>
+											<td>
+												<div class="media-left media-middle">
+													<a href="#" class="btn bg-warning-400 btn-rounded btn-icon btn-xs">
+														<span class="letter-icon"></span>
+													</a>
+												</div>
+
+												<div class="media-body">
+													<a href="#" class="display-inline-block text-default text-semibold letter-icon-title">Dex Sponheim</a>
+													<div class="text-muted text-size-small"><span class="status-mark border-blue position-left"></span> Active</div>
+												</div>
+											</td>
+											<td>
+												<a href="#" class="text-default display-inline-block">
+													<span class="text-semibold">[#1184] Round grid column gutter operations</span>
+													<span class="display-block text-muted">Left rounds up, right rounds down. should keep everything...</span>
+												</a>
+											</td>
+											<td class="text-center">
+												<ul class="icons-list">
+													<li class="dropdown">
+														<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+														<ul class="dropdown-menu dropdown-menu-right">
+															<li><a href="#"><i class="icon-undo"></i> Quick reply</a></li>
+															<li><a href="#"><i class="icon-history"></i> Full history</a></li>
+															<li class="divider"></li>
+															<li><a href="#"><i class="icon-checkmark3 text-success"></i> Resolve issue</a></li>
+															<li><a href="#"><i class="icon-cross2 text-danger"></i> Close issue</a></li>
+														</ul>
+													</li>
+												</ul>
+											</td>
+										</tr>
+
+										<tr class="active border-double">
+											<td colspan="3">Resolved tickets</td>
+											<td class="text-right">
+												<span class="badge bg-success">42</span>
+											</td>
+										</tr>
+
+										<tr>
+											<td class="text-center">
+												<i class="icon-checkmark3 text-success"></i>
+											</td>
+											<td>
+												<div class="media-left media-middle">
+													<a href="#" class="btn bg-success-400 btn-rounded btn-icon btn-xs">
+														<span class="letter-icon"></span>
+													</a>
+												</div>
+
+												<div class="media-body">
+													<a href="#" class="display-inline-block text-default letter-icon-title">Alan Macedo</a>
+													<div class="text-muted text-size-small"><span class="status-mark border-success position-left"></span> Resolved</div>
+												</div>
+											</td>
+											<td>
+												<a href="#" class="text-default display-inline-block">
+													[#1046] Avoid some unnecessary HTML string
+													<span class="display-block text-muted">Rather than building a string of HTML and then parsing it...</span>
+												</a>
+											</td>
+											<td class="text-center">
+												<ul class="icons-list">
+													<li class="dropdown">
+														<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+														<ul class="dropdown-menu dropdown-menu-right">
+															<li><a href="#"><i class="icon-undo"></i> Quick reply</a></li>
+															<li><a href="#"><i class="icon-history"></i> Full history</a></li>
+															<li class="divider"></li>
+															<li><a href="#"><i class="icon-plus3 text-blue"></i> Unresolve issue</a></li>
+															<li><a href="#"><i class="icon-cross2 text-danger"></i> Close issue</a></li>
+														</ul>
+													</li>
+												</ul>
+											</td>
+										</tr>
+
+										<tr>
+											<td class="text-center">
+												<i class="icon-checkmark3 text-success"></i>
+											</td>
+											<td>
+												<div class="media-left media-middle">
+													<a href="#" class="btn bg-pink-400 btn-rounded btn-icon btn-xs">
+														<span class="letter-icon"></span>
+													</a>
+												</div>
+
+												<div class="media-body">
+													<a href="#" class="display-inline-block text-default letter-icon-title">Brett Castellano</a>
+													<div class="text-muted text-size-small"><span class="status-mark border-success position-left"></span> Resolved</div>
+												</div>
+											</td>
+											<td>
+												<a href="#" class="text-default display-inline-block">
+													[#1038] Update json configuration
+													<span class="display-block text-muted">The <code>files</code> property is necessary to override the files property...</span>
+												</a>
+											</td>
+											<td class="text-center">
+												<ul class="icons-list">
+													<li class="dropdown">
+														<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+														<ul class="dropdown-menu dropdown-menu-right">
+															<li><a href="#"><i class="icon-undo"></i> Quick reply</a></li>
+															<li><a href="#"><i class="icon-history"></i> Full history</a></li>
+															<li class="divider"></li>
+															<li><a href="#"><i class="icon-plus3 text-blue"></i> Unresolve issue</a></li>
+															<li><a href="#"><i class="icon-cross2 text-danger"></i> Close issue</a></li>
+														</ul>
+													</li>
+												</ul>
+											</td>
+										</tr>
+
+										<tr>
+											<td class="text-center">
+												<i class="icon-checkmark3 text-success"></i>
+											</td>
+											<td>
+												<div class="media-left media-middle">
+													<a href="#"><img src="assets/images/placeholder.jpg" class="img-circle img-xs" alt=""></a>
+												</div>
+
+												<div class="media-body">
+													<a href="#" class="display-inline-block text-default">Roxanne Forbes</a>
+													<div class="text-muted text-size-small"><span class="status-mark border-success position-left"></span> Resolved</div>
+												</div>
+											</td>
+											<td>
+												<a href="#" class="text-default display-inline-block">
+													[#1034] Tooltip multiple event
+													<span class="display-block text-muted">Fix behavior when using tooltips and popovers that are...</span>
+												</a>
+											</td>
+											<td class="text-center">
+												<ul class="icons-list">
+													<li class="dropdown">
+														<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+														<ul class="dropdown-menu dropdown-menu-right">
+															<li><a href="#"><i class="icon-undo"></i> Quick reply</a></li>
+															<li><a href="#"><i class="icon-history"></i> Full history</a></li>
+															<li class="divider"></li>
+															<li><a href="#"><i class="icon-plus3 text-blue"></i> Unresolve issue</a></li>
+															<li><a href="#"><i class="icon-cross2 text-danger"></i> Close issue</a></li>
+														</ul>
+													</li>
+												</ul>
+											</td>
+										</tr>
+
+										<tr class="active border-double">
+											<td colspan="3">Closed tickets</td>
+											<td class="text-right">
+												<span class="badge bg-danger">37</span>
+											</td>
+										</tr>
+
+										<tr>
+											<td class="text-center">
+												<i class="icon-cross2 text-danger-400"></i>
+											</td>
+											<td>
+												<div class="media-left media-middle">
+													<a href="#"><img src="assets/images/placeholder.jpg" class="img-circle img-xs" alt=""></a>
+												</div>
+
+												<div class="media-body">
+													<a href="#" class="display-inline-block text-default">Mitchell Sitkin</a>
+													<div class="text-muted text-size-small"><span class="status-mark border-danger position-left"></span> Closed</div>
+												</div>
+											</td>
+											<td>
+												<a href="#" class="text-default display-inline-block">
+													[#1040] Account for static form controls in form group
+													<span class="display-block text-muted">Resizes control label's font-size and account for the standard...</span>
+												</a>
+											</td>
+											<td class="text-center">
+												<ul class="icons-list">
+													<li class="dropup">
+														<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+														<ul class="dropdown-menu dropdown-menu-right">
+															<li><a href="#"><i class="icon-undo"></i> Quick reply</a></li>
+															<li><a href="#"><i class="icon-history"></i> Full history</a></li>
+															<li class="divider"></li>
+															<li><a href="#"><i class="icon-reload-alt text-blue"></i> Reopen issue</a></li>
+															<li><a href="#"><i class="icon-cross2 text-danger"></i> Close issue</a></li>
+														</ul>
+													</li>
+												</ul>
+											</td>
+										</tr>
+
+										<tr>
+											<td class="text-center">
+												<i class="icon-cross2 text-danger"></i>
+											</td>
+											<td>
+												<div class="media-left media-middle">
+													<a href="#" class="btn bg-brown-400 btn-rounded btn-icon btn-xs">
+														<span class="letter-icon"></span>
+													</a>
+												</div>
+
+												<div class="media-body">
+													<a href="#" class="display-inline-block text-default letter-icon-title">Katleen Jensen</a>
+													<div class="text-muted text-size-small"><span class="status-mark border-danger position-left"></span> Closed</div>
+												</div>
+											</td>
+											<td>
+												<a href="#" class="text-default display-inline-block">
+													[#1038] Proper sizing of form control feedback
+													<span class="display-block text-muted">Feedback icon sizing inside a larger/smaller form-group...</span>
+												</a>
+											</td>
+											<td class="text-center">
+												<ul class="icons-list">
+													<li class="dropup">
+														<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+														<ul class="dropdown-menu dropdown-menu-right">
+															<li><a href="#"><i class="icon-undo"></i> Quick reply</a></li>
+															<li><a href="#"><i class="icon-history"></i> Full history</a></li>
+															<li class="divider"></li>
+															<li><a href="#"><i class="icon-plus3 text-blue"></i> Unresolve issue</a></li>
+															<li><a href="#"><i class="icon-cross2 text-danger"></i> Close issue</a></li>
+														</ul>
+													</li>
+												</ul>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<!-- /support tickets -->
+
+
+						<!-- Latest posts -->
+						<div class="panel panel-flat">
+							<div class="panel-heading">
+								<h6 class="panel-title">Latest posts</h6>
+								<div class="heading-elements">
+									<ul class="icons-list">
+				                		<li><a data-action="collapse"></a></li>
+				                		<li><a data-action="reload"></a></li>
+				                		<li><a data-action="close"></a></li>
+				                	</ul>
+			                	</div>
+		                	</div>
+
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-lg-6">
+										<ul class="media-list content-group">
+											<li class="media stack-media-on-mobile">
+			                					<div class="media-left">
+													<div class="thumb">
+														<a href="#">
+															<img src="assets/images/placeholder.jpg" class="img-responsive img-rounded media-preview" alt="">
+															<span class="zoom-image"><i class="icon-play3"></i></span>
+														</a>
+													</div>
+												</div>
+
+			                					<div class="media-body">
+													<h6 class="media-heading"><a href="#">Up unpacked friendly</a></h6>
+						                    		<ul class="list-inline list-inline-separate text-muted mb-5">
+						                    			<li><i class="icon-book-play position-left"></i> Video tutorials</li>
+						                    			<li>14 minutes ago</li>
+						                    		</ul>
+													The him father parish looked has sooner. Attachment frequently gay terminated son...
+												</div>
+											</li>
+
+											<li class="media stack-media-on-mobile">
+			                					<div class="media-left">
+													<div class="thumb">
+														<a href="#">
+															<img src="assets/images/placeholder.jpg" class="img-responsive img-rounded media-preview" alt="">
+															<span class="zoom-image"><i class="icon-play3"></i></span>
+														</a>
+													</div>
+												</div>
+
+			                					<div class="media-body">
+													<h6 class="media-heading"><a href="#">It allowance prevailed</a></h6>
+						                    		<ul class="list-inline list-inline-separate text-muted mb-5">
+						                    			<li><i class="icon-book-play position-left"></i> Video tutorials</li>
+						                    			<li>12 days ago</li>
+						                    		</ul>
+													Alteration literature to or an sympathize mr imprudence. Of is ferrars subject as enjoyed...
+												</div>
+											</li>
+										</ul>
+									</div>
+
+									<div class="col-lg-6">
+										<ul class="media-list content-group">
+											<li class="media stack-media-on-mobile">
+			                					<div class="media-left">
+													<div class="thumb">
+														<a href="#">
+															<img src="assets/images/placeholder.jpg" class="img-responsive img-rounded media-preview" alt="">
+															<span class="zoom-image"><i class="icon-play3"></i></span>
+														</a>
+													</div>
+												</div>
+
+			                					<div class="media-body">
+													<h6 class="media-heading"><a href="#">Case read they must</a></h6>
+						                    		<ul class="list-inline list-inline-separate text-muted mb-5">
+						                    			<li><i class="icon-book-play position-left"></i> Video tutorials</li>
+						                    			<li>20 hours ago</li>
+						                    		</ul>
+													On it differed repeated wandered required in. Then girl neat why yet knew rose spot...
+												</div>
+											</li>
+
+											<li class="media stack-media-on-mobile">
+			                					<div class="media-left">
+													<div class="thumb">
+														<a href="#">
+															<img src="assets/images/placeholder.jpg" class="img-responsive img-rounded media-preview" alt="">
+															<span class="zoom-image"><i class="icon-play3"></i></span>
+														</a>
+													</div>
+												</div>
+
+			                					<div class="media-body">
+													<h6 class="media-heading"><a href="#">Too carriage attended</a></h6>
+						                    		<ul class="list-inline list-inline-separate text-muted mb-5">
+						                    			<li><i class="icon-book-play position-left"></i> FAQ section</li>
+						                    			<li>2 days ago</li>
+						                    		</ul>
+													Marianne or husbands if at stronger ye. Considered is as middletons uncommonly...
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /latest posts -->
+
+					</div>
+
+					<div class="col-lg-4">
+
+						<!-- Progress counters -->
+						<div class="row">
+							<div class="col-md-6">
+
+								<!-- Available hours -->
+								<div class="panel text-center">
+									<div class="panel-body">
+										<div class="heading-elements">
+											<ul class="icons-list">
+						                		<li class="dropdown text-muted">
+						                			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog3"></i> <span class="caret"></span></a>
+													<ul class="dropdown-menu dropdown-menu-right">
+														<li><a href="#"><i class="icon-sync"></i> Update data</a></li>
+														<li><a href="#"><i class="icon-list-unordered"></i> Detailed log</a></li>
+														<li><a href="#"><i class="icon-pie5"></i> Statistics</a></li>
+														<li><a href="#"><i class="icon-cross3"></i> Clear list</a></li>
+													</ul>
+						                		</li>
+						                	</ul>
+					                	</div>
+
+					                	<!-- Progress counter -->
+										<div class="content-group-sm svg-center position-relative" id="hours-available-progress"></div>
+										<!-- /progress counter -->
+
+
+										<!-- Bars -->
+										<div id="hours-available-bars"></div>
+										<!-- /bars -->
+
+									</div>
+								</div>
+								<!-- /available hours -->
+
+							</div>
+
+							<div class="col-md-6">
+
+								<!-- Productivity goal -->
+								<div class="panel text-center">
+									<div class="panel-body">
+										<div class="heading-elements">
+											<ul class="icons-list">
+						                		<li class="dropdown text-muted">
+						                			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog3"></i> <span class="caret"></span></a>
+													<ul class="dropdown-menu dropdown-menu-right">
+														<li><a href="#"><i class="icon-sync"></i> Update data</a></li>
+														<li><a href="#"><i class="icon-list-unordered"></i> Detailed log</a></li>
+														<li><a href="#"><i class="icon-pie5"></i> Statistics</a></li>
+														<li><a href="#"><i class="icon-cross3"></i> Clear list</a></li>
+													</ul>
+						                		</li>
+						                	</ul>
+										</div>
+
+										<!-- Progress counter -->
+										<div class="content-group-sm svg-center position-relative" id="goal-progress"></div>
+										<!-- /progress counter -->
+
+										<!-- Bars -->
+										<div id="goal-bars"></div>
+										<!-- /bars -->
+
+									</div>
+								</div>
+								<!-- /productivity goal -->
+
+							</div>
+						</div>
+						<!-- /progress counters -->
+
+
+						<!-- Daily sales -->
+						<div class="panel panel-flat">
+							<div class="panel-heading">
+								<h6 class="panel-title">Daily sales stats</h6>
+								<div class="heading-elements">
+									<span class="heading-text">Balance: <span class="text-bold text-danger-600 position-right">$4,378</span></span>
+									<ul class="icons-list">
+				                		<li class="dropdown text-muted">
+				                			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog3"></i> <span class="caret"></span></a>
+											<ul class="dropdown-menu dropdown-menu-right">
+												<li><a href="#"><i class="icon-sync"></i> Update data</a></li>
+												<li><a href="#"><i class="icon-list-unordered"></i> Detailed log</a></li>
+												<li><a href="#"><i class="icon-pie5"></i> Statistics</a></li>
+												<li class="divider"></li>
+												<li><a href="#"><i class="icon-cross3"></i> Clear list</a></li>
+											</ul>
+				                		</li>
+				                	</ul>
+								</div>
+							</div>
+
+							<div class="panel-body">
+								<div id="sales-heatmap"></div>
+							</div>
+
+							<div class="table-responsive">
+								<table class="table text-nowrap">
+									<thead>
+										<tr>
+											<th>Application</th>
+											<th>Time</th>
+											<th>Price</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>
+												<div class="media-left media-middle">
+													<a href="#" class="btn bg-primary-400 btn-rounded btn-icon btn-xs">
+														<span class="letter-icon"></span>
+													</a>
+												</div>
+
+												<div class="media-body">
+													<div class="media-heading">
+														<a href="#" class="letter-icon-title">Sigma application</a>
+													</div>
+
+													<div class="text-muted text-size-small"><i class="icon-checkmark3 text-size-mini position-left"></i> New order</div>
+												</div>
+											</td>
+											<td>
+												<span class="text-muted text-size-small">06:28 pm</span>
+											</td>
+											<td>
+												<h6 class="text-semibold no-margin">$49.90</h6>
+											</td>
+										</tr>
+
+										<tr>
+											<td>
+												<div class="media-left media-middle">
+													<a href="#" class="btn bg-danger-400 btn-rounded btn-icon btn-xs">
+														<span class="letter-icon"></span>
+													</a>
+												</div>
+
+												<div class="media-body">
+													<div class="media-heading">
+														<a href="#" class="letter-icon-title">Alpha application</a>
+													</div>
+
+													<div class="text-muted text-size-small"><i class="icon-spinner11 text-size-mini position-left"></i> Renewal</div>
+												</div>
+											</td>
+											<td>
+												<span class="text-muted text-size-small">04:52 pm</span>
+											</td>
+											<td>
+												<h6 class="text-semibold no-margin">$90.50</h6>
+											</td>
+										</tr>
+
+										<tr>
+											<td>
+												<div class="media-left media-middle">
+													<a href="#" class="btn bg-indigo-400 btn-rounded btn-icon btn-xs">
+														<span class="letter-icon"></span>
+													</a>
+												</div>
+
+												<div class="media-body">
+													<div class="media-heading">
+														<a href="#" class="letter-icon-title">Delta application</a>
+													</div>
+
+													<div class="text-muted text-size-small"><i class="icon-lifebuoy text-size-mini position-left"></i> Support</div>
+												</div>
+											</td>
+											<td>
+												<span class="text-muted text-size-small">01:26 pm</span>
+											</td>
+											<td>
+												<h6 class="text-semibold no-margin">$60.00</h6>
+											</td>
+										</tr>
+
+										<tr>
+											<td>
+												<div class="media-left media-middle">
+													<a href="#" class="btn bg-success-400 btn-rounded btn-icon btn-xs">
+														<span class="letter-icon"></span>
+													</a>
+												</div>
+
+												<div class="media-body">
+													<div class="media-heading">
+														<a href="#" class="letter-icon-title">Omega application</a>
+													</div>
+
+													<div class="text-muted text-size-small"><i class="icon-lifebuoy text-size-mini position-left"></i> Support</div>
+												</div>
+											</td>
+											<td>
+												<span class="text-muted text-size-small">11:46 am</span>
+											</td>
+											<td>
+												<h6 class="text-semibold no-margin">$55.00</h6>
+											</td>
+										</tr>
+
+										<tr>
+											<td>
+												<div class="media-left media-middle">
+													<a href="#" class="btn bg-danger-400 btn-rounded btn-icon btn-xs">
+														<span class="letter-icon"></span>
+													</a>
+												</div>
+
+												<div class="media-body">
+													<div class="media-heading">
+														<a href="#" class="letter-icon-title">Alpha application</a>
+													</div>
+
+													<div class="text-muted text-size-small"><i class="icon-spinner11 text-size-mini position-left"></i> Renewal</div>
+												</div>
+											</td>
+											<td>
+												<span class="text-muted text-size-small">10:29 am</span>
+											</td>
+											<td>
+												<h6 class="text-semibold no-margin">$90.50</h6>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<!-- /daily sales -->
+
+
+						<!-- My messages -->
+						<div class="panel panel-flat">
+							<div class="panel-heading">
+								<h6 class="panel-title">My messages</h6>
+								<div class="heading-elements">
+									<span class="heading-text"><i class="icon-history text-warning position-left"></i> Jul 7, 10:30</span>
+									<span class="label bg-success heading-text">Online</span>
+								</div>
+							</div>
+
+							<!-- Numbers -->
+							<div class="container-fluid">
+								<div class="row text-center">
+									<div class="col-md-4">
+										<div class="content-group">
+											<h6 class="text-semibold no-margin"><i class="icon-clipboard3 position-left text-slate"></i> 2,345</h6>
+											<span class="text-muted text-size-small">this week</span>
+										</div>
+									</div>
+
+									<div class="col-md-4">
+										<div class="content-group">
+											<h6 class="text-semibold no-margin"><i class="icon-calendar3 position-left text-slate"></i> 3,568</h6>
+											<span class="text-muted text-size-small">this month</span>
+										</div>
+									</div>
+
+									<div class="col-md-4">
+										<div class="content-group">
+											<h6 class="text-semibold no-margin"><i class="icon-comments position-left text-slate"></i> 32,693</h6>
+											<span class="text-muted text-size-small">all messages</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- /numbers -->
+
+
+							<!-- Area chart -->
+							<div id="messages-stats"></div>
+							<!-- /area chart -->
+
+
+							<!-- Tabs -->
+		                	<ul class="nav nav-lg nav-tabs nav-justified no-margin no-border-radius bg-indigo-400 border-top border-top-indigo-300">
+								<li class="active">
+									<a href="#messages-tue" class="text-size-small text-uppercase" data-toggle="tab">
+										Tuesday
+									</a>
+								</li>
+
+								<li>
+									<a href="#messages-mon" class="text-size-small text-uppercase" data-toggle="tab">
+										Monday
+									</a>
+								</li>
+
+								<li>
+									<a href="#messages-fri" class="text-size-small text-uppercase" data-toggle="tab">
+										Friday
+									</a>
+								</li>
+							</ul>
+							<!-- /tabs -->
+
+
+							<!-- Tabs content -->
+							<div class="tab-content">
+								<div class="tab-pane active fade in has-padding" id="messages-tue">
+									<ul class="media-list">
+										<li class="media">
+											<div class="media-left">
+												<img src="assets/images/placeholder.jpg" class="img-circle img-xs" alt="">
+												<span class="badge bg-danger-400 media-badge">8</span>
+											</div>
+
+											<div class="media-body">
+												<a href="#">
+													James Alexander
+													<span class="media-annotation pull-right">14:58</span>
+												</a>
+
+												<span class="display-block text-muted">The constitutionally inventoried precariously...</span>
+											</div>
+										</li>
+
+										<li class="media">
+											<div class="media-left">
+												<img src="assets/images/placeholder.jpg" class="img-circle img-xs" alt="">
+												<span class="badge bg-danger-400 media-badge">6</span>
+											</div>
+
+											<div class="media-body">
+												<a href="#">
+													Margo Baker
+													<span class="media-annotation pull-right">12:16</span>
+												</a>
+
+												<span class="display-block text-muted">Pinched a well more moral chose goodness...</span>
+											</div>
+										</li>
+
+										<li class="media">
+											<div class="media-left">
+												<img src="assets/images/placeholder.jpg" class="img-circle img-xs" alt="">
+											</div>
+
+											<div class="media-body">
+												<a href="#">
+													Jeremy Victorino
+													<span class="media-annotation pull-right">09:48</span>
+												</a>
+
+												<span class="display-block text-muted">Pert thickly mischievous clung frowned well...</span>
+											</div>
+										</li>
+
+										<li class="media">
+											<div class="media-left">
+												<img src="assets/images/placeholder.jpg" class="img-circle img-xs" alt="">
+											</div>
+
+											<div class="media-body">
+												<a href="#">
+													Beatrix Diaz
+													<span class="media-annotation pull-right">05:54</span>
+												</a>
+
+												<span class="display-block text-muted">Nightingale taped hello bucolic fussily cardinal...</span>
+											</div>
+										</li>
+
+										<li class="media">
+											<div class="media-left">
+												<img src="assets/images/placeholder.jpg" class="img-circle img-xs" alt="">
+											</div>
+
+											<div class="media-body">
+												<a href="#">
+													Richard Vango
+													<span class="media-annotation pull-right">01:43</span>
+												</a>
+
+												<span class="display-block text-muted">Amidst roadrunner distantly pompously where...</span>
+											</div>
+										</li>
+									</ul>
+								</div>
+
+								<div class="tab-pane fade has-padding" id="messages-mon">
+									<ul class="media-list">
+										<li class="media">
+											<div class="media-left">
+												<img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
+											</div>
+
+											<div class="media-body">
+												<a href="#">
+													Isak Temes
+													<span class="media-annotation pull-right">Tue, 19:58</span>
+												</a>
+
+												<span class="display-block text-muted">Reasonable palpably rankly expressly grimy...</span>
+											</div>
+										</li>
+
+										<li class="media">
+											<div class="media-left">
+												<img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
+											</div>
+
+											<div class="media-body">
+												<a href="#">
+													Vittorio Cosgrove
+													<span class="media-annotation pull-right">Tue, 16:35</span>
+												</a>
+
+												<span class="display-block text-muted">Arguably therefore more unexplainable fumed...</span>
+											</div>
+										</li>
+
+										<li class="media">
+											<div class="media-left">
+												<img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
+											</div>
+
+											<div class="media-body">
+												<a href="#">
+													Hilary Talaugon
+													<span class="media-annotation pull-right">Tue, 12:16</span>
+												</a>
+
+												<span class="display-block text-muted">Nicely unlike porpoise a kookaburra past more...</span>
+											</div>
+										</li>
+
+										<li class="media">
+											<div class="media-left">
+												<img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
+											</div>
+
+											<div class="media-body">
+												<a href="#">
+													Bobbie Seber
+													<span class="media-annotation pull-right">Tue, 09:20</span>
+												</a>
+
+												<span class="display-block text-muted">Before visual vigilantly fortuitous tortoise...</span>
+											</div>
+										</li>
+
+										<li class="media">
+											<div class="media-left">
+												<img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
+											</div>
+
+											<div class="media-body">
+												<a href="#">
+													Walther Laws
+													<span class="media-annotation pull-right">Tue, 03:29</span>
+												</a>
+
+												<span class="display-block text-muted">Far affecting more leered unerringly dishonest...</span>
+											</div>
+										</li>
+									</ul>
+								</div>
+
+								<div class="tab-pane fade has-padding" id="messages-fri">
+									<ul class="media-list">
+										<li class="media">
+											<div class="media-left">
+												<img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
+											</div>
+
+											<div class="media-body">
+												<a href="#">
+													Owen Stretch
+													<span class="media-annotation pull-right">Mon, 18:12</span>
+												</a>
+
+												<span class="display-block text-muted">Tardy rattlesnake seal raptly earthworm...</span>
+											</div>
+										</li>
+
+										<li class="media">
+											<div class="media-left">
+												<img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
+											</div>
+
+											<div class="media-body">
+												<a href="#">
+													Jenilee Mcnair
+													<span class="media-annotation pull-right">Mon, 14:03</span>
+												</a>
+
+												<span class="display-block text-muted">Since hello dear pushed amid darn trite...</span>
+											</div>
+										</li>
+
+										<li class="media">
+											<div class="media-left">
+												<img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
+											</div>
+
+											<div class="media-body">
+												<a href="#">
+													Alaster Jain
+													<span class="media-annotation pull-right">Mon, 13:59</span>
+												</a>
+
+												<span class="display-block text-muted">Dachshund cardinal dear next jeepers well...</span>
+											</div>
+										</li>
+
+										<li class="media">
+											<div class="media-left">
+												<img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
+											</div>
+
+											<div class="media-body">
+												<a href="#">
+													Sigfrid Thisted
+													<span class="media-annotation pull-right">Mon, 09:26</span>
+												</a>
+
+												<span class="display-block text-muted">Lighted wolf yikes less lemur crud grunted...</span>
+											</div>
+										</li>
+
+										<li class="media">
+											<div class="media-left">
+												<img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
+											</div>
+
+											<div class="media-body">
+												<a href="#">
+													Sherilyn Mckee
+													<span class="media-annotation pull-right">Mon, 06:38</span>
+												</a>
+
+												<span class="display-block text-muted">Less unicorn a however careless husky...</span>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<!-- /tabs content -->
+
+						</div>
+						<!-- /my messages -->
+
+
+						<!-- Daily financials -->
+						<div class="panel panel-flat">
+							<div class="panel-heading">
+								<h6 class="panel-title">Daily financials</h6>
+								<div class="heading-elements">
+									<form class="heading-form" action="#">
+										<div class="form-group">
+											<label class="checkbox checkbox-inline checkbox-switchery checkbox-right switchery-xs">
+												<input type="checkbox" class="switcher" id="realtime" checked="checked">
+												Realtime
+											</label>
+										</div>
+									</form>
+									<span class="badge bg-danger-400 heading-text">+86</span>
+								</div>
+							</div>
+
+							<div class="panel-body">
+								<div class="content-group-xs" id="bullets"></div>
+
+								<ul class="media-list">
+									<li class="media">
+										<div class="media-left">
+											<a href="#" class="btn border-pink text-pink btn-flat btn-rounded btn-icon btn-xs"><i class="icon-statistics"></i></a>
+										</div>
+
+										<div class="media-body">
+											Stats for July, 6: 1938 orders, $4220 revenue
+											<div class="media-annotation">2 hours ago</div>
+										</div>
+
+										<div class="media-right media-middle">
+											<ul class="icons-list">
+												<li>
+							                    	<a href="#"><i class="icon-arrow-right13"></i></a>
+						                    	</li>
+					                    	</ul>
+										</div>
+									</li>
+
+									<li class="media">
+										<div class="media-left">
+											<a href="#" class="btn border-success text-success btn-flat btn-rounded btn-icon btn-xs"><i class="icon-checkmark3"></i></a>
+										</div>
+
+										<div class="media-body">
+											Invoices <a href="#">#4732</a> and <a href="#">#4734</a> have been paid
+											<div class="media-annotation">Dec 18, 18:36</div>
+										</div>
+
+										<div class="media-right media-middle">
+											<ul class="icons-list">
+												<li>
+							                    	<a href="#"><i class="icon-arrow-right13"></i></a>
+						                    	</li>
+					                    	</ul>
+										</div>
+									</li>
+
+									<li class="media">
+										<div class="media-left">
+											<a href="#" class="btn border-primary text-primary btn-flat btn-rounded btn-icon btn-xs"><i class="icon-alignment-unalign"></i></a>
+										</div>
+
+										<div class="media-body">
+											Affiliate commission for June has been paid
+											<div class="media-annotation">36 minutes ago</div>
+										</div>
+
+										<div class="media-right media-middle">
+											<ul class="icons-list">
+												<li>
+							                    	<a href="#"><i class="icon-arrow-right13"></i></a>
+						                    	</li>
+					                    	</ul>
+										</div>
+									</li>
+
+									<li class="media">
+										<div class="media-left">
+											<a href="#" class="btn border-warning-400 text-warning-400 btn-flat btn-rounded btn-icon btn-xs"><i class="icon-spinner11"></i></a>
+										</div>
+
+										<div class="media-body">
+											Order <a href="#">#37745</a> from July, 1st has been refunded
+											<div class="media-annotation">4 minutes ago</div>
+										</div>
+
+										<div class="media-right media-middle">
+											<ul class="icons-list">
+												<li>
+							                    	<a href="#"><i class="icon-arrow-right13"></i></a>
+						                    	</li>
+					                    	</ul>
+										</div>
+									</li>
+
+									<li class="media">
+										<div class="media-left">
+											<a href="#" class="btn border-teal-400 text-teal btn-flat btn-rounded btn-icon btn-xs"><i class="icon-redo2"></i></a>
+										</div>
+
+										<div class="media-body">
+											Invoice <a href="#">#4769</a> has been sent to <a href="#">Robert Smith</a>
+											<div class="media-annotation">Dec 12, 05:46</div>
+										</div>
+
+										<div class="media-right media-middle">
+											<ul class="icons-list">
+												<li>
+							                    	<a href="#"><i class="icon-arrow-right13"></i></a>
+						                    	</li>
+					                    	</ul>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<!-- /daily financials -->
+
+					</div>
+				</div>
+				<!-- /dashboard content -->
+
+
 @endsection

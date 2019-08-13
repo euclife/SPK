@@ -11,19 +11,31 @@
 |
 */
 Route::get('/', 'WelcomeController@index')->name('index');
+Route::get('/tes', 'WelcomeController@tes');
 
 Auth::routes(['verify' => true]);
 
-//guest
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/profil', 'PelamarController@profil');
-Route::get('/profilVerifikasi', 'HomeController@profilEditVerifikasi');
-Route::post('/profilVerifikasi', 'HomeController@profilEditVerifikasiPost');
+
 
 //admin
-Route::get('/admin', 'AdminController@index')->name('admin');
 
 //API
 Route::get('/api/syaratlowongan/{id}', 'apiController@syaratlowongan');
 
 
+Route::middleware('auth')->group(function () {
+	Route::get('/dashboard', 'HomeController@index')->name('home');
+	Route::get('/profile', 'PelamarController@profil');
+	Route::post('/profile', 'PelamarController@profilUpdate');
+	Route::post('/profileFoto', 'PelamarController@profilFoto');
+
+	Route::get('/lowongan', 'LowonganController@index');
+	Route::get('/lowongan/accept/{id}', 'LowonganController@regis');
+
+
+});
+
+Route::middleware(['auth','admin'])->group(function () {
+	Route::get('/admin', 'AdminController@index')->name('admin');
+
+});

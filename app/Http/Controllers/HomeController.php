@@ -36,10 +36,19 @@ class HomeController extends Controller
             $today = Carbon::today()->formatLocalized('%A, %d %B %Y');
             $now = Carbon::now()->format('Y-m-d H:i:00');
 
+            $profil = User::find(Auth::user()->id);
+            $status = "";
+
+            if ($profil->tempat_lahir == "" || $profil->tgl_lahir == "" || $profil->jenis_kelamin == "" || $profil->alamat == "" || $profil->rt == "" || $profil->rw == "" || $profil->agama == "" || $profil->status_kawin == "" || $profil->foto == "") {
+                $status = "not clear";
+            }else{
+                $status = "clear";
+            }
+
             $lowongan = Lowongan::select('*')
             ->where('tanggal_selesai','>=',$now)
             ->get();
-            return view('pages.user.index', compact('lowongan','today','now'));
+            return view('pages.user.dashboard', compact('lowongan','today','now','status'));
         }
     }
 
