@@ -26,7 +26,7 @@
 			<div class="page-title">
 				<h4>
 					<i class="icon-arrow-left52 position-left"></i>
-					<span class="text-semibold">Home</span> - Admin Dashboard
+					<span class="text-semibold">Admin</span> - Dashboard
 					<small class="display-block">Hello, {{ Auth::user()->name }}!</small>
 				</h4>
 			</div>

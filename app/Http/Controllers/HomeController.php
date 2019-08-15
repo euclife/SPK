@@ -39,7 +39,7 @@ class HomeController extends Controller
             $profil = User::find(Auth::user()->id);
             $status = "";
 
-            if ($profil->tempat_lahir == "" || $profil->tgl_lahir == "" || $profil->jenis_kelamin == "" || $profil->alamat == "" || $profil->rt == "" || $profil->rw == "" || $profil->agama == "" || $profil->status_kawin == "" || $profil->foto == "") {
+            if ($profil->tempat_lahir == "" || $profil->tgl_lahir == "" || $profil->jenis_kelamin == "" || $profil->alamat == ""  || $profil->agama == "" || $profil->foto == ""  || $profil->no_telp == "") {
                 $status = "not clear";
             }else{
                 $status = "clear";
@@ -64,7 +64,7 @@ class HomeController extends Controller
     }
 
     public function profilEditVerifikasiPost(Request $request){
-            //  $validator = Validator::make($request->all(), [   
+            //  $validator = Validator::make($request->all(), [
             // 'klasifikasi'           => 'required|string',
             // 'no_registrasi'         => 'required|string|unique:koleksi_identitas,no_registrasi',
             // 'no_inventaris2'        => 'required|string|unique:koleksi_identitas,no_inventaris',

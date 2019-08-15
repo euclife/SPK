@@ -35,4 +35,15 @@ class LowonganController extends Controller
       $lowongan = Lowongan::find($id);
       return view('pages.user.form.accept',compact('lowongan'));
     }
+
+    public function indexAdmin()
+    {
+      $lowongan = Lowongan::all();
+      return vieww('pages.admin.listlowongan',compact('lowongan'));
+    }
+
+    public function test()
+    {
+      return view('pages.user.form.test');
+    }
 }

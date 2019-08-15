@@ -31,11 +31,15 @@ Route::middleware('auth')->group(function () {
 
 	Route::get('/lowongan', 'LowonganController@index');
 	Route::get('/lowongan/accept/{id}', 'LowonganController@regis');
+	Route::get('/lowongan/create', 'LowonganController@reg');
+
+	Route::get('/test', 'LowonganController@test');
 
 
 });
 
 Route::middleware(['auth','admin'])->group(function () {
 	Route::get('/admin', 'AdminController@index')->name('admin');
+	Route::get('/admin/listlowongan', 'LowonganController@indexAdmin');
 
 });

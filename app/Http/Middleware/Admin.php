@@ -19,7 +19,7 @@ class Admin
         $level = Auth::user()->level;
         if ($level != "ADMIN") {
              return redirect()->back()->with(['error' => 'Anda Tidak Berhak Mengakses Halaman Tersebut!']);;
-         } 
+         }
         return $next($request);
     }
 }
