@@ -78,104 +78,38 @@
                 <div class="form-group">
                   <label class="control-label col-lg-2">SURAT LAMARAN</label>
                   <div class="col-lg-10">
-                    <input type="file" class="form-control text-uppercase" name="name" value="{{ $user->name }}">
-                    @if ($errors->has('name'))
+                    <input type="file" class="form-control text-uppercase" name="surat_lamaran" required>
+                    @if ($errors->has('surat_lamaran'))
                       <div class="form-control-feedback">
                         <i class="icon-cancel-circle2"></i>
                       </div>
-                      <span class="help-block text-danger">{{ $errors->first('name') }}</span>
+                      <span class="help-block text-danger">{{ $errors->first('surat_lamaran') }}</span>
                     @endif
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label class="control-label col-lg-2">No Telepon</label>
+                  <label class="control-label col-lg-2">CV</label>
                   <div class="col-lg-10">
-                    <input type="numeric" class="form-control text-uppercase" name="no_telp" value="{{ $user->no_telp }}">
-                    @if ($errors->has('no_telp'))
+                    <input type="file" class="form-control text-uppercase" name="cv">
+                    @if ($errors->has('cv'))
                       <div class="form-control-feedback">
                         <i class="icon-cancel-circle2"></i>
                       </div>
-                      <span class="help-block text-danger">{{ $errors->first('no_telp') }}</span>
-                    @endif
-                  </div>
-                </div>
-
-                 <div class="form-group">
-                  <label class="control-label col-lg-2">Tempat Lahir</label>
-                  <div class="col-lg-10">
-                    <input type="text" class="form-control text-uppercase" name="tempat_lahir" value="{{ $user->tempat_lahir }}" >
-                    @if ($errors->has('tempat_lahir'))
-                      <div class="form-control-feedback">
-                        <i class="icon-cancel-circle2"></i>
-                      </div>
-                      <span class="help-block text-danger">{{ $errors->first('tempat_lahir') }}</span>
+                      <span class="help-block text-danger">{{ $errors->first('cv') }}</span>
                     @endif
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label class="control-label col-lg-2">Tanggal Lahir</label>
+                  <label class="control-label col-lg-2">IPK</label>
                   <div class="col-lg-10">
-                    <input type="text" class="form-control" id="tgl_lahir" placeholder="" name="tgl_lahir" value="{{ $user->tgl_lahir }}">
-                    @if ($errors->has('tgl_lahir'))
+                    <input type="number" class="form-control text-uppercase" name="ipk" required>
+                    @if ($errors->has('ipk'))
                       <div class="form-control-feedback">
                         <i class="icon-cancel-circle2"></i>
                       </div>
-                      <span class="help-block text-danger">{{ $errors->first('tgl_lahir') }}</span>
-                    @endif
-                  </div>
-                </div>
-
-                 <div class="form-group">
-                  <label class="control-label col-lg-2"> Jenis Kelamin </label>
-                  <div class="col-lg-10">
-                   <label class="radio-inline radio-right">
-                    <input type="radio" name="jenis_kelamin" {{ $user->jenis_kelamin == "PRIA" || old('jenis_kelamin') == ""? "checked='checked'" : "" }} value="PRIA">
-                    Pria
-                  </label>
-
-                  <label class="radio-inline radio-right">
-                    <input type="radio" name="jenis_kelamin" value="WANITA"  {{ $user->jenis_kelamin == "WANITA" ? "checked='checked'" : "" }}>
-                    Wanita
-                  </label>
-                    @if ($errors->has('jenis_kelamin'))
-                      <div class="form-control-feedback">
-                        <i class="icon-cancel-circle2"></i>
-                      </div>
-                      <span class="help-block text-danger">{{ $errors->first('jenis_kelamin') }}</span>
-                    @endif
-                  </div>
-                </div>
-
-                 <div class="form-group">
-                  <label class="control-label col-lg-2">Alamat</label>
-                  <div class="col-lg-10">
-                    <textarea class="form-control" name="alamat" >{{ $user->alamat }}</textarea>
-                    @if ($errors->has('alamat'))
-                      <div class="form-control-feedback">
-                        <i class="icon-cancel-circle2"></i>
-                      </div>
-                      <span class="help-block text-danger">{{ $errors->first('alamat') }}</span>
-                    @endif
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="control-label col-lg-2">Agama</label>
-                  <div class="col-lg-10">
-                    <select class="select-menu-color" name="agama" required="">
-                        <option value="ISLAM" {{$user->agama == "ISLAM" ? "selected=''" : "" }}>ISLAM</option>
-                        <option value="KRISTEN" {{ $user->agama == "KRISTEN" ? "selected=''" : "" }}>KRISTEN</option>
-                        <option value="HINDU" {{ $user->agama == "HINDU" ? "selected=''" : "" }}>HINDU</option>
-                        <option value="BUDHA" {{ $user->agama == "BUDHA" ? "selected=''" : "" }}>BUDHA</option>
-                        <option value="KONGHUCU" {{ $user->agama == "KONGHUCU" ? "selected=''" : "" }}>KONGHUCU</option>
-                    </select>
-                    @if ($errors->has('agama'))
-                      <div class="form-control-feedback">
-                        <i class="icon-cancel-circle2"></i>
-                      </div>
-                      <span class="help-block text-danger">{{ $errors->first('agama') }}</span>
+                      <span class="help-block text-danger">{{ $errors->first('ipk') }}</span>
                     @endif
                   </div>
                 </div>

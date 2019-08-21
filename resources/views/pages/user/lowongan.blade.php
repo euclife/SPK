@@ -55,7 +55,7 @@
 					<td>{{ $l->posisi }}</td>
 					<td>{{ Carbon\Carbon::parse($l->tanggal_selesai)->formatLocalized('%d %B %Y') }}</td>
 					<td class="mx-auto text-center"><button type="button" class="btn btn-info btn-lg btn-lowongan" data-id="{{ $l->id_lowongan  }}" data-posisi="{{ $l->posisi  }}">Syarat</button></td>
-					<td class="mx-auto text-center"><a href="{{url('/lowongan/accept', $l->id_lowongan)}}" class="btn btn-success btn-lg btn-lowongan">Daftar</a></td>
+					<td class="mx-auto text-center"><a href="{{url('/lowongan/accept', $l->id_lowongan)}}" class="btn btn-success btn-lg">Daftar</a></td>
 				</tr>
 				@endforeach
 			</tbody>
