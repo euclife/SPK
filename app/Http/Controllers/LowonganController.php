@@ -46,4 +46,15 @@ class LowonganController extends Controller
     {
       return view('pages.user.form.test');
     }
+
+    public function show($id)
+    {
+      $lowongan = Lowongan::find($id);
+      return view('pages.admin.Lowongan.detail');
+    }
+
+    public function create()
+    {
+      return view('pages.admin.Lowongan.create');
+    }
 }

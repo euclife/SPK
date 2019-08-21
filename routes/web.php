@@ -16,9 +16,6 @@ Route::get('/tes', 'WelcomeController@tes');
 Auth::routes(['verify' => true]);
 
 
-
-//admin
-
 //API
 Route::get('/api/syaratlowongan/{id}', 'apiController@syaratlowongan');
 
@@ -41,5 +38,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth','admin'])->group(function () {
 	Route::get('/admin', 'AdminController@index')->name('admin');
 	Route::get('/admin/listlowongan', 'LowonganController@indexAdmin');
+	Route::get('/admin/lowongan/create', 'LowonganController@create');
+	Route::get('/admin/lowongan/{id}', 'LowonganController@show');
 
 });

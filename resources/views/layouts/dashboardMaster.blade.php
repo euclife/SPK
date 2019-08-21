@@ -109,11 +109,9 @@ $authFoto = $dir.$blob;
                         <li class="@yield('ListLowonganActive')"><a href="login_background.html">List Lowongan</a></li>
                     </ul>
                 </li>
-                <li class="@yield('profileActive')"><a href="{{ url('profile') }}"> <i class="icon-profile position-left"></i>My Profile</a></li>
             </ul>
             @else
             <li class="@yield('dashboardActive')"><a href="{{ url('dashboard') }}"><i class="icon-display4 position-left"></i> Dashboard</a></li>
-            <li class="@yield('lowonganActive')"><a href="{{ url('lowongan') }}"><i class="icon-newspaper position-left"></i> Lowongan</a></li>
             <li class="@yield('profileActive')"><a href="{{ url('profile') }}"> <i class="icon-profile position-left"></i>My Profile</a></li>
             @endif
 
