@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 21, 2019 at 03:41 PM
+-- Generation Time: Aug 27, 2019 at 01:51 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.19
 
@@ -54,19 +54,17 @@ CREATE TABLE `lowongan` (
   `id_lowongan` int(11) NOT NULL,
   `posisi` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `keterangan` text COLLATE utf8mb4_unicode_ci,
-  `tanggal_mulai` datetime NOT NULL,
   `tanggal_selesai` datetime NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `lowongan`
 --
 
-INSERT INTO `lowongan` (`id_lowongan`, `posisi`, `keterangan`, `tanggal_mulai`, `tanggal_selesai`, `created_at`, `updated_at`) VALUES
-(1, 'Administrasi', NULL, '2019-07-01 00:00:00', '2019-07-23 00:00:00', '2019-07-24 00:43:59', '0000-00-00 00:00:00'),
-(2, 'Staff Keuangan', NULL, '2019-07-02 00:00:00', '2019-08-23 00:00:00', '2019-08-15 14:10:09', '0000-00-00 00:00:00');
+INSERT INTO `lowongan` (`id_lowongan`, `posisi`, `keterangan`, `tanggal_selesai`, `created_at`, `updated_at`) VALUES
+(1, 'Administrasi', 'Keterangan', '2019-08-28 00:00:00', '2019-08-26 13:14:25', '2019-08-26 12:49:08');
 
 -- --------------------------------------------------------
 
@@ -78,7 +76,6 @@ CREATE TABLE `lowongan_syarat` (
   `id_syarat` int(11) NOT NULL,
   `id_lowongan` int(11) NOT NULL,
   `nama_syarat` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tipe` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -87,10 +84,9 @@ CREATE TABLE `lowongan_syarat` (
 -- Dumping data for table `lowongan_syarat`
 --
 
-INSERT INTO `lowongan_syarat` (`id_syarat`, `id_lowongan`, `nama_syarat`, `tipe`, `created_at`, `updated_at`) VALUES
-(1, 2, 'Perempuan Usia 21th-26th', 'wajib', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(2, 2, 'Menguasai Komputer', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(3, 1, 'asd', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `lowongan_syarat` (`id_syarat`, `id_lowongan`, `nama_syarat`, `created_at`, `updated_at`) VALUES
+(28, 1, 'Usia min 2 tahun pelangaman', '2019-08-26 19:49:08', '2019-08-26 19:49:08'),
+(29, 1, 'Cantik', '2019-08-26 19:49:08', '2019-08-26 19:49:08');
 
 -- --------------------------------------------------------
 
@@ -136,7 +132,13 @@ CREATE TABLE `pelamar` (
   `lowongan_id` int(11) NOT NULL,
   `surat_lamaran` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `cv` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `score` int(11) DEFAULT NULL,
+  `ijasah` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` int(11) NOT NULL,
+  `ipk` double NOT NULL,
+  `umur` int(11) NOT NULL,
+  `psikotes` int(11) DEFAULT NULL,
+  `umum` int(11) DEFAULT NULL,
+  `point` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL,
   `updated_at` timestamp NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -145,8 +147,9 @@ CREATE TABLE `pelamar` (
 -- Dumping data for table `pelamar`
 --
 
-INSERT INTO `pelamar` (`id`, `user_id`, `lowongan_id`, `surat_lamaran`, `cv`, `score`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'ada', 'ada', 70, '2019-08-20 17:00:00', '2019-08-20 17:00:00');
+INSERT INTO `pelamar` (`id`, `user_id`, `lowongan_id`, `surat_lamaran`, `cv`, `ijasah`, `status`, `ipk`, `umur`, `psikotes`, `umum`, `point`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 'ada', 'ada', 'ada', 1, 4.5, 12, 0, NULL, 70, '2019-08-20 17:00:00', '2019-08-20 17:00:00'),
+(2, 2, 1, 'ada', 'ada', 'ada', 2, 3.6, 21, 90, 80, 70, '2019-08-20 17:00:00', '2019-08-20 17:00:00');
 
 -- --------------------------------------------------------
 
@@ -199,7 +202,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `no_telp`, `email`, `tempat_lahir`, `tgl_lahir`, `jenis_kelamin`, `alamat`, `agama`, `foto`, `level`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'maul', NULL, 'maul@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '$2y$10$BTg.bkT7x.XBdH9DvSxO2e0BsxN.o9fbZGIIhMvk9qEi/SyEKUc7i', 'Nv4HX873cgMgVa7TZV0tCQMdKZ2sNc7ntteSRF0Pngdz0eLIZ26Z5JQDz9Li', NULL, NULL),
-(2, 'Chan', 'asd', 'chandraramdhanpurnama@gmail.com', 'sad', '2019-06-12', 'PRIA', 'asd', 'BUDHA', 'user-220190813190429.jpg', 'USER', '2019-06-20 18:14:25', '$2y$10$IlI5w37lnvbpIKI5xkx9meJvwrJHjpCSpKhQdYMJ0Rx.ue4HMBadK', NULL, '2019-05-12 18:41:58', '2019-08-13 12:04:29'),
+(2, 'Chan', 'asd', 'chandraramdhanpurnama@gmail.com', 'sad', '2019-06-12', 'PRIA', 'asd', 'BUDHA', 'user-220190813190429.jpg', 'ADMIN', '2019-06-20 18:14:25', '$2y$10$IlI5w37lnvbpIKI5xkx9meJvwrJHjpCSpKhQdYMJ0Rx.ue4HMBadK', NULL, '2019-05-12 18:41:58', '2019-08-13 12:04:29'),
 (3, 'Maulana', NULL, '900maulana@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, 'ADMIN', '2019-05-15 13:19:23', '$2y$10$dhDlkGHVb3nJ2mXeIz29D.L8jNbzPntCCrxl.uo4jO11Di3SGyAn.', NULL, '2019-05-15 13:17:09', '2019-05-15 13:19:23'),
 (6, 'user1', NULL, 'satuuser55@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, 'USER', '2019-06-20 00:22:40', '$2y$10$6tHmqxIXxDGDFLo4ShQ4se8X.0GazV6oSpd79OiQJGDYw/iSbIegC', NULL, '2019-06-19 09:21:07', '2019-06-20 00:22:40'),
 (7, 'najich', NULL, 'chandraramdhanpurnama@gmail.com2', NULL, NULL, NULL, NULL, NULL, NULL, 'USER', '2019-06-20 13:19:11', '$2y$10$IlI5w37lnvbpIKI5xkx9meJvwrJHjpCSpKhQdYMJ0Rx.ue4HMBadK', NULL, '2019-06-20 13:16:58', '2019-06-20 13:19:11');
@@ -264,13 +267,13 @@ ALTER TABLE `jawaban`
 -- AUTO_INCREMENT for table `lowongan`
 --
 ALTER TABLE `lowongan`
-  MODIFY `id_lowongan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_lowongan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `lowongan_syarat`
 --
 ALTER TABLE `lowongan_syarat`
-  MODIFY `id_syarat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_syarat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -282,7 +285,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `pelamar`
 --
 ALTER TABLE `pelamar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `soal`
