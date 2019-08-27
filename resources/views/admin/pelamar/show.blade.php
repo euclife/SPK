@@ -1,6 +1,6 @@
 @extends('layouts.dashboardMaster')
-@section('title','| Dashboard Admin')
-@section('dashboardActive','active')
+@section('title','| Detail Pelamar')
+@section('lowonganActive','active')
 
 @section('script')
 
@@ -25,8 +25,8 @@
     <div class="page-header-content">
         <div class="page-title">
             <h4>
-                <i class="icon-arrow-left52 position-left"></i>
-                <span class="text-semibold">Admin</span> - Detail Lowongan
+                <a href="{{url('admin/lowongan')}}"><i class="icon-arrow-left52 position-left"></i></a>
+                <span class="text-semibold">Admin</span> - Detail Pelamar
                 <small class="display-block">Hello, {{ Auth::user()->name }}!</small>
             </h4>
         </div>
@@ -62,7 +62,7 @@
                     <thead class="bg-grey">
                         <tr>
                             <th>Posisi</th>
-                            <th>Pelamar</th>
+                            <th>Keterangan</th>
                             <th>Deadline</th>
                         </tr>
                     </thead>
@@ -70,37 +70,14 @@
                         <tr>
                             <td>
                                 <div class="media-left">
-                                    <div id="campaigns-donut"></div>
-                                </div>
-
-                                <div class="media-left">
-                                    <h5 class="text-semibold no-margin">Web Developer</h5>
-                                    <ul class="list-inline list-inline-condensed no-margin">
-                                        <li>
-                                            <span class="status-mark border-success"></span>
-                                        </li>
-                                        <li>
-                                            <span class="text-muted">May 12, 12:30 am</span>
-                                        </li>
-                                    </ul>
+                                    <h5 class="text-semibold no-margin">{{$lowongan->posisi}}</h5>
                                 </div>
                             </td>
 
                             <td>
-                                <div class="media-left">
-                                    <div id="campaign-status-pie"></div>
-                                </div>
 
                                 <div class="media-left">
-                                    <h5 class="text-semibold no-margin">3</h5>
-                                    <ul class="list-inline list-inline-condensed no-margin">
-                                        <li>
-                                            <span class="status-mark border-danger"></span>
-                                        </li>
-                                        <li>
-                                            <span class="text-muted">Jun 4, 4:00 am</span>
-                                        </li>
-                                    </ul>
+                                    <h6 class="text-semibold no-margin">{{$lowongan->keterangan}}</h6>
                                 </div>
                             </td>
                             <td>
@@ -114,7 +91,9 @@
                                             <span class="status-mark border-danger"></span>
                                         </li>
                                         <li>
-                                            <span class="text-muted">Aug 4, 4:00 am</span>
+                                            <span class="text-muted" style="font-size:20px">
+                                              {{ Carbon\Carbon::parse($lowongan->tanggal_selesai)->formatLocalized('%d %B %Y') }}
+                                            </span>
                                         </li>
                                     </ul>
                                 </div>
@@ -133,7 +112,7 @@
                 <div class="heading-elements" style="font-size:30px">
                     <i class="fa fa-users"></i>
                 </div>
-                <h3 class="no-margin">6</h3>
+                <h3 class="no-margin">{{count($pelamar)}}</h3>
                 Pelamar
             </div>
         </div>
@@ -145,7 +124,7 @@
                 <div class="heading-elements" style="font-size:30px">
                     <i class="fa fa-tasks"></i>
                 </div>
-                <h3 class="no-margin">3</h3>
+                <h3 class="no-margin">{{count($pelamar_tahap1)}}</h3>
                 Tahap 1
             </div>
         </div>
@@ -157,7 +136,7 @@
                 <div class="heading-elements" style="font-size:30px">
                     <i class="fa fa-tasks"></i>
                 </div>
-                <h3 class="no-margin">2</h3>
+                <h3 class="no-margin">{{count($pelamar_tahap2)}}</h3>
                 Tahap 2
             </div>
         </div>
@@ -169,7 +148,7 @@
                 <div class="heading-elements" style="font-size:30px">
                     <i class="fa fa-tasks"></i>
                 </div>
-                <h3 class="no-margin">1</h3>
+                <h3 class="no-margin">{{count($pelamar_tahap3)}}</h3>
                 Lolos
             </div>
         </div>
@@ -204,24 +183,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><a href="{{url('admin/profile/1')}}"> MaulAna Sutejo </a></td>
-                            <td> 21</td>
-                            <td> 3,8</td>
-                            <td> 4</td>
-                        </tr>
-                        <tr>
-                            <td><a href="{{url('admin/profile/1')}}"> Chandra Ramdhan </a></td>
-                            <td> 25</td>
-                            <td> 3,8</td>
-                            <td> 3</td>
-                        </tr>
-                        <tr>
-                            <td><a href="{{url('admin/profile/1')}}"> Budi </a></td>
-                            <td> 24</td>
-                            <td> 3,8</td>
-                            <td> 4</td>
-                        </tr>
+                        @foreach ($pelamar_tahap1 as $key => $value)
+                          <tr>
+                            <td><a href="{{url('admin/profile/'.$value->id)}}"> {{$value->name}} </a></td>
+                            <td>{{$value->umur}}</td>
+                            <td>{{$value->ipk}}</td>
+                            <td>{{$value->point}}</td>
+                          </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -250,21 +219,20 @@
                     <thead class="bg-warning">
                         <tr>
                             <th>Nama</th>
-                            <th>Nilai Tes</th>
+                            <th>Psikotes</th>
+                            <th>Umum</th>
                             <th>Point</th>
                         </tr>
                     </thead>
                     <tbody>
+                      @foreach ($pelamar_tahap2 as $key => $value)
                         <tr>
-                            <td> Maul</td>
-                            <td> 24</td>
-                            <td> 6</td>
+                          <td><a href="{{url('admin/profile/'.$value->id)}}"> {{$value->name}} </a></td>
+                          <td>{{$value->psikotes}}</td>
+                          <td>{{$value->umum}}</td>
+                          <td>{{$value->point}}</td>
                         </tr>
-                        <tr>
-                            <td> Bambang</td>
-                            <td> 25</td>
-                            <td> 6</td>
-                        </tr>
+                      @endforeach
                     </tbody>
                 </table>
             </div>
@@ -298,13 +266,15 @@
                         </tr>
                     </thead>
                     <tbody>
+                      @foreach ($pelamar_tahap3 as $key => $value)
                         <tr>
-                            <td> Muhammad Maul</td>
-                            <td> 8</td>
-                            <td class="text-right col-md-2">
-                                <a href="{{url('admin/profil/1')}}" class="btn bg-indigo-300"><i class="icon-user position-left"></i> View Profile</a>
-                            </td>
+                          <td><a href="{{url('admin/profile/'.$value->id)}}"> {{$value->name}} </a></td>
+                          <td>{{$value->point}}</td>
+                          <td class="text-right col-md-2">
+                            <a href="{{url('admin/profil/'.$value->id)}}" class="btn bg-indigo-300"><i class="icon-user position-left"></i> Lihat Profile</a>
+                          </td>
                         </tr>
+                      @endforeach
                     </tbody>
                 </table>
             </div>

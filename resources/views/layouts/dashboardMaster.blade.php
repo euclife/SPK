@@ -98,15 +98,14 @@ $authFoto = $dir.$blob;
             <ul class="nav navbar-nav navbar-nav-material">
                 @if (Auth::user()->level == 'ADMIN')
                 <li class="@yield('dashboardActive')"><a href="{{ url('admin') }}"><i class="icon-display4 position-left"></i> Dashboard</a></li>
-                <li class="dropdown @yield('lowonganActive')">
+                <li class="@yield('lowonganActive')"><a href="{{ url('admin/lowongan') }}"><i class=" icon-stack3 position-left"></i> Lowongan</a></li>
+                <li class="dropdown @yield('userActive')">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="icon-make-group position-left"></i> Lowongan <span class="caret"></span>
+                        <i class="icon-lab position-left"></i> Soal <span class="caret"></span>
                     </a>
-
                     <ul class="dropdown-menu width-250">
-                        <li class="dropdown-header">Master</li>
-                        <li class="@yield('createlowonganActive')"><a href="{{url('admin/lowongan/create')}}">Tambah Lowongan</a></li>
-                        <li class="@yield('ListLowonganActive')"><a href="login_background.html">List Lowongan</a></li>
+                        <li class="@yield('psikotestActive')"><a href="{{url('admin/soal/psikotest')}}">Psikotest</a></li>
+                        <li class="@yield('umumActive')"><a href="{{url('admin/soal/umum')}}">Umum</a></li>
                     </ul>
                 </li>
             </ul>
@@ -164,8 +163,7 @@ $authFoto = $dir.$blob;
             var notifSukses = (function thename() {
                 new PNotify({
                     title: 'Success!',
-                    text: '{{ Session::get('
-                    success ')}}',
+                    text: '{{ Session::get('success')}}',
                     addclass: 'alert alert-styled-left bg-green-800',
                     icon: '<i class="fa fa-check-square"></i>'
                 });
@@ -182,8 +180,7 @@ $authFoto = $dir.$blob;
             var notifSukses = (function thename() {
                 new PNotify({
                     title: 'Error!',
-                    text: '{{ Session::get('
-                    error ')}}',
+                    text: '{{ Session::get('error')}}',
                     addclass: 'alert alert-styled-left bg-danger',
                     icon: '<i class="fa fa-check-square"></i>'
                 });

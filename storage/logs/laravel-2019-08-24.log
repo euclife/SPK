@@ -1,0 +1,46 @@
+[2019-08-24 22:23:01] local.ERROR: Command "route:lust" is not defined.
+
+Did you mean one of these?
+    event:list
+    route:cache
+    route:clear
+    route:list {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"route:lust\" is not defined.
+
+Did you mean one of these?
+    event:list
+    route:cache
+    route:clear
+    route:list at D:\\Data\\Project\\Laravel\\SPK\\vendor\\symfony\\console\\Application.php:639)
+[stacktrace]
+#0 D:\\Data\\Project\\Laravel\\SPK\\vendor\\symfony\\console\\Application.php(233): Symfony\\Component\\Console\\Application->find('route:lust')
+#1 D:\\Data\\Project\\Laravel\\SPK\\vendor\\symfony\\console\\Application.php(145): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#2 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php(90): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(122): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 D:\\Data\\Project\\Laravel\\SPK\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 {main}
+"} 
+[2019-08-24 22:23:04] local.ERROR: Command "route:lit" is not defined.
+
+Did you mean one of these?
+    event:list
+    route:cache
+    route:clear
+    route:list {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"route:lit\" is not defined.
+
+Did you mean one of these?
+    event:list
+    route:cache
+    route:clear
+    route:list at D:\\Data\\Project\\Laravel\\SPK\\vendor\\symfony\\console\\Application.php:639)
+[stacktrace]
+#0 D:\\Data\\Project\\Laravel\\SPK\\vendor\\symfony\\console\\Application.php(233): Symfony\\Component\\Console\\Application->find('route:lit')
+#1 D:\\Data\\Project\\Laravel\\SPK\\vendor\\symfony\\console\\Application.php(145): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#2 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php(90): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(122): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 D:\\Data\\Project\\Laravel\\SPK\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 {main}
+"} 
+[2019-08-24 22:23:08] local.ERROR: Cannot use Illuminate\Http\Request as Request because the name is already in use {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 64): Cannot use Illuminate\\Http\\Request as Request because the name is already in use at D:\\Data\\Project\\Laravel\\SPK\\app\\Http\\Controllers\\UserController.php:8)
+[stacktrace]
+#0 {main}
+"} 

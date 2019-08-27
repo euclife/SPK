@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\LowonganSyarat;
+use App\Models\LowonganSyarat;
 
 
 class apiController extends Controller

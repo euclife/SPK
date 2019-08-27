@@ -7,26 +7,25 @@ use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Auth;
 
-use App\Lowongan;
+use App\Models\Lowongan;
 
 class WelcomeController extends Controller
 {
-	public function index(){
-		if (Auth::guest()) {
+    public function index()
+    {
+        if (Auth::guest()) {
+            $today = Carbon::today()->formatLocalized('%A, %d %B %Y');
+            $now = Carbon::now()->format('Y-m-d H:i:00');
 
-			$today = Carbon::today()->formatLocalized('%A, %d %B %Y');
-			$now = Carbon::now()->format('Y-m-d H:i:00');
-
-			$lowongan = Lowongan::select('*')
-			->where('tanggal_selesai','>=',$now)
-			->get();
-			return view('pages.welcome', compact('lowongan'));
-		}else{
-			return redirect()->route('home');
-		}
-	}
-
-	public function tes(){
-		return view('pages.user.dashboard');
-	}
+            $lowongan = Lowongan::select('*')
+            ->where('tanggal_selesai', '>=', $now)
+            ->get();
+            return view('welcome', compact('lowongan'));
+        } else {
+            if (Auth::user()->level == "ADMIN") {
+								return redirect()->route('admin');
+            }
+            return redirect()->route('home');
+        }
+    }
 }

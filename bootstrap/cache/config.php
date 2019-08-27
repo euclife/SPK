@@ -7,7 +7,7 @@
     'url' => 'http://localhost',
     'asset_url' => NULL,
     'timezone' => 'Asia/Jakarta',
-    'locale' => 'IND',
+    'locale' => 'ind',
     'fallback_locale' => 'IND',
     'faker_locale' => 'en_US',
     'key' => 'base64:04uskM1Kn3oc8fATNEUzu81YKpQ0R7RAV7z+Z3etmCE=',
@@ -545,6 +545,55 @@
   'debug-server' => 
   array (
     'host' => 'tcp://127.0.0.1:9912',
+  ),
+  'datatables' => 
+  array (
+    'search' => 
+    array (
+      'smart' => true,
+      'multi_term' => true,
+      'case_insensitive' => true,
+      'use_wildcards' => false,
+    ),
+    'index_column' => 'DT_RowIndex',
+    'engines' => 
+    array (
+      'eloquent' => 'Yajra\\DataTables\\EloquentDataTable',
+      'query' => 'Yajra\\DataTables\\QueryDataTable',
+      'collection' => 'Yajra\\DataTables\\CollectionDataTable',
+      'resource' => 'Yajra\\DataTables\\ApiResourceDataTable',
+    ),
+    'builders' => 
+    array (
+    ),
+    'nulls_last_sql' => '%s %s NULLS LAST',
+    'error' => NULL,
+    'columns' => 
+    array (
+      'excess' => 
+      array (
+        0 => 'rn',
+        1 => 'row_num',
+      ),
+      'escape' => '*',
+      'raw' => 
+      array (
+        0 => 'action',
+      ),
+      'blacklist' => 
+      array (
+        0 => 'password',
+        1 => 'remember_token',
+      ),
+      'whitelist' => '*',
+    ),
+    'json' => 
+    array (
+      'header' => 
+      array (
+      ),
+      'options' => 0,
+    ),
   ),
   'trustedproxy' => 
   array (

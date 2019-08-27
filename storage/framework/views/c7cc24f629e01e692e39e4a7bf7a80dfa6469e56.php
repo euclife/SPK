@@ -5,10 +5,10 @@
     <title>Selamat Datang Di Website Lowongan Kerja PT. INTI</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
-    <link rel="icon" href="{{asset('image/logo.png')}}">
+    <link rel="icon" href="<?php echo e(asset('image/logo.png')); ?>">
 
     <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
     <script>
         addEventListener("load", function() {
             setTimeout(hideURLbar, 0);
@@ -18,11 +18,11 @@
             window.scrollTo(0, 1);
         }
     </script>
-    <link href="{{asset('template/theme/css/bootstrap.css')}}" rel='stylesheet' type='text/css' />
-    <link href="{{asset('template/theme/css/zoomslider.css')}}" rel='stylesheet' type='text/css' />
-    <link href="{{asset('template/theme/css/style6.css')}}" rel='stylesheet' type='text/css' />
-    <link href="{{asset('template/theme/css/style.css')}}" rel='stylesheet' type='text/css' />
-    <link href="{{asset('template/theme/css/fontawesome-all.css')}}" rel="stylesheet">
+    <link href="<?php echo e(asset('template/theme/css/bootstrap.css')); ?>" rel='stylesheet' type='text/css' />
+    <link href="<?php echo e(asset('template/theme/css/zoomslider.css')); ?>" rel='stylesheet' type='text/css' />
+    <link href="<?php echo e(asset('template/theme/css/style6.css')); ?>" rel='stylesheet' type='text/css' />
+    <link href="<?php echo e(asset('template/theme/css/style.css')); ?>" rel='stylesheet' type='text/css' />
+    <link href="<?php echo e(asset('template/theme/css/fontawesome-all.css')); ?>" rel="stylesheet">
     <link href="//fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
     <link href="//fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
 </head>
@@ -89,8 +89,8 @@
                     <span>Lowongan Kerja</span>
                 </h3>
                 <p>Bergabung bersama kami untuk mendapatkan karir yang lebih baik!!</p>
-                <a href="{{route('login')}}" class="btn btn-primary btn-lg" >Masuk</a>
-                <a href="{{route('register')}}"class="btn btn-primary btn-lg" >Daftar</a>
+                <a href="<?php echo e(route('login')); ?>" class="btn btn-primary btn-lg" >Masuk</a>
+                <a href="<?php echo e(route('register')); ?>"class="btn btn-primary btn-lg" >Daftar</a>
                     <div class="col-md-3 banf">
                     </div>
             </div>
@@ -111,7 +111,7 @@
                        Posisi pekerjaan terkini</h3>
                     <!---728x90--->
                                         
-                                        @foreach($lowongan as $l)
+                                        <?php $__currentLoopData = $lowongan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $l): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <div class="job-post-main row my-3">
                                             <div class="col-md-9 job-post-info text-left">
                                                 <div class="job-post-icon">
@@ -120,7 +120,7 @@
                                                 <div class="job-single-sec">
                                                     <h4>
                                                         <a href="#">
-                                                            {{ $l->posisi  }}</a>
+                                                            <?php echo e($l->posisi); ?></a>
                                                     </h4>
                                                     <ul class="job-list-info d-flex">
                                                         <li>
@@ -131,10 +131,10 @@
                                             </div>
                                             <div class="col-md-3 job-single-time text-right">
                                                 <span class="job-time">
-                                                <button type="button" class="btn btn-info btn-lg btn-lowongan" data-id="{{ $l->id_lowongan  }}" >Syarat</button>
+                                                <button type="button" class="btn btn-info btn-lg btn-lowongan" data-id="<?php echo e($l->id_lowongan); ?>" >Syarat</button>
                                             </div>
                                         </div>
-                                        @endforeach
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                     </div>
                                 </div>
@@ -156,7 +156,7 @@
                         <span>Informasi</span>Jika anda belum mempunyai akun , Silahkan daftar terlebih dahulu</h3>
                     <p></p>
                     <div class="resume">
-                        <a href="{{url('register')}}" >
+                        <a href="<?php echo e(url('register')); ?>" >
                             <i class="far fa-user"></i> Daftar</a>
                     </div>
                 </div>
@@ -177,7 +177,7 @@
                     <div class="parent-chart">
                         <div class="level lev-one top-level">
                             <div class="flow-position">
-                                <img src="{{asset('template/theme/images/s1.jpg')}}" alt=" " class="img-fluid rounded-circle">
+                                <img src="<?php echo e(asset('template/theme/images/s1.jpg')); ?>" alt=" " class="img-fluid rounded-circle">
                                 <br>
                                 <strong>Proses penyeleksian </strong>
                                 <br>
@@ -186,7 +186,7 @@
                         <div class="flow-chart">
                             <div class="level lev-two last-lev">
                                 <div class="flow-position">
-                                    <img src="{{asset('template/theme/images/s2.jpg')}}" alt=" " class="img-fluid rounded-circle">
+                                    <img src="<?php echo e(asset('template/theme/images/s2.jpg')); ?>" alt=" " class="img-fluid rounded-circle">
                                     <br>
                                     <strong>1. Lowongan Pekerjaan</strong>
                                     <br>
@@ -194,7 +194,7 @@
                                 <!--
                             -->
                                 <div class="flow-position">
-                                    <img src="{{asset('template/theme/images/s3.jpg')}}" alt=" " class="img-fluid rounded-circle">
+                                    <img src="<?php echo e(asset('template/theme/images/s3.jpg')); ?>" alt=" " class="img-fluid rounded-circle">
                                     <br>
                                     <strong>2. Memilih Kandidat Dari Cv
                                     </strong>
@@ -203,7 +203,7 @@
                                 <!--
                             -->
                                 <div class="flow-position">
-                                    <img src="{{asset('template/theme/images/s4.jpg')}}" alt=" " class="img-fluid rounded-circle">
+                                    <img src="<?php echo e(asset('template/theme/images/s4.jpg')); ?>" alt=" " class="img-fluid rounded-circle">
                                     <br>
                                     <strong>3. Tes Pengetahuan Umum Dan Psikotes ( Online )
                                     </strong>
@@ -212,7 +212,7 @@
                                 <!--
                             -->
                                 <div class="flow-position">
-                                    <img src="{{asset('template/theme/images/s5.jpg')}}" alt=" " class="img-fluid rounded-circle">
+                                    <img src="<?php echo e(asset('template/theme/images/s5.jpg')); ?>" alt=" " class="img-fluid rounded-circle">
                                     <br>
                                     <strong>4. Seleksi </strong>
                                     <br>
@@ -220,7 +220,7 @@
                                 <!--
                             -->
                                 <div class="flow-position">
-                                    <img src="{{asset('template/theme/images/s6.jpg')}}" alt=" " class="img-fluid rounded-circle">
+                                    <img src="<?php echo e(asset('template/theme/images/s6.jpg')); ?>" alt=" " class="img-fluid rounded-circle">
                                     <br>
                                     <strong>5. Tes Kesehatan Dan Keahlian
                                     </strong>
@@ -229,7 +229,7 @@
                                 <!--
                             -->
                                 <div class="flow-position">
-                                    <img src="{{asset('template/theme/images/s7.jpg')}}" alt=" " class="img-fluid rounded-circle">
+                                    <img src="<?php echo e(asset('template/theme/images/s7.jpg')); ?>" alt=" " class="img-fluid rounded-circle">
                                     <br>
                                     <strong>6. Wawancara</strong>
                                     <br>
@@ -237,7 +237,7 @@
                                 <!--
                             -->
                                 <div class="flow-position">
-                                    <img src="{{asset('template/theme/images/s8.jpg')}}" alt=" " class="img-fluid rounded-circle">
+                                    <img src="<?php echo e(asset('template/theme/images/s8.jpg')); ?>" alt=" " class="img-fluid rounded-circle">
                                     <br>
                                     <strong>7. Seleksi
                                     </strong>
@@ -404,13 +404,13 @@
   
     <!-- js -->
     <!--/slider-->
-    <script src="{{asset('template/theme/js/jquery-1.11.1.min.js')}}"></script>
-    <script src="{{asset('template/theme/js/modernizr-2.6.2.min.js')}}"></script>
-    <script src="{{asset('template/theme/js/jquery.zoomslider.min.js')}}"></script>
+    <script src="<?php echo e(asset('template/theme/js/jquery-1.11.1.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('template/theme/js/modernizr-2.6.2.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('template/theme/js/jquery.zoomslider.min.js')); ?>"></script>
     <!--//slider-->
     <!--search jQuery-->
-    <script src="{{asset('template/theme/js/classie-search.js')}}"></script>
-    <script src="{{asset('template/theme/js/demo1-search.js')}}"></script>
+    <script src="<?php echo e(asset('template/theme/js/classie-search.js')); ?>"></script>
+    <script src="<?php echo e(asset('template/theme/js/demo1-search.js')); ?>"></script>
     <!--//search jQuery-->
 
     <script>
@@ -448,19 +448,19 @@
     <!-- //password-script -->
 
     <!-- stats -->
-    <script src="{{asset('template/theme/js/jquery.waypoints.min.js')}}"></script>
-    <script src="{{asset('template/theme/js/jquery.countup.js')}}"></script>
+    <script src="<?php echo e(asset('template/theme/js/jquery.waypoints.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('template/theme/js/jquery.countup.js')); ?>"></script>
     <script>
         $('.counter').countUp();
     </script>
     <!-- //stats -->
 
     <!-- //js -->
-    <script src="{{asset('template/theme/js/bootstrap.js')}}"></script>
+    <script src="<?php echo e(asset('template/theme/js/bootstrap.js')); ?>"></script>
     <!--/ start-smoth-scrolling -->
-    <script src="{{asset('template/theme/js/move-top.js')}}"></script>
-    <script src="{{asset('template/theme/js/easing.js')}}"></script>
-    <script src="{{asset('template/js/blockui.js')}}"></script>
+    <script src="<?php echo e(asset('template/theme/js/move-top.js')); ?>"></script>
+    <script src="<?php echo e(asset('template/theme/js/easing.js')); ?>"></script>
+    <script src="<?php echo e(asset('template/js/blockui.js')); ?>"></script>
     <script>
         jQuery(document).ready(function($) {
             $(".scroll").click(function(event) {
@@ -493,7 +493,7 @@
 
             $(document).on("click", ".btn-lowongan", function () {
                 var id = $(this).data('id');
-                var url = '{{ url('api/syaratlowongan/') }}/'+id
+                var url = '<?php echo e(url('api/syaratlowongan/')); ?>/'+id
                 $.ajax({
                     url : url,
                     type : 'GET',
@@ -544,7 +544,7 @@
             $.blockUI();
 
             $.ajax({
-                url : '{{route('login')}}',
+                url : '<?php echo e(route('login')); ?>',
                 type : 'POST',
                 dataType: 'json',
                 data : {
@@ -598,4 +598,4 @@
         
     });
 </script>
-</body>
+</body><?php /**PATH D:\Data\Project\Laravel\SPK\resources\views/welcome.blade.php ENDPATH**/ ?>

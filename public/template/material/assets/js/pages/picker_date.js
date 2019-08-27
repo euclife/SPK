@@ -57,7 +57,7 @@ $(function() {
 
 
     // Single picker
-    $('.daterange-single').daterangepicker({ 
+    $('.daterange-single').daterangepicker({
         singleDatePicker: true
     });
 
@@ -177,7 +177,7 @@ $(function() {
     $('.daterange-ranges span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' &nbsp; - &nbsp; ' + moment().format('MMMM D, YYYY'));
 
 
-    
+
     // Pick-a-date picker
     // ------------------------------
 
@@ -247,7 +247,7 @@ $(function() {
             picker_date.close();
         } else {
             picker_date.open();
-        }                        
+        }
         event.stopPropagation();
     });
 
@@ -369,7 +369,7 @@ $(function() {
             picker_time.close();
         } else {
             picker_time.open();
-        }                        
+        }
         event.stopPropagation();
     });
 
@@ -495,7 +495,7 @@ $(function() {
     });
 
     $("#tgl_lahir").AnyTime_picker({
-        format: "%m/%d/%Z"
+        format: "%Z-%m-%d"
     });
 
     // Month and day
@@ -564,5 +564,5 @@ $(function() {
             $("#rangeDemoFinish").val("").attr("disabled","disabled");
         }
     });
-    
+
 });

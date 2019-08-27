@@ -2,72 +2,105 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Auth;
+use App\Models\Lowongan;
+use App\Models\Pelamar;
 use App\User;
+use Auth;
+use Carbon\Carbon;
 
 class PelamarController extends Controller
 {
-   public function profil(){
-   		$user = User::find(Auth::user()->id);
-        $id = $user->id;
-        $dir = 'upload/user/img/profile/';
-        $foto = "images/profile.jpg";
-        if ($user->foto !="") {
-           $foto = $dir.$user->foto;
-        }
-        return view('pages.user.form.profil',compact('user','foto'));
-   }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+      $today = Carbon::today()->formatLocalized('%A, %d %B %Y');
+      $now = Carbon::now()->format('Y-m-d H:i:00');
 
-   public function profilFoto(Request $request){
+      $profil = User::find(Auth::user()->id);
+      $status = "";
 
-        $user = User::find(Auth::user()->id);
-        $user->foto = null;
-            // Cek Jika ada gambar maka move
-            if ($request->hasFile('foto')) 
-            {
-                if ($user->foto != '' && File::exists($dir . $user->foto)) File::delete($dir . $user->foto);
-                $foto = $request->file('foto');
-                $name = str_slug("user_".$user->id."".date("YmdHis")).'.'.$foto->getClientOriginalExtension();
-                $destinationPath = public_path('upload/user/img/profile/');
-                $foto->move($destinationPath, $name);
-                $user->foto = $name;
-            }
-        $user->save();
-
-        dd($request->all());
-        return response()->json([
-            'message' => 'Image saved Successfully'
-        ], 200);
+      if ($profil->tempat_lahir == "" || $profil->tgl_lahir == "" || $profil->jenis_kelamin == "" || $profil->alamat == ""  || $profil->agama == "" || $profil->foto == ""  || $profil->no_telp == "") {
+          $status = "not clear";
+      }else{
+          $status = "clear";
       }
 
-      public function profilUpdate(Request $request){
-         $validator = Validator::make($request->all(), [   
-            'name'     => 'required|string',
-            'tempat_lahir'      => 'required|string',
-            'tgl_lahir'  => 'required',
-            'jenis_kelamin'  => 'required',
-            'alamat'  => 'required',
-            'agama'  => 'required',
-            'no_telp'  => 'required'
-        ]);
-        if ($validator->fails()) {
-            return redirect()->back()
-            ->withErrors($validator)
-            ->withInput();
-        }
-        $user = User::find(Auth::user()->id);
-        $user->name = $request->name;
-        $user->tgl_lahir = $request->tgl_lahir;
-        $user->tempat_lahir = $request->tempat_lahir;
-        $user->jenis_kelamin = $request->jenis_kelamin;
-        $user->alamat = $request->alamat;
-        $user->agama = $request->agama;
-        $user->no_telp = $request->no_telp;
-        $user->save();
-        return redirect('/profile')->with('success', 'Profil Anda Berhasil di Perbaharui');;
-      }
+      $lowongan = Lowongan::select('*')
+      ->where('tanggal_selesai','>=',$now)
+      ->get();
+      return view('user.dashboard', compact('lowongan','today','now','status'));
+    }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $pelamar = Pelamar::find($id);
+        return view('admin.pelamar.show',compact('pelamar'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
 }

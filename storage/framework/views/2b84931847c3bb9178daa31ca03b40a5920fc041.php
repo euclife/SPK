@@ -98,15 +98,14 @@ $authFoto = $dir.$blob;
             <ul class="nav navbar-nav navbar-nav-material">
                 <?php if(Auth::user()->level == 'ADMIN'): ?>
                 <li class="<?php echo $__env->yieldContent('dashboardActive'); ?>"><a href="<?php echo e(url('admin')); ?>"><i class="icon-display4 position-left"></i> Dashboard</a></li>
-                <li class="dropdown <?php echo $__env->yieldContent('lowonganActive'); ?>">
+                <li class="<?php echo $__env->yieldContent('lowonganActive'); ?>"><a href="<?php echo e(url('admin/lowongan')); ?>"><i class=" icon-stack3 position-left"></i> Lowongan</a></li>
+                <li class="dropdown <?php echo $__env->yieldContent('userActive'); ?>">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="icon-make-group position-left"></i> Lowongan <span class="caret"></span>
+                        <i class="icon-lab position-left"></i> Soal <span class="caret"></span>
                     </a>
-
                     <ul class="dropdown-menu width-250">
-                        <li class="dropdown-header">Master</li>
-                        <li class="<?php echo $__env->yieldContent('createlowonganActive'); ?>"><a href="<?php echo e(url('admin/lowongan/create')); ?>">Tambah Lowongan</a></li>
-                        <li class="<?php echo $__env->yieldContent('ListLowonganActive'); ?>"><a href="login_background.html">List Lowongan</a></li>
+                        <li class="<?php echo $__env->yieldContent('psikotestActive'); ?>"><a href="<?php echo e(url('admin/soal/psikotest')); ?>">Psikotest</a></li>
+                        <li class="<?php echo $__env->yieldContent('umumActive'); ?>"><a href="<?php echo e(url('admin/soal/umum')); ?>">Umum</a></li>
                     </ul>
                 </li>
             </ul>
@@ -164,8 +163,7 @@ $authFoto = $dir.$blob;
             var notifSukses = (function thename() {
                 new PNotify({
                     title: 'Success!',
-                    text: '<?php echo e(Session::get('
-                    success ')); ?>',
+                    text: '<?php echo e(Session::get('success')); ?>',
                     addclass: 'alert alert-styled-left bg-green-800',
                     icon: '<i class="fa fa-check-square"></i>'
                 });
@@ -182,8 +180,7 @@ $authFoto = $dir.$blob;
             var notifSukses = (function thename() {
                 new PNotify({
                     title: 'Error!',
-                    text: '<?php echo e(Session::get('
-                    error ')); ?>',
+                    text: '<?php echo e(Session::get('error')); ?>',
                     addclass: 'alert alert-styled-left bg-danger',
                     icon: '<i class="fa fa-check-square"></i>'
                 });
