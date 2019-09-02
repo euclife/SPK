@@ -99,15 +99,9 @@ $authFoto = $dir.$blob;
                 <?php if(Auth::user()->level == 'ADMIN'): ?>
                 <li class="<?php echo $__env->yieldContent('dashboardActive'); ?>"><a href="<?php echo e(url('admin')); ?>"><i class="icon-display4 position-left"></i> Dashboard</a></li>
                 <li class="<?php echo $__env->yieldContent('lowonganActive'); ?>"><a href="<?php echo e(url('admin/lowongan')); ?>"><i class=" icon-stack3 position-left"></i> Lowongan</a></li>
-                <li class="dropdown <?php echo $__env->yieldContent('userActive'); ?>">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="icon-lab position-left"></i> Soal <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu width-250">
-                        <li class="<?php echo $__env->yieldContent('psikotestActive'); ?>"><a href="<?php echo e(url('admin/soal/psikotest')); ?>">Psikotest</a></li>
-                        <li class="<?php echo $__env->yieldContent('umumActive'); ?>"><a href="<?php echo e(url('admin/soal/umum')); ?>">Umum</a></li>
-                    </ul>
-                </li>
+                <li class="<?php echo $__env->yieldContent('soalActive'); ?>"><a href="<?php echo e(url('admin/soal')); ?>"><i
+                            class=" icon-lab position-left"></i> Soal</a></li>
+                
             </ul>
             <?php else: ?>
             <li class="<?php echo $__env->yieldContent('dashboardActive'); ?>"><a href="<?php echo e(url('dashboard')); ?>"><i class="icon-display4 position-left"></i> Dashboard</a></li>

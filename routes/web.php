@@ -10,12 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', 'WelcomeController@index')->name('index');
 Route::get('/tes', 'WelcomeController@tes');
 
 Auth::routes(['verify' => true]);
 
-//API
+//API Untuk Lowongan Pekerjaan
 Route::get('/api/syaratlowongan/{id}', 'apiController@syaratlowongan');
 
 Route::middleware('auth')->group(function () {
@@ -25,17 +26,27 @@ Route::middleware('auth')->group(function () {
 	Route::post('/profileFoto', 'UserController@profilFoto');
 	Route::get('/lowongan/accept/{id}', 'LowonganController@regis');
 	Route::get('/lowongan/create', 'LowonganController@reg');
-
+	
 });
 
 Route::middleware(['auth','admin'])->group(function () {
-	Route::get('/admin', 'AdminController@index')->name('admin');
-	Route::get('/admin/lowongan', 'LowonganController@index');
-	Route::get('/admin/lowongan/create', 'LowonganController@create');
-	Route::post('/admin/lowongan/create', 'LowonganController@store');
-	Route::get('/admin/lowongan/edit/{id}', 'LowonganController@edit');
-	Route::patch('/admin/lowongan/edit/{id}', 'LowonganController@update');
-	Route::delete('/admin/lowongan/hapus/{id}', 'LowonganController@destroy');
-	Route::get('/admin/lowongan/{id}', 'LowonganController@show');
-	Route::get('/admin/profile/{id}', 'PelamarController@show');
+	Route::group(['prefix' => 'admin'], function () {
+	Route::get('/', 'AdminController@index')->name('admin');
+	Route::get('/lowongan', 'LowonganController@index');
+	Route::get('/lowongan/create', 'LowonganController@create');
+	Route::post('/lowongan/create', 'LowonganController@store');
+	Route::get('/lowongan/edit/{id}', 'LowonganController@edit');
+	Route::patch('/lowongan/edit/{id}', 'LowonganController@update');
+	Route::delete('/lowongan/hapus/{id}', 'LowonganController@destroy');
+	Route::get('/lowongan/{id}', 'LowonganController@show');
+	Route::get('/profile/{id}', 'PelamarController@show');
+	Route::group(['prefix' => 'soal'], function () {
+			Route::get('/', 'SoalController@index');
+			Route::get('/create', 'SoalController@create');
+			Route::post('/create', 'SoalController@store');
+			Route::get('/edit/{id}', 'SoalController@edit');
+			Route::post('/edit/{id}', 'SoalController@update');
+			Route::delete('/hapus/{id}', 'SoalController@destroy');
+	});
+	});
 });

@@ -99,7 +99,9 @@ $authFoto = $dir.$blob;
                 @if (Auth::user()->level == 'ADMIN')
                 <li class="@yield('dashboardActive')"><a href="{{ url('admin') }}"><i class="icon-display4 position-left"></i> Dashboard</a></li>
                 <li class="@yield('lowonganActive')"><a href="{{ url('admin/lowongan') }}"><i class=" icon-stack3 position-left"></i> Lowongan</a></li>
-                <li class="dropdown @yield('userActive')">
+                <li class="@yield('soalActive')"><a href="{{ url('admin/soal') }}"><i
+                            class=" icon-lab position-left"></i> Soal</a></li>
+                {{-- <li class="dropdown @yield('userActive')">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="icon-lab position-left"></i> Soal <span class="caret"></span>
                     </a>
@@ -107,7 +109,7 @@ $authFoto = $dir.$blob;
                         <li class="@yield('psikotestActive')"><a href="{{url('admin/soal/psikotest')}}">Psikotest</a></li>
                         <li class="@yield('umumActive')"><a href="{{url('admin/soal/umum')}}">Umum</a></li>
                     </ul>
-                </li>
+                </li> --}}
             </ul>
             @else
             <li class="@yield('dashboardActive')"><a href="{{ url('dashboard') }}"><i class="icon-display4 position-left"></i> Dashboard</a></li>
