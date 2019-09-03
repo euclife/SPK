@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 27, 2019 at 01:51 AM
+-- Generation Time: Sep 03, 2019 at 06:56 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.19
 
@@ -25,24 +25,29 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jawaban`
+-- Table structure for table `jawab`
 --
 
-CREATE TABLE `jawaban` (
-  `id_jawaban` int(11) NOT NULL,
-  `deskripsi` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NOT NULL,
-  `updated_at` timestamp NOT NULL
+CREATE TABLE `jawab` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `id_soal` int(11) NOT NULL,
+  `id_pelamar` int(11) NOT NULL,
+  `id_lowongan` int(11) DEFAULT NULL,
+  `pilihan` varchar(1) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `score` decimal(8,2) NOT NULL,
+  `status` varchar(1) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `revisi` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `jawaban`
+-- Dumping data for table `jawab`
 --
 
-INSERT INTO `jawaban` (`id_jawaban`, `deskripsi`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'onta', 'false', '2019-08-20 17:00:00', '2019-08-20 17:00:00'),
-(2, 'manusa', 'true', '2019-08-20 17:00:00', '2019-08-20 17:00:00');
+INSERT INTO `jawab` (`id`, `id_soal`, `id_pelamar`, `id_lowongan`, `pilihan`, `score`, `status`, `revisi`, `created_at`, `updated_at`) VALUES
+(1, 1, 2, 1, 'A', '2.00', '1', 1, '2019-08-28 15:09:44', '2019-08-28 15:09:51'),
+(2, 2, 1, 1, 'C', '0.00', '0', 0, '2019-09-03 18:54:17', '2019-09-03 18:54:17');
 
 -- --------------------------------------------------------
 
@@ -64,7 +69,7 @@ CREATE TABLE `lowongan` (
 --
 
 INSERT INTO `lowongan` (`id_lowongan`, `posisi`, `keterangan`, `tanggal_selesai`, `created_at`, `updated_at`) VALUES
-(1, 'Administrasi', 'Keterangan', '2019-08-28 00:00:00', '2019-08-26 13:14:25', '2019-08-26 12:49:08');
+(1, 'Administrasi', 'Keterangan', '2019-09-16 00:00:00', '2019-09-03 11:00:07', '2019-08-26 12:49:08');
 
 -- --------------------------------------------------------
 
@@ -136,9 +141,9 @@ CREATE TABLE `pelamar` (
   `status` int(11) NOT NULL,
   `ipk` double NOT NULL,
   `umur` int(11) NOT NULL,
-  `psikotes` int(11) DEFAULT NULL,
   `umum` int(11) DEFAULT NULL,
   `point` int(11) DEFAULT NULL,
+  `kondisi` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL,
   `updated_at` timestamp NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -147,9 +152,9 @@ CREATE TABLE `pelamar` (
 -- Dumping data for table `pelamar`
 --
 
-INSERT INTO `pelamar` (`id`, `user_id`, `lowongan_id`, `surat_lamaran`, `cv`, `ijasah`, `status`, `ipk`, `umur`, `psikotes`, `umum`, `point`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'ada', 'ada', 'ada', 1, 4.5, 12, 0, NULL, 70, '2019-08-20 17:00:00', '2019-08-20 17:00:00'),
-(2, 2, 1, 'ada', 'ada', 'ada', 2, 3.6, 21, 90, 80, 70, '2019-08-20 17:00:00', '2019-08-20 17:00:00');
+INSERT INTO `pelamar` (`id`, `user_id`, `lowongan_id`, `surat_lamaran`, `cv`, `ijasah`, `status`, `ipk`, `umur`, `umum`, `point`, `kondisi`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 'ada', 'ada', 'ada', 2, 4.5, 12, NULL, 70, 'active', '2019-08-20 17:00:00', '2019-08-20 17:00:00'),
+(2, 2, 1, 'ada', 'ada', 'ada', 2, 3.6, 21, 80, 70, NULL, '2019-08-20 17:00:00', '2019-08-20 17:00:00');
 
 -- --------------------------------------------------------
 
@@ -158,18 +163,25 @@ INSERT INTO `pelamar` (`id`, `user_id`, `lowongan_id`, `surat_lamaran`, `cv`, `i
 --
 
 CREATE TABLE `soal` (
-  `id_soal` int(11) NOT NULL,
-  `deskripsi` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NOT NULL,
-  `updated_at` timestamp NOT NULL
+  `id_soal` int(10) UNSIGNED NOT NULL,
+  `pertanyaan` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pila` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pilb` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pilc` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pild` longtext COLLATE utf8mb4_unicode_ci,
+  `kunci` varchar(1) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `score` decimal(5,2) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `soal`
 --
 
-INSERT INTO `soal` (`id_soal`, `deskripsi`, `created_at`, `updated_at`) VALUES
-(1, 'Apa itu sistem', '2019-08-20 17:00:00', '2019-08-20 17:00:00');
+INSERT INTO `soal` (`id_soal`, `pertanyaan`, `pila`, `pilb`, `pilc`, `pild`, `kunci`, `score`, `created_at`, `updated_at`) VALUES
+(2, 'Apa itu Lisan?', 'itu adalah unta', 'itu adalah untb', 'itu adalah untc', 'itu adalah untb', 'B', '2.00', '2019-09-02 03:04:55', '2019-09-02 03:04:55'),
+(3, 'Apa itu Lisan?', 'itu adalah unta', 'itu adalah untb', 'itu adalah untc', 'itu adalah untb', 'B', '2.00', '2019-09-02 03:04:55', '2019-09-02 03:04:55');
 
 -- --------------------------------------------------------
 
@@ -201,7 +213,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `no_telp`, `email`, `tempat_lahir`, `tgl_lahir`, `jenis_kelamin`, `alamat`, `agama`, `foto`, `level`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'maul', NULL, 'maul@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '$2y$10$BTg.bkT7x.XBdH9DvSxO2e0BsxN.o9fbZGIIhMvk9qEi/SyEKUc7i', 'Nv4HX873cgMgVa7TZV0tCQMdKZ2sNc7ntteSRF0Pngdz0eLIZ26Z5JQDz9Li', NULL, NULL),
+(1, 'maul', '0808321', 'maul@gmail.com', 'BANDUNG', '2019-09-16', 'PRIA', 'JL. MUARARAJEUN LAMA III NO. 21\r\nJL. MANGLID NO 33', 'ISLAM', 'user-120190903175913.png', 'USER', NULL, '$2y$10$IlI5w37lnvbpIKI5xkx9meJvwrJHjpCSpKhQdYMJ0Rx.ue4HMBadK', 'srsUdREU3vFlM9M0QieoVEowx4w3Q4IZOLHTzfCvbJ2Ox6yYMUi1FFy895Pk', NULL, '2019-09-03 10:59:13'),
 (2, 'Chan', 'asd', 'chandraramdhanpurnama@gmail.com', 'sad', '2019-06-12', 'PRIA', 'asd', 'BUDHA', 'user-220190813190429.jpg', 'ADMIN', '2019-06-20 18:14:25', '$2y$10$IlI5w37lnvbpIKI5xkx9meJvwrJHjpCSpKhQdYMJ0Rx.ue4HMBadK', NULL, '2019-05-12 18:41:58', '2019-08-13 12:04:29'),
 (3, 'Maulana', NULL, '900maulana@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, 'ADMIN', '2019-05-15 13:19:23', '$2y$10$dhDlkGHVb3nJ2mXeIz29D.L8jNbzPntCCrxl.uo4jO11Di3SGyAn.', NULL, '2019-05-15 13:17:09', '2019-05-15 13:19:23'),
 (6, 'user1', NULL, 'satuuser55@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, 'USER', '2019-06-20 00:22:40', '$2y$10$6tHmqxIXxDGDFLo4ShQ4se8X.0GazV6oSpd79OiQJGDYw/iSbIegC', NULL, '2019-06-19 09:21:07', '2019-06-20 00:22:40'),
@@ -212,10 +224,10 @@ INSERT INTO `users` (`id`, `name`, `no_telp`, `email`, `tempat_lahir`, `tgl_lahi
 --
 
 --
--- Indexes for table `jawaban`
+-- Indexes for table `jawab`
 --
-ALTER TABLE `jawaban`
-  ADD PRIMARY KEY (`id_jawaban`);
+ALTER TABLE `jawab`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lowongan`
@@ -258,10 +270,10 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `jawaban`
+-- AUTO_INCREMENT for table `jawab`
 --
-ALTER TABLE `jawaban`
-  MODIFY `id_jawaban` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `jawab`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `lowongan`
@@ -291,7 +303,7 @@ ALTER TABLE `pelamar`
 -- AUTO_INCREMENT for table `soal`
 --
 ALTER TABLE `soal`
-  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_soal` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
