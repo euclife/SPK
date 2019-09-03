@@ -24,7 +24,7 @@
     <div class="page-header-content">
         <div class="page-title">
             <h4>
-                <i class="icon-arrow-left52 position-left"></i>
+                <a href="<?php echo e(url('admin/lowongan')); ?>"><i class="icon-arrow-left52 position-left"></i></a>
                 <span class="text-semibold">Admin</span> - Detail Lowongan
                 <small class="display-block">Hello, <?php echo e(Auth::user()->name); ?>!</small>
             </h4>

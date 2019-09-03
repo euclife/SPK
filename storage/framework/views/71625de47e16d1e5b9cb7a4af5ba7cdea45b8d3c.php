@@ -1,42 +1,40 @@
-@extends('layouts.dashboardMaster')
+<?php $__env->startSection('title','| Profile'); ?>
+<?php $__env->startSection('profileActive','active'); ?>
 
-@section('title','| Profile')
-@section('profileActive','active')
-
-@section('script')
-<script type="text/javascript" src="{{asset('template/material/assets/js/plugins/notifications/jgrowl.min.js')}}">
+<?php $__env->startSection('script'); ?>
+<script type="text/javascript" src="<?php echo e(asset('template/material/assets/js/plugins/notifications/jgrowl.min.js')); ?>">
 </script>
-<script type="text/javascript" src="{{asset('template/material/assets/js/plugins/ui/moment/moment.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('template/material/assets/js/plugins/pickers/daterangepicker.js')}}">
+<script type="text/javascript" src="<?php echo e(asset('template/material/assets/js/plugins/ui/moment/moment.min.js')); ?>"></script>
+<script type="text/javascript" src="<?php echo e(asset('template/material/assets/js/plugins/pickers/daterangepicker.js')); ?>">
 </script>
-<script type="text/javascript" src="{{asset('template/material/assets/js/plugins/pickers/anytime.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('template/material/assets/js/plugins/pickers/pickadate/picker.js')}}">
+<script type="text/javascript" src="<?php echo e(asset('template/material/assets/js/plugins/pickers/anytime.min.js')); ?>"></script>
+<script type="text/javascript" src="<?php echo e(asset('template/material/assets/js/plugins/pickers/pickadate/picker.js')); ?>">
 </script>
-<script type="text/javascript" src="{{asset('template/material/assets/js/plugins/pickers/pickadate/picker.date.js')}}">
+<script type="text/javascript" src="<?php echo e(asset('template/material/assets/js/plugins/pickers/pickadate/picker.date.js')); ?>">
 </script>
-<script type="text/javascript" src="{{asset('template/material/assets/js/plugins/pickers/pickadate/picker.time.js')}}">
+<script type="text/javascript" src="<?php echo e(asset('template/material/assets/js/plugins/pickers/pickadate/picker.time.js')); ?>">
 </script>
-<script type="text/javascript" src="{{asset('template/material/assets/js/plugins/pickers/pickadate/legacy.js')}}">
+<script type="text/javascript" src="<?php echo e(asset('template/material/assets/js/plugins/pickers/pickadate/legacy.js')); ?>">
 </script>
-<script type="text/javascript" src="{{asset('template/material/assets/js/plugins/forms/styling/uniform.min.js')}}">
+<script type="text/javascript" src="<?php echo e(asset('template/material/assets/js/plugins/forms/styling/uniform.min.js')); ?>">
 </script>
-<script type="text/javascript" src="{{asset('template/material/assets/js/plugins/forms/selects/select2.min.js')}}">
+<script type="text/javascript" src="<?php echo e(asset('template/material/assets/js/plugins/forms/selects/select2.min.js')); ?>">
 </script>
-<script type="text/javascript" src="{{asset('template/material/assets/js/plugins/media/fancybox.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('template/material/assets/js/pages/components_thumbnails.js')}}"></script>
-<script type="text/javascript" src="{{asset('template/material/assets/js/plugins/forms/styling/switch.min.js')}}">
+<script type="text/javascript" src="<?php echo e(asset('template/material/assets/js/plugins/media/fancybox.min.js')); ?>"></script>
+<script type="text/javascript" src="<?php echo e(asset('template/material/assets/js/pages/components_thumbnails.js')); ?>"></script>
+<script type="text/javascript" src="<?php echo e(asset('template/material/assets/js/plugins/forms/styling/switch.min.js')); ?>">
 </script>
-<script type="text/javascript" src="{{asset('template/material/assets/js/plugins/uploaders/dropzone.min.js') }}">
+<script type="text/javascript" src="<?php echo e(asset('template/material/assets/js/plugins/uploaders/dropzone.min.js')); ?>">
 </script>
-<script type="text/javascript" src="{{asset('template/material/assets/js/core/app.js') }}"></script>
-<script type="text/javascript" src="{{asset('template/material/assets/js/pages/form_select2.js')}}"></script>
-<script type="text/javascript" src="{{asset('template/material/assets/js/pages/picker_date.js')}}"></script>
-<script type="text/javascript" src="{{ asset('template/material/assets/js/pages/uploader_dropzone.js') }}"></script>
-<script type="text/javascript" src="{{ asset('template/material/assets/js/plugins/ui/ripple.min.js') }}"></script>
-@endsection
+<script type="text/javascript" src="<?php echo e(asset('template/material/assets/js/core/app.js')); ?>"></script>
+<script type="text/javascript" src="<?php echo e(asset('template/material/assets/js/pages/form_select2.js')); ?>"></script>
+<script type="text/javascript" src="<?php echo e(asset('template/material/assets/js/pages/picker_date.js')); ?>"></script>
+<script type="text/javascript" src="<?php echo e(asset('template/material/assets/js/pages/uploader_dropzone.js')); ?>"></script>
+<script type="text/javascript" src="<?php echo e(asset('template/material/assets/js/plugins/ui/ripple.min.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
 
 
-@section('header')
+<?php $__env->startSection('header'); ?>
 <!-- Page header -->
 <div class="page-header">
     <div class="page-header-content">
@@ -50,9 +48,9 @@
     </div>
 </div>
 <!-- /page header -->
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 <h6 class="content-group text-semibold">
     My Profile
@@ -60,16 +58,16 @@
 </h6>
 <div class="row">
     <div class="col-md-3">
-        @if(Auth::user()->foto != "")
+        <?php if(Auth::user()->foto != ""): ?>
         <div class="col-md-12">
             <div class="thumbnail">
                 <h6 class="text-semibold no-margin">Foto Profil</h6>
 
                 <div class="thumb thumb-rounded thumb-slide">
-                    <img src="{{ asset($foto) }}" alt="">
+                    <img src="<?php echo e(asset($foto)); ?>" alt="">
                     <div class="caption">
                         <span>
-                            <a href="{{ asset($foto) }}" class="btn bg-green-300 btn-icon" data-popup="lightbox"><i
+                            <a href="<?php echo e(asset($foto)); ?>" class="btn bg-green-300 btn-icon" data-popup="lightbox"><i
                                     class="icon-zoomin3"></i></a>
 
                         </span>
@@ -77,13 +75,13 @@
                 </div>
 
                 <div class="caption text-center">
-                    <h6 class="text-semibold no-margin">{{ $user->name }}</h6>
+                    <h6 class="text-semibold no-margin"><?php echo e($user->name); ?></h6>
                     <ul class="icons-list mt-15">
                     </ul>
                 </div>
             </div>
         </div>
-        @endif
+        <?php endif; ?>
         <div class="col-md-12">
             <div class="panel panel-flat border-top-blue">
                 <div class="panel-heading">
@@ -91,9 +89,9 @@
                 </div>
 
                 <div class="panel-body">
-                    <form action="{{ url('profileFoto') }}" class="dropzone" id="dropzone_foto" method="POST"
+                    <form action="<?php echo e(url('profileFoto')); ?>" class="dropzone" id="dropzone_foto" method="POST"
                         enctype="multipart/form-data">
-                        @csrf
+                        <?php echo csrf_field(); ?>
                     </form>
                 </div>
             </div>
@@ -113,8 +111,8 @@
                 <p class="content-group-lg">Harap Masukkan data yang sebenar-benarnya. Kami tidak bertanggung jawab bila
                     di waktu mendatang terjadi pelanggaran bilamana data yang di masukkan tidak benar</p>
 
-                <form class="form-horizontal" action="{{ url('profile') }}" method="POST">
-                    @csrf
+                <form class="form-horizontal" action="<?php echo e(url('profile')); ?>" method="POST">
+                    <?php echo csrf_field(); ?>
                     <fieldset class="content-group">
                         <legend class="text-bold">Identitas Diri</legend>
 
@@ -122,13 +120,13 @@
                             <label class="control-label col-lg-2">Nama Lengkap</label>
                             <div class="col-lg-10">
                                 <input type="text" class="form-control text-uppercase" name="name"
-                                    value="{{ $user->name }}">
-                                @if ($errors->has('name'))
+                                    value="<?php echo e($user->name); ?>">
+                                <?php if($errors->has('name')): ?>
                                 <div class="form-control-feedback">
                                     <i class="icon-cancel-circle2"></i>
                                 </div>
-                                <span class="help-block text-danger">{{ $errors->first('name') }}</span>
-                                @endif
+                                <span class="help-block text-danger"><?php echo e($errors->first('name')); ?></span>
+                                <?php endif; ?>
                             </div>
                         </div>
 
@@ -136,13 +134,13 @@
                             <label class="control-label col-lg-2">No Telepon</label>
                             <div class="col-lg-10">
                                 <input type="numeric" class="form-control text-uppercase" name="no_telp"
-                                    value="{{ $user->no_telp }}">
-                                @if ($errors->has('no_telp'))
+                                    value="<?php echo e($user->no_telp); ?>">
+                                <?php if($errors->has('no_telp')): ?>
                                 <div class="form-control-feedback">
                                     <i class="icon-cancel-circle2"></i>
                                 </div>
-                                <span class="help-block text-danger">{{ $errors->first('no_telp') }}</span>
-                                @endif
+                                <span class="help-block text-danger"><?php echo e($errors->first('no_telp')); ?></span>
+                                <?php endif; ?>
                             </div>
                         </div>
 
@@ -150,13 +148,13 @@
                             <label class="control-label col-lg-2">Tempat Lahir</label>
                             <div class="col-lg-10">
                                 <input type="text" class="form-control text-uppercase" name="tempat_lahir"
-                                    value="{{ $user->tempat_lahir }}">
-                                @if ($errors->has('tempat_lahir'))
+                                    value="<?php echo e($user->tempat_lahir); ?>">
+                                <?php if($errors->has('tempat_lahir')): ?>
                                 <div class="form-control-feedback">
                                     <i class="icon-cancel-circle2"></i>
                                 </div>
-                                <span class="help-block text-danger">{{ $errors->first('tempat_lahir') }}</span>
-                                @endif
+                                <span class="help-block text-danger"><?php echo e($errors->first('tempat_lahir')); ?></span>
+                                <?php endif; ?>
                             </div>
                         </div>
 
@@ -164,13 +162,13 @@
                             <label class="control-label col-lg-2">Tanggal Lahir</label>
                             <div class="col-lg-10">
                                 <input type="text" class="form-control" id="tgl_lahir" placeholder="" name="tgl_lahir"
-                                    value="{{ $user->tgl_lahir }}">
-                                @if ($errors->has('tgl_lahir'))
+                                    value="<?php echo e($user->tgl_lahir); ?>">
+                                <?php if($errors->has('tgl_lahir')): ?>
                                 <div class="form-control-feedback">
                                     <i class="icon-cancel-circle2"></i>
                                 </div>
-                                <span class="help-block text-danger">{{ $errors->first('tgl_lahir') }}</span>
-                                @endif
+                                <span class="help-block text-danger"><?php echo e($errors->first('tgl_lahir')); ?></span>
+                                <?php endif; ?>
                             </div>
                         </div>
 
@@ -179,35 +177,36 @@
                             <div class="col-lg-10">
                                 <label class="radio-inline radio-right">
                                     <input type="radio" name="jenis_kelamin"
-                                        {{ $user->jenis_kelamin == "PRIA" || old('jenis_kelamin') == ""? "checked='checked'" : "" }}
+                                        <?php echo e($user->jenis_kelamin == "PRIA" || old('jenis_kelamin') == ""? "checked='checked'" : ""); ?>
+
                                         value="PRIA">
                                     Pria
                                 </label>
 
                                 <label class="radio-inline radio-right">
                                     <input type="radio" name="jenis_kelamin" value="WANITA"
-                                        {{ $user->jenis_kelamin == "WANITA" ? "checked='checked'" : "" }}>
+                                        <?php echo e($user->jenis_kelamin == "WANITA" ? "checked='checked'" : ""); ?>>
                                     Wanita
                                 </label>
-                                @if ($errors->has('jenis_kelamin'))
+                                <?php if($errors->has('jenis_kelamin')): ?>
                                 <div class="form-control-feedback">
                                     <i class="icon-cancel-circle2"></i>
                                 </div>
-                                <span class="help-block text-danger">{{ $errors->first('jenis_kelamin') }}</span>
-                                @endif
+                                <span class="help-block text-danger"><?php echo e($errors->first('jenis_kelamin')); ?></span>
+                                <?php endif; ?>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-lg-2">Alamat</label>
                             <div class="col-lg-10">
-                                <textarea class="form-control" name="alamat">{{ $user->alamat }}</textarea>
-                                @if ($errors->has('alamat'))
+                                <textarea class="form-control" name="alamat"><?php echo e($user->alamat); ?></textarea>
+                                <?php if($errors->has('alamat')): ?>
                                 <div class="form-control-feedback">
                                     <i class="icon-cancel-circle2"></i>
                                 </div>
-                                <span class="help-block text-danger">{{ $errors->first('alamat') }}</span>
-                                @endif
+                                <span class="help-block text-danger"><?php echo e($errors->first('alamat')); ?></span>
+                                <?php endif; ?>
                             </div>
                         </div>
 
@@ -215,23 +214,23 @@
                             <label class="control-label col-lg-2">Agama</label>
                             <div class="col-lg-10">
                                 <select class="select-menu-color" name="agama" required="">
-                                    <option value="ISLAM" {{$user->agama == "ISLAM" ? "selected=''" : "" }}>ISLAM
+                                    <option value="ISLAM" <?php echo e($user->agama == "ISLAM" ? "selected=''" : ""); ?>>ISLAM
                                     </option>
-                                    <option value="KRISTEN" {{ $user->agama == "KRISTEN" ? "selected=''" : "" }}>KRISTEN
+                                    <option value="KRISTEN" <?php echo e($user->agama == "KRISTEN" ? "selected=''" : ""); ?>>KRISTEN
                                     </option>
-                                    <option value="HINDU" {{ $user->agama == "HINDU" ? "selected=''" : "" }}>HINDU
+                                    <option value="HINDU" <?php echo e($user->agama == "HINDU" ? "selected=''" : ""); ?>>HINDU
                                     </option>
-                                    <option value="BUDHA" {{ $user->agama == "BUDHA" ? "selected=''" : "" }}>BUDHA
+                                    <option value="BUDHA" <?php echo e($user->agama == "BUDHA" ? "selected=''" : ""); ?>>BUDHA
                                     </option>
-                                    <option value="KONGHUCU" {{ $user->agama == "KONGHUCU" ? "selected=''" : "" }}>
+                                    <option value="KONGHUCU" <?php echo e($user->agama == "KONGHUCU" ? "selected=''" : ""); ?>>
                                         KONGHUCU</option>
                                 </select>
-                                @if ($errors->has('agama'))
+                                <?php if($errors->has('agama')): ?>
                                 <div class="form-control-feedback">
                                     <i class="icon-cancel-circle2"></i>
                                 </div>
-                                <span class="help-block text-danger">{{ $errors->first('agama') }}</span>
-                                @endif
+                                <span class="help-block text-danger"><?php echo e($errors->first('agama')); ?></span>
+                                <?php endif; ?>
                             </div>
                         </div>
 
@@ -246,4 +245,6 @@
     </div>
 </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.dashboardMaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Data\Project\Laravel\SPK\resources\views/user/form/profil.blade.php ENDPATH**/ ?>

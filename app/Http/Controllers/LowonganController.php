@@ -183,4 +183,10 @@ class LowonganController extends Controller
         LowonganSyarat::select('*')->where('id_lowongan', $id)->delete();
         return response()->json("success");
     }
+
+    public function regis($id)
+    {
+        $lowongan = Lowongan::find($id);
+        return view('user.form.accept', compact('lowongan'));
+    }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Lowongan;
 use App\Models\Pelamar;
 use App\User;
+use App\Models\Soal;
 use Auth;
 use Carbon\Carbon;
 
@@ -19,22 +20,34 @@ class PelamarController extends Controller
      */
     public function index()
     {
-      $today = Carbon::today()->formatLocalized('%A, %d %B %Y');
-      $now = Carbon::now()->format('Y-m-d H:i:00');
+        $today = Carbon::today()->formatLocalized('%A, %d %B %Y');
+        $now = Carbon::now()->format('Y-m-d H:i:00');
 
-      $profil = User::find(Auth::user()->id);
-      $status = "";
+        $profil = User::find(Auth::user()->id);
+        $status = "";
 
-      if ($profil->tempat_lahir == "" || $profil->tgl_lahir == "" || $profil->jenis_kelamin == "" || $profil->alamat == ""  || $profil->agama == "" || $profil->foto == ""  || $profil->no_telp == "") {
-          $status = "not clear";
-      }else{
-          $status = "clear";
-      }
+        if ($profil->tempat_lahir == "" || $profil->tgl_lahir == "" || $profil->jenis_kelamin == "" || $profil->alamat == ""  || $profil->agama == "" || $profil->foto == ""  || $profil->no_telp == "") {
+            $status = "not clear";
+        } else {
+            $status = "clear";
+        }
 
-      $lowongan = Lowongan::select('*')
-      ->where('tanggal_selesai','>=',$now)
-      ->get();
-      return view('user.dashboard', compact('lowongan','today','now','status'));
+        $pelamar = Pelamar::select('*')
+            ->where('user_id', $profil->id)
+            ->where('kondisi', "active")
+            ->first();
+        if ($pelamar->id != null) {
+            $lowongan = Lowongan::select('*')
+                ->where('id_lowongan', $pelamar->lowongan_id)
+                ->first();
+            $status = "lamar";
+        }else{
+            $lowongan = Lowongan::select('*')
+            ->where('tanggal_selesai', '>=', $now)
+            ->get();
+        }
+        $soals = Soal::all();
+        return view('user.dashboard', compact('lowongan', 'today', 'now', 'status','pelamar','soals'));
     }
 
     /**
@@ -67,7 +80,13 @@ class PelamarController extends Controller
     public function show($id)
     {
         $pelamar = Pelamar::find($id);
-        return view('admin.pelamar.show',compact('pelamar'));
+        $user = User::find($pelamar->user_id);
+        $dir = 'upload/user/img/profile/';
+        $foto = "images/profile.jpg";
+        if ($user->foto != "") {
+            $foto = $dir . $user->foto;
+        }
+        return view('admin.pelamar.show', compact('pelamar', 'user', 'foto'));
     }
 
     /**

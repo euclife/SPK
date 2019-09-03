@@ -57,7 +57,7 @@
 </h6>
 <div class="row">
 
-   <div class="col-md-9">
+   <div class="col-md-12">
      <div class="panel panel-flat">
           <div class="panel-heading">
             <h5 class="panel-title">Identitas</h5>
@@ -87,6 +87,7 @@
                     @endif
                   </div>
                 </div>
+                
 
                 <div class="form-group">
                   <label class="control-label col-lg-2">CV</label>
@@ -102,6 +103,19 @@
                 </div>
 
                 <div class="form-group">
+                    <label class="control-label col-lg-2">CV</label>
+                    <div class="col-lg-10">
+                        <input type="file" class="form-control text-uppercase" name="cv">
+                        @if ($errors->has('cv'))
+                        <div class="form-control-feedback">
+                            <i class="icon-cancel-circle2"></i>
+                        </div>
+                        <span class="help-block text-danger">{{ $errors->first('cv') }}</span>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="form-group">
                   <label class="control-label col-lg-2">IPK</label>
                   <div class="col-lg-10">
                     <input type="number" class="form-control text-uppercase" name="ipk" required>
@@ -113,6 +127,8 @@
                     @endif
                   </div>
                 </div>
+
+                
 
 
               </fieldset>

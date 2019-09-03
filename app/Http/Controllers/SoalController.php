@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Pelamar;
+use App\Models\Jawab;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\DataTables;
 use Carbon\Carbon;
 use App\Models\Soal;
+use Auth;
 
 class SoalController extends Controller
 {
@@ -29,7 +32,7 @@ class SoalController extends Controller
                           <button class="btn btn-danger btn-hapus" data-remove="' . url('admin/soal/hapus/' . $data->id_soal) . '"> <i class="fa fa-trash"></i>Hapus</button>
                             ';
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['action','pertanyaan'])
                 ->make(true);
         }
         return view('admin.soal.index');
@@ -88,7 +91,8 @@ class SoalController extends Controller
      */
     public function show($id)
     {
-        //
+        $soal = Soal::find($id);
+        return view('user.form.get_soal', compact('soal'));
     }
 
     /**
@@ -147,6 +151,43 @@ class SoalController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $soal = Soal::find($id);
+        Soal::destroy($id);
+        return response()->json("success");
+    }
+
+    public function jawab(Request $request)
+    {
+        $get_jawab = explode('/', $request->get_jawab);
+        $pilihan = $get_jawab[0];
+        $id_detail_soal = $get_jawab[1];
+        $pelamar = Pelamar::select('*')
+            ->where('user_id', Auth::user()->id)
+            ->where('kondisi', "active")
+            ->first();
+        $detail_soal = Soal::find($id_detail_soal);
+
+        $jawab = Jawab::where('id_soal', $id_detail_soal)->where('id_pelamar', Auth::user()->id)->first();
+        if (!$jawab) {
+            $jawab = new Jawab;
+            $jawab->revisi = 0;
+        } else {
+            $jawab->revisi = $jawab->revisi + 1;
+        }
+
+        $jawab->id_lowongan = $pelamar->lowongan_id;
+        $jawab->id_soal = $detail_soal->id_soal;
+        $jawab->id_pelamar = Auth::user()->id;
+        $jawab->pilihan = $pilihan;
+
+        $check_jawaban = Soal::where('id_soal', $id_detail_soal)->where('kunci', $pilihan)->first();
+        if ($check_jawaban) {
+            $jawab->score = $detail_soal->score;
+        } else {
+            $jawab->score = 0;
+        }
+        $jawab->status = 0;
+        $jawab->save();
+        return 1;
     }
 }

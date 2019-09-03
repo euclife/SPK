@@ -26,6 +26,9 @@ Route::middleware('auth')->group(function () {
 	Route::post('/profileFoto', 'UserController@profilFoto');
 	Route::get('/lowongan/accept/{id}', 'LowonganController@regis');
 	Route::get('/lowongan/create', 'LowonganController@reg');
+
+	Route::get('/soal/{id}', 'SoalController@show');
+	Route::post('/soal/jawabs','SoalController@jawab');
 	
 });
 
@@ -40,6 +43,7 @@ Route::middleware(['auth','admin'])->group(function () {
 	Route::delete('/lowongan/hapus/{id}', 'LowonganController@destroy');
 	Route::get('/lowongan/{id}', 'LowonganController@show');
 	Route::get('/profile/{id}', 'PelamarController@show');
+	
 	Route::group(['prefix' => 'soal'], function () {
 			Route::get('/', 'SoalController@index');
 			Route::get('/create', 'SoalController@create');

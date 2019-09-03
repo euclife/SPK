@@ -49,7 +49,7 @@
                 </ul>
             </div>
         </div>
-        <form action="<?php echo e(url('admin/soal/edit')); ?>" method="POST" class="form-horizontal"
+        <form action="<?php echo e(url('admin/soal/edit',$soal->id_soal)); ?>" method="POST" class="form-horizontal"
             enctype="multipart/form-data">
             <?php echo csrf_field(); ?>
             <div class="panel-body">
