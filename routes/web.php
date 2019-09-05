@@ -25,11 +25,14 @@ Route::middleware('auth')->group(function () {
 	Route::post('/profile', 'UserController@profilUpdate');
 	Route::post('/profileFoto', 'UserController@profilFoto');
 	Route::get('/lowongan/accept/{id}', 'LowonganController@regis');
+	Route::post('/pelamar/accept', 'PelamarController@store');
 	Route::get('/lowongan/create', 'LowonganController@reg');
 
 	Route::get('/soal/{id}', 'SoalController@show');
-	Route::post('/soal/jawabs','SoalController@jawab');
-	
+	Route::post('/soal/jawabs', 'SoalController@jawab');
+	Route::post('/soal/kirim','SoalController@kirim');
+	Route::get('/test', 'SoalController@kirim');
+	Route::get('/done', 'SoalController@done');
 });
 
 Route::middleware(['auth','admin'])->group(function () {

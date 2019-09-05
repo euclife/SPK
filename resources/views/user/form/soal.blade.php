@@ -64,7 +64,7 @@
                       @if($key == 0)
                       <span class="detail_soal_id" style="display: none;">{{ $data->id_soal }}</span>
                       <div class="soal">{!! $data->pertanyaan !!}</div>
-                      {!! $data->pila ? '<div class="jawab" soal-id="'.$data->id_soal_soal.'"
+                      {!! $data->pila ? '<div class="jawab" soal-id="'.$data->id_soal.'"
                           data-id="'.$data->id_soal.'" data-jawab="A/'.$data->id_soal.'/'.Auth::user()->id.'">
                           <table width="100%">
                               <tr>
@@ -82,7 +82,7 @@
                               </tr>
                           </table>
                       </div>' : '' !!}
-                      {!! $data->pilc ? '<div class="jawab" soal-id="'.$data->id_soal_soal.'"
+                      {!! $data->pilc ? '<div class="jawab" soal-id="'.$data->id_soal.'"
                           data-id="'.$data->id_soal.'" data-jawab="C/'.$data->id_soal.'/'.Auth::user()->id.'">
                           <table width="100%">
                               <tr>
@@ -217,9 +217,9 @@
               // 		<button type="button" class="btn" id="kirim-jawaban" data-id="" style="background-image: linear-gradient(to right, #1523f3 , #0495c1); border: none; color: #fff;"><i class="fa fa-check-circle" aria-hidden="true"></i> Iya! Saya Kirim Jawaban Saya Sekarang.</button>
               // `).show();
               $('#confirm').html(`
-				<pSetelah mengirimkan jawaban, kamu tidak bisa kembali memeriksa jawaban.<p>
+				<p>Setelah mengirimkan jawaban, kamu tidak bisa kembali memeriksa jawaban.<p>
   			<button type="button" class="btn" id="batal" style="background-image: linear-gradient(to right, #f31515 , #c12704); border: none; color: #fff;"><i class="fa fa-ban" aria-hidden="true"></i> Tidak! Saya Mau Cek Lagi.</button>
-  			<button type="button" class="btn" id="kirim-jawaban" data-id="" style="background-image: linear-gradient(to right, #1523f3 , #0495c1); border: none; color: #fff;"><i class="fa fa-check-circle" aria-hidden="true"></i> Iya! Saya Kirim Jawaban Saya Sekarang.</button>
+  			<button type="button" class="btn" id="kirim-jawaban" data-id="1" style="background-image: linear-gradient(to right, #1523f3 , #0495c1); border: none; color: #fff;"><i class="fa fa-check-circle" aria-hidden="true"></i> Iya! Saya Kirim Jawaban Saya Sekarang.</button>
 			`).show();
           });
 
@@ -232,12 +232,12 @@
               var id_soal = $this.attr('data-id');
               $.ajax({
                   type: "POST",
-                  url: "{{ url('siswa/ujian/kirim-jawaban') }}",
+                  url: "{{ url('soal/kirim') }}",
                   data: {
                       id_soal: id_soal
                   },
                   success: function (data) {
-                      window.location.href = "{{ url('siswa/ujian/finish/') }}";
+                      window.location.href = "{{ url('done') }}";
                   }
               })
           });

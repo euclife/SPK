@@ -189,4 +189,5 @@ class LowonganController extends Controller
         $lowongan = Lowongan::find($id);
         return view('user.form.accept', compact('lowongan'));
     }
+
 }

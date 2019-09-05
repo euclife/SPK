@@ -177,7 +177,7 @@ class SoalController extends Controller
 
         $jawab->id_lowongan = $pelamar->lowongan_id;
         $jawab->id_soal = $detail_soal->id_soal;
-        $jawab->id_pelamar = Auth::user()->id;
+        $jawab->id_pelamar = $pelamar->id;
         $jawab->pilihan = $pilihan;
 
         $check_jawaban = Soal::where('id_soal', $id_detail_soal)->where('kunci', $pilihan)->first();
@@ -190,4 +190,37 @@ class SoalController extends Controller
         $jawab->save();
         return 1;
     }
+
+    public function kirim()
+    {
+        $pelamar = Pelamar::select('*')->where('user_id',Auth::user()->id)->where('kondisi','active')->first();
+        $soal = Jawab::where('id_pelamar', $pelamar->id )->sum('score');
+        
+        if ($soal > 90) {
+            $pelamar->point = $pelamar->point + 3;
+        }else if ($soal > 70) {
+            $pelamar->point = $pelamar->point + 2;
+        }elseif ($soal >50) {
+            $pelamar->point = $pelamar->point + 1;
+        } else{
+            $pelamar->point = $pelamar->point + 0;
+        }
+
+        if ($pelamar->point >= 7) {
+            $pelamar->status = 3;
+            $pelamar->kondisi = "active";
+        }else{
+            $pelamar->status = 3;
+            $pelamar->kondisi = "not active";
+        }
+        
+        $pelamar->umum = $soal;
+        $pelamar->save();
+        return  response()->json('success', 200);
+    }
+    public function done()
+    {
+        return redirect('dashboard')->with('success', 'Hasil Test Anda berhasil di simpan');;
+    }
+    
 }

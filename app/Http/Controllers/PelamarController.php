@@ -10,6 +10,7 @@ use App\User;
 use App\Models\Soal;
 use Auth;
 use Carbon\Carbon;
+use Validator;
 
 class PelamarController extends Controller
 {
@@ -36,7 +37,7 @@ class PelamarController extends Controller
             ->where('user_id', $profil->id)
             ->where('kondisi', "active")
             ->first();
-        if ($pelamar->id != null) {
+        if ($pelamar != null) {
             $lowongan = Lowongan::select('*')
                 ->where('id_lowongan', $pelamar->lowongan_id)
                 ->first();
@@ -68,7 +69,70 @@ class PelamarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'surat_lamaram'     => 'required|mimes:pdf|max:10000',
+            'cv'      => 'required|mimes:pdf|max:10000',
+            'ijasah'  => 'required|mimes:pdf|max:10000',
+            'ipk'  => 'required|regex:/[0-9]+(\.[0-9][0-9]?)?/',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $pelamar = new Pelamar();
+        $pelamar->user_id = Auth::user()->id();
+        $pelamar->lowongan_id = $request->id;
+        $pelamar->ipk = $request->ipk;
+
+            $surat_lamaran = $request->file('surat_lamaran');
+            $name = str_slug("user_" . $pelamar->user_id . "" . date("YmdHis")) . '.' . $surat_lamaran->getClientOriginalExtension();
+            $destinationPath = public_path('upload/user/pdf/');
+            $surat_lamaran->move($destinationPath, $name);
+            $pelamar->surat_lamaran = $name;
+
+        $cv = $request->file('cv');
+        $name = str_slug("user_" . $pelamar->user_id . "" . date("YmdHis")) . '.' . $cv->getClientOriginalExtension();
+        $destinationPath = public_path('upload/user/cv/');
+        $cv->move($destinationPath, $name);
+        $pelamar->cv = $name;
+
+        $ijasah = $request->file('ijasah');
+        $name = str_slug("user_" . $pelamar->user_id . "" . date("YmdHis")) . '.' . $ijasah->getClientOriginalExtension();
+        $destinationPath = public_path('upload/user/ijasah/');
+        $ijasah->move($destinationPath, $name);
+        $pelamar->ijasah = $name;
+
+        $pelamar->kondisi = "active";
+
+        $dateOfBirth = Auth::user()->tgl_lahir;
+        $umur = Carbon::parse($dateOfBirth)->age;
+        $pelamar->umur = $umur;
+
+        if ($request->ipk > 3) {
+            $pelamar->point = 3;
+        }else if($request->ipk>2){
+            $pelamar->point = 2;
+        }else{
+            $pelamar->point = 1;
+        }
+
+        if ($umur < 24) {
+            $pelamar->point += 4;
+        }elseif ($umur < 30) {
+            $pelamar->point += 3;
+        }else if($umur < 40){
+            $pelamar->point += 2;
+        }else{
+            $pelamar->point += 1;
+        }
+
+        $pelamar->status = 1;
+
+        $pelamar->save();
+        return redirect('/dashboard')->with('success', 'Profil Anda Berhasil di Perbaharui');
+    
     }
 
     /**

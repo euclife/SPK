@@ -240,8 +240,7 @@
         $(document).on("click", ".btn-lowongan", function () {
             var id = $(this).data('id');
             var posisi = $(this).data('posisi');
-            var url = '{{ url('
-            api / syaratlowongan / ') }}/' + id
+            var url = '{{ url('api/syaratlowongan/') }}/' + id
             $.ajax({
                 url: url,
                 type: 'GET',
