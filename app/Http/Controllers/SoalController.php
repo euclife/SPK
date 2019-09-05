@@ -206,7 +206,7 @@ class SoalController extends Controller
             $pelamar->point = $pelamar->point + 0;
         }
 
-        if ($pelamar->point >= 7) {
+        if ($pelamar->point >= 5) {
             $pelamar->status = 3;
             $pelamar->kondisi = "active";
         }else{

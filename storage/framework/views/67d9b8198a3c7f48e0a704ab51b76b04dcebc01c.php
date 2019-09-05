@@ -219,18 +219,18 @@
                     <thead class="bg-warning">
                         <tr>
                             <th>Nama</th>
-                            <th>Psikotes</th>
                             <th>Umum</th>
                             <th>Point</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                       <?php $__currentLoopData = $pelamar_tahap2; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <tr>
                           <td><a href="<?php echo e(url('admin/profile/'.$value->id)); ?>"> <?php echo e($value->name); ?> </a></td>
-                          <td><?php echo e($value->psikotes); ?></td>
                           <td><?php echo e($value->umum); ?></td>
                           <td><?php echo e($value->point); ?></td>
+                          <td><a href="<?php echo e(url('admin/pelamar/lolos')); ?>/<?php echo e($value->id_pelamar); ?>"></a></td>
                         </tr>
                       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>

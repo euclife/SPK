@@ -219,18 +219,18 @@
                     <thead class="bg-warning">
                         <tr>
                             <th>Nama</th>
-                            <th>Psikotes</th>
                             <th>Umum</th>
                             <th>Point</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                       @foreach ($pelamar_tahap2 as $key => $value)
                         <tr>
                           <td><a href="{{url('admin/profile/'.$value->id)}}"> {{$value->name}} </a></td>
-                          <td>{{$value->psikotes}}</td>
                           <td>{{$value->umum}}</td>
                           <td>{{$value->point}}</td>
+                          <td></td>
                         </tr>
                       @endforeach
                     </tbody>
