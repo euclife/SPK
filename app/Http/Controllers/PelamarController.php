@@ -70,7 +70,7 @@ class PelamarController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'surat_lamaram'     => 'required|mimes:pdf|max:10000',
+            'surat_lamaran'     => 'required|mimes:pdf|max:10000',
             'cv'      => 'required|mimes:pdf|max:10000',
             'ijasah'  => 'required|mimes:pdf|max:10000',
             'ipk'  => 'required|regex:/[0-9]+(\.[0-9][0-9]?)?/',
@@ -78,11 +78,11 @@ class PelamarController extends Controller
 
         if ($validator->fails()) {
             return redirect()->back()
-                ->withErrors($validator)
+                ->withErrors($validator)    
                 ->withInput();
         }
         $pelamar = new Pelamar();
-        $pelamar->user_id = Auth::user()->id();
+        $pelamar->user_id = Auth::user()->id;
         $pelamar->lowongan_id = $request->id;
         $pelamar->ipk = $request->ipk;
 

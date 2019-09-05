@@ -111,7 +111,7 @@
                   <div class="col-lg-10 row">
                     <div class="col-md-3">
                       <input type="number" class="form-control" pattern="([0-9].[0-9])x" name="ipk"
-                          id="ipk" required>
+                          id="ipk" required value="<?php echo e(old('ipk')); ?>">
                     </div>
                     <?php if($errors->has('ipk')): ?>
                       <div class="form-control-feedback">

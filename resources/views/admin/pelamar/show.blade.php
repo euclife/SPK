@@ -47,50 +47,52 @@
 @endsection
 
 @section('content')
-<div class="panel panel-flat">
-    <div class="panel-heading">
-        <h6 class="panel-title">Detail Pelamar<a class="heading-elements-toggle"><i class="icon-more"></i></a></h6>
-        <div class="heading-elements">
-            <ul class="icons-list">
-                <li><a data-action="collapse"></a></li>
-                <li><a data-action="reload"></a></li>
-                <li><a data-action="close"></a></li>
-            </ul>
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-flat">
+            <div class="panel-heading">
+                <h6 class="panel-title">Detail Pelamar<a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                </h6>
+                <div class="heading-elements">
+                    <ul class="icons-list">
+                        <li><a data-action="collapse"></a></li>
+                        <li><a data-action="reload"></a></li>
+                        <li><a data-action="close"></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="panel-body">
+                @include('admin.pelamar.identitas')
+            </div>
         </div>
     </div>
+    <div class="col-md-4">
+        <div class="panel panel-flat">
+            <div class="panel-heading">
+                <h6 class="panel-title">Berkas<a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                </h6>
+            </div>
 
-    <div class="panel-body">
-        <div class="tabbable tab-content-bordered">
-            <ul class="nav nav-tabs bg-green-600">
-                <li class="active"><a href="#colored-tab1" data-toggle="tab" class="legitRipple"
-                        aria-expanded="true">Identitas</a></li>
-                <li class=""><a href="#colored-tab2" data-toggle="tab" class="legitRipple" aria-expanded="false">CV</a>
-                </li>
-                <li class=""><a href="#colored-tab3" data-toggle="tab" class="legitRipple" aria-expanded="false">Lamaran</a>
-                </li>
-                <li class=""><a href="#colored-tab4" data-toggle="tab" class="legitRipple" aria-expanded="false">Ijasah</a>
-                </li>
-            </ul>
+            <div class="panel-body">
+                @switch(app('request')->input('file'))
+                @case('cv')
+                @include('admin.pelamar.cv')
+                @break
+                @case('lamaran')
+                @include('admin.pelamar.lamaran')
+                @break
+                @case('ijasah')
+                @include('admin.pelamar.ijasah')
+                @break
+                @default
 
-            <div class="tab-content ">
-                <div class="tab-pane has-padding active" id="colored-tab1">
-                    @include('admin.pelamar.identitas')
-                </div>
-
-                <div class="tab-pane has-padding" id="colored-tab2">
-                    @include('admin.pelamar.cv');
-                </div>
-
-                <div class="tab-pane has-padding" id="colored-tab3">
-                    @include('admin.pelamar.lamaran');
-                </div>
-
-                <div class="tab-pane has-padding" id="colored-tab4">
-                    @include('admin.pelamar.ijasah');
-                </div>
+                @endswitch
             </div>
         </div>
     </div>
 </div>
+
+
 
 @endsection

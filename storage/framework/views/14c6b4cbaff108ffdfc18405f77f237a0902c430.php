@@ -1,21 +1,11 @@
-<div class="container row">
+<div class=" row">
     <div class="col-md-4">
         <div class="panel panel-flat">
             <div class="panel-heading">
-                <h6 class="panel-title">Foto<a class="heading-elements-toggle"><i class="icon-more"></i></a>
-                </h6>
-                <div class="heading-elements">
-                    <ul class="icons-list">
-                        <li><a data-action="collapse"></a></li>
-                        <li><a data-action="reload"></a></li>
-                        <li><a data-action="close"></a></li>
-                    </ul>
-                </div>
             </div>
-
             <div class="panel-body">
                 <div class="thumbnail">
-                    <h6 class="text-semibold no-margin">Foto Profil</h6>
+                    <p class="text-semibold no-margin">Foto Profil</p>
 
                     <div class="thumb thumb-rounded thumb-slide">
                         <img src="<?php echo e(asset($foto)); ?>" alt="">
@@ -29,7 +19,7 @@
                     </div>
 
                     <div class="caption text-center">
-                        <h6 class="text-semibold no-margin"><?php echo e($user->name); ?></h6>
+                        <p class="text-semibold no-margin"><?php echo e($user->name); ?></p>
                         <ul class="icons-list mt-15">
                         </ul>
                     </div>
@@ -37,61 +27,53 @@
             </div>
         </div>
     </div>
-
     <div class="col-md-8">
         <div class="panel panel-flat">
-            <div class="panel-heading">
-                <h6 class="panel-title">Identitas<a class="heading-elements-toggle"><i class="icon-more"></i></a>
-                </h6>
-                <div class="heading-elements">
-                    <ul class="icons-list">
-                        <li><a data-action="collapse"></a></li>
-                        <li><a data-action="reload"></a></li>
-                        <li><a data-action="close"></a></li>
-                    </ul>
-                </div>
-            </div>
+            <div class="panel-body">
+                <table class="table">
+                    <tr>
+                        <td>Nama Lengkap</td>
+                        <td> : <?php echo e($user->name); ?> </td>
+                    </tr>
+                    <tr>
+                        <td>TTL</td>
+                        <td> : <?php echo e($user->tempat_lahir); ?>,
+                            <?php echo e(Carbon\Carbon::parse($user->tgl_lahir)->formatLocalized('%d %B %Y')); ?> </td>
+                    </tr>
 
-            <div class="panel-body row">
-                <div class="col-md-3">
-                    <h6>Nama Lengkap </h6>
-                </div>
-                <div class="col-md-9">
-                    <h6>: <?php echo e($user->name); ?></h6>
-                </div>
+                    <tr>
+                        <td>Umur</td>
+                        <td> : <?php echo e($pelamar->umur); ?></td>
+                    </tr>
 
-                <div class="col-md-3">
-                    <h6>Tempat Tanggal Lahir </h6>
-                </div>
-                <div class="col-md-9">
-                    <h6>: <?php echo e($user->tempat_lahir); ?>,
-                        <?php echo e(Carbon\Carbon::parse($user->tgl_lahir)->formatLocalized('%d %B %Y')); ?></h6>
-                </div>
-                <div class="col-md-3">
-                    <h6>umur </h6>
-                </div>
-                <div class="col-md-9">
-                    <h6>: <?php echo e($pelamar->umur); ?></h6>
-                </div>
-                <div class="col-md-3">
-                    <h6>IPK </h6>
-                </div>
-                <div class="col-md-9">
-                    <h6>: <?php echo e($pelamar->ipk); ?></h6>
-                </div>
-                <div class="col-md-3">
-                    <h6>Hasil Tes </h6>
-                </div>
-                <div class="col-md-9">
-                    <h6>: <?php echo e($pelamar->umum); ?></h6>
-                </div>
-                <div class="col-md-3">
-                    <h6>Email </h6>
-                </div>
-                <div class="col-md-9">
-                    <h6>: <?php echo e($user->email); ?></h6>
-                    <button class="btn btn-orange-400">Email Undangan Untuk tahap selanjutnya</button>
-                </div>
+                    <tr>
+                        <td>IPK</td>
+                        <td> : <?php echo e($pelamar->ipk); ?></td>
+                    </tr>
+
+                    <tr>
+                        <td>Hasil Tes</td>
+                        <td> : <?php echo e($pelamar->umum); ?></td>
+                    </tr>
+
+                    <tr>
+                        <td>E-Mail</td>
+                        <td> : <?php echo e($user->email); ?></td>
+                    </tr>
+
+                    <tr>
+                        <td>Berkas</td>
+                        <td>
+                            <a href="?file=cv" class="btn btn-success">CV</a>
+                            <a href="?file=lamaran" class="btn btn-danger">Lamaran</a>
+                            <a href="?file=ijasah" class="btn">Ijasah</a>
+                        </td>
+                    </tr>
+
+                </table>
+                <a href="<?php echo e(url('pelamar/lolos/')); ?>/<?php echo e($pelamar->id); ?>" class="btn btn-success">Lolos Tahap
+                    Selanjutnya</a>
+                <a href="<?php echo e(url('pelamar/gagal/')); ?>/<?php echo e($pelamar->id); ?>" class="btn btn-danger">Gagal</a>
             </div>
         </div>
     </div>

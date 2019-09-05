@@ -97,17 +97,17 @@ class LowonganController extends Controller
     public function show($id)
     {
         $lowongan = Lowongan::find($id);
-        $pelamar_tahap1 = Pelamar::select('users.*', 'surat_lamaran', 'cv', 'ijasah', 'umur','status', 'ipk', 'point')
+        $pelamar_tahap1 = Pelamar::select('users.name','pelamar.id', 'surat_lamaran', 'cv', 'ijasah', 'umur','status', 'ipk', 'point')
                                     ->join('users', 'users.id', '=', 'pelamar.user_id')
                                     ->where('lowongan_id', $id)
                                     ->where('status', 1)
                                     ->get();
-        $pelamar_tahap2 = Pelamar::select('users.*', 'surat_lamaran', 'cv', 'ijasah', 'status', 'ipk','psikotes','umum' ,'point')
+        $pelamar_tahap2 = Pelamar::select('users.name','pelamar.id', 'surat_lamaran', 'cv', 'ijasah', 'status', 'ipk','umum' ,'point')
                                     ->join('users', 'users.id', '=', 'pelamar.user_id')
                                     ->where('lowongan_id', $id)
                                     ->where('status', 2)
                                     ->get();
-        $pelamar_tahap3 = Pelamar::select('users.*', 'surat_lamaran', 'cv', 'ijasah', 'status', 'ipk', 'point')
+        $pelamar_tahap3 = Pelamar::select('users.name','pelamar.id', 'surat_lamaran', 'cv', 'ijasah', 'status', 'ipk', 'point')
                                     ->join('users', 'users.id', '=', 'pelamar.user_id')
                                     ->where('lowongan_id', $id)
                                     ->where('status', 3)
