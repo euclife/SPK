@@ -88,7 +88,7 @@ class PelamarController extends Controller
 
             $surat_lamaran = $request->file('surat_lamaran');
             $name = str_slug("user_" . $pelamar->user_id . "" . date("YmdHis")) . '.' . $surat_lamaran->getClientOriginalExtension();
-            $destinationPath = public_path('upload/user/pdf/');
+            $destinationPath = public_path('upload/user/lamaran/');
             $surat_lamaran->move($destinationPath, $name);
             $pelamar->surat_lamaran = $name;
 

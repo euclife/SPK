@@ -68,22 +68,17 @@
 						</tr>
 					</thead>
 					<tbody>
+						@foreach ($lowongan as $low)
+							
 						<tr>
 							<td>
 								<div class="media-left">
 									<div id="campaigns-donut"></div>
 								</div>
-
+								
 								<div class="media-left">
-									<h5 class="text-semibold no-margin">Web Developer</h5>
-									<ul class="list-inline list-inline-condensed no-margin">
-										<li>
-											<span class="status-mark border-success"></span>
-										</li>
-										<li>
-											<span class="text-muted">May 12, 12:30 am</span>
-										</li>
-									</ul>
+									<h5 class="text-semibold no-margin">{{ $low->posisi }}</h5>
+									
 								</div>
 							</td>
 
@@ -91,40 +86,34 @@
 								<div class="media-left">
 									<div id="campaign-status-pie"></div>
 								</div>
-
+								
 								<div class="media-left">
-									<h5 class="text-semibold no-margin">3</h5>
-									<ul class="list-inline list-inline-condensed no-margin">
-										<li>
-											<span class="status-mark border-danger"></span>
-										</li>
-										<li>
-											<span class="text-muted">Jun 4, 4:00 am</span>
-										</li>
-									</ul>
+									<h5 class="text-semibold no-margin">{{ $low->total }}</h5>
 								</div>
 							</td>
 							<td>
 								<div class="media-left">
 									<div id="campaign-status-pie"></div>
 								</div>
-
+								
 								<div class="media-left">
 									<ul class="list-inline list-inline-condensed no-margin">
 										<li>
 											<span class="status-mark border-danger"></span>
 										</li>
 										<li>
-											<span class="text-muted">Aug 4, 4:00 am</span>
+											<span
+											    class="text-muted">{{ Carbon\Carbon::parse($low->tanggal_selesai)->formatLocalized('%d %B %Y') }}</span>
 										</li>
 									</ul>
 								</div>
 							</td>
-
+							
 							<td class="text-right col-md-2">
-								<a href="{{url('admin/lowongan/1')}}" class="btn bg-indigo-300"><i class="icon-statistics position-left"></i> View report</a>
+								<a href="{{url('admin/lowongan/')}}/{{ $low->id_lowongan }}" class="btn bg-indigo-300"><i class="icon-statistics position-left"></i> View report</a>
 							</td>
 						</tr>
+						@endforeach
 					</tbody>
 				</table>
 			</div>
@@ -140,7 +129,7 @@
 				<div class="heading-elements" style="font-size:30px">
 					<i class="fa fa-users"></i>
 				</div>
-				<h3 class="no-margin">4</h3>
+				<h3 class="no-margin">{{ $userAll }}</h3>
 				Users
 			</div>
 		</div>
@@ -152,7 +141,7 @@
 				<div class="heading-elements" style="font-size:30px">
 					<i class="fa fa-tasks"></i>
 				</div>
-				<h3 class="no-margin">2</h3>
+				<h3 class="no-margin">{{ $lowonganAll }}</h3>
 				Lowongan Tersedia
 			</div>
 		</div>
