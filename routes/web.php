@@ -55,5 +55,14 @@ Route::middleware(['auth','admin'])->group(function () {
 			Route::post('/edit/{id}', 'SoalController@update');
 			Route::delete('/hapus/{id}', 'SoalController@destroy');
 	});
+
+		Route::group(['prefix' => 'user'], function () {
+			Route::get('/', 'UserController@index');
+			Route::get('/create', 'UserController@create');
+			Route::post('/create', 'UserController@store');
+			Route::get('/edit/{id}', 'UserController@edit');
+			Route::post('/edit/{id}', 'UserController@update');
+			Route::delete('/hapus/{id}', 'UserController@destroy');
+		});
 	});
 });

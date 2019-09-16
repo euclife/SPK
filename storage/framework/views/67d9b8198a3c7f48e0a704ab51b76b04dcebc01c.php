@@ -230,7 +230,7 @@
                           <td><a href="<?php echo e(url('admin/profile/'.$value->id)); ?>"> <?php echo e($value->name); ?> </a></td>
                           <td><?php echo e($value->umum); ?></td>
                           <td><?php echo e($value->point); ?></td>
-                          <td><a href="<?php echo e(url('admin/pelamar/lolos')); ?>/<?php echo e($value->id_pelamar); ?>"></a></td>
+                          <td></td>
                         </tr>
                       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>
