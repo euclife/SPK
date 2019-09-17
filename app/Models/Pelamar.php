@@ -11,4 +11,14 @@ class Pelamar extends Model
   protected $fillable = [
     'user_id','lowongan_id','surat_lamaran','cv','ijasah','status','score'
   ];
+
+  public function nilai()
+  {
+    return $this->hasOne('App\Models\Nilai', 'id_pelamar', 'id');
+  }
+
+  public function user()
+  {
+    return $this->belongsTo('App\User', 'user_id', 'id');
+  }
 }

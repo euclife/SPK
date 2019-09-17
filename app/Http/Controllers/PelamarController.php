@@ -128,7 +128,7 @@ class PelamarController extends Controller
             $pelamar->point += 1;
         }
 
-        $pelamar->status = 1;
+        $pelamar->status = 2;
 
         $pelamar->save();
         return redirect('/dashboard')->with('success', 'Profil Anda Berhasil di Perbaharui');

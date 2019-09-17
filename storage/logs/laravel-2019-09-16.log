@@ -1,15 +1,72 @@
-[2019-08-22 00:57:43] local.ERROR: Too few arguments to function Illuminate\Database\Eloquent\Builder::find(), 0 passed in D:\Data\Project\Laravel\SPK\vendor\laravel\framework\src\Illuminate\Support\Traits\ForwardsCalls.php on line 23 and at least 1 expected {"userId":2,"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalThrowableError(code: 0): Too few arguments to function Illuminate\\Database\\Eloquent\\Builder::find(), 0 passed in D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Traits\\ForwardsCalls.php on line 23 and at least 1 expected at D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php:323)
+[2019-09-16 22:12:37] local.ERROR: Command "make:models" is not defined.
+
+Did you mean one of these?
+    make:auth
+    make:channel
+    make:command
+    make:controller
+    make:event
+    make:exception
+    make:factory
+    make:job
+    make:listener
+    make:mail
+    make:middleware
+    make:migration
+    make:model
+    make:notification
+    make:observer
+    make:policy
+    make:provider
+    make:request
+    make:resource
+    make:rule
+    make:seeder
+    make:test {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"make:models\" is not defined.
+
+Did you mean one of these?
+    make:auth
+    make:channel
+    make:command
+    make:controller
+    make:event
+    make:exception
+    make:factory
+    make:job
+    make:listener
+    make:mail
+    make:middleware
+    make:migration
+    make:model
+    make:notification
+    make:observer
+    make:policy
+    make:provider
+    make:request
+    make:resource
+    make:rule
+    make:seeder
+    make:test at D:\\Data\\Project\\Laravel\\SPK\\vendor\\symfony\\console\\Application.php:639)
 [stacktrace]
-#0 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Traits\\ForwardsCalls.php(23): Illuminate\\Database\\Eloquent\\Builder->find()
-#1 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(1614): Illuminate\\Database\\Eloquent\\Model->forwardCallTo(Object(Illuminate\\Database\\Eloquent\\Builder), 'find', Array)
-#2 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(1626): Illuminate\\Database\\Eloquent\\Model->__call('find', Array)
-#3 D:\\Data\\Project\\Laravel\\SPK\\app\\Http\\Controllers\\LowonganController.php(52): Illuminate\\Database\\Eloquent\\Model::__callStatic('find', Array)
-#4 [internal function]: App\\Http\\Controllers\\LowonganController->show('1')
-#5 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): call_user_func_array(Array, Array)
-#6 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(45): Illuminate\\Routing\\Controller->callAction('show', Array)
-#7 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(219): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\LowonganController), 'show')
-#8 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(176): Illuminate\\Routing\\Route->runController()
-#9 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(680): Illuminate\\Routing\\Route->run()
+#0 D:\\Data\\Project\\Laravel\\SPK\\vendor\\symfony\\console\\Application.php(233): Symfony\\Component\\Console\\Application->find('make:models')
+#1 D:\\Data\\Project\\Laravel\\SPK\\vendor\\symfony\\console\\Application.php(145): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#2 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php(90): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(122): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 D:\\Data\\Project\\Laravel\\SPK\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 {main}
+"} 
+[2019-09-16 22:14:19] local.ERROR: Undefined variable: pelamar_tahap1 (View: D:\Data\Project\Laravel\SPK\resources\views\admin\Lowongan\detail.blade.php) {"userId":2,"exception":"[object] (ErrorException(code: 0): Undefined variable: pelamar_tahap1 (View: D:\\Data\\Project\\Laravel\\SPK\esources\\views\\admin\\Lowongan\\detail.blade.php) at D:\\Data\\Project\\Laravel\\SPK\\storage\\framework\\views\\67d9b8198a3c7f48e0a704ab51b76b04dcebc01c.php:147, ErrorException(code: 0): Undefined variable: pelamar_tahap1 at D:\\Data\\Project\\Laravel\\SPK\\storage\\framework\\views\\67d9b8198a3c7f48e0a704ab51b76b04dcebc01c.php:147)
+[stacktrace]
+#0 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(45): Illuminate\\View\\Engines\\CompilerEngine->handleViewException(Object(ErrorException), 1)
+#1 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(59): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('D:\\\\Data\\\\Project...', Array)
+#2 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(142): Illuminate\\View\\Engines\\CompilerEngine->get('D:\\\\Data\\\\Project...', Array)
+#3 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(125): Illuminate\\View\\View->getContents()
+#4 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(90): Illuminate\\View\\View->renderContents()
+#5 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(42): Illuminate\\View\\View->render()
+#6 D:\\Data\\Project\\Laravel\\SPK\\vendor\\symfony\\http-foundation\\Response.php(202): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#7 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(748): Symfony\\Component\\HttpFoundation\\Response->__construct(Object(Illuminate\\View\\View))
+#8 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(720): Illuminate\\Routing\\Router::toResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#9 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(680): Illuminate\\Routing\\Router->prepareResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
 #10 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(30): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
 #11 D:\\Data\\Project\\Laravel\\SPK\\app\\Http\\Middleware\\Admin.php(23): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
 #12 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): App\\Http\\Middleware\\Admin->handle(Object(Illuminate\\Http\\Request), Object(Closure))
@@ -64,18 +121,18 @@
 #61 D:\\Data\\Project\\Laravel\\SPK\\server.php(21): require_once('D:\\\\Data\\\\Project...')
 #62 {main}
 "} 
-[2019-08-22 00:58:19] local.ERROR: View [pases.admin.Lowongan.detail] not found. {"userId":2,"exception":"[object] (InvalidArgumentException(code: 0): View [pases.admin.Lowongan.detail] not found. at D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\View\\FileViewFinder.php:137)
+[2019-09-16 22:14:46] local.ERROR: Undefined variable: pelamar_tahap1 (View: D:\Data\Project\Laravel\SPK\resources\views\admin\Lowongan\detail.blade.php) {"userId":2,"exception":"[object] (ErrorException(code: 0): Undefined variable: pelamar_tahap1 (View: D:\\Data\\Project\\Laravel\\SPK\esources\\views\\admin\\Lowongan\\detail.blade.php) at D:\\Data\\Project\\Laravel\\SPK\\storage\\framework\\views\\67d9b8198a3c7f48e0a704ab51b76b04dcebc01c.php:147, ErrorException(code: 0): Undefined variable: pelamar_tahap1 at D:\\Data\\Project\\Laravel\\SPK\\storage\\framework\\views\\67d9b8198a3c7f48e0a704ab51b76b04dcebc01c.php:147)
 [stacktrace]
-#0 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\View\\FileViewFinder.php(79): Illuminate\\View\\FileViewFinder->findInPaths('pases.admin.Low...', Array)
-#1 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Factory.php(130): Illuminate\\View\\FileViewFinder->find('pases.admin.Low...')
-#2 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(968): Illuminate\\View\\Factory->make('pases.admin.Low...', Array, Array)
-#3 D:\\Data\\Project\\Laravel\\SPK\\app\\Http\\Controllers\\LowonganController.php(53): view('pases.admin.Low...')
-#4 [internal function]: App\\Http\\Controllers\\LowonganController->show('1')
-#5 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): call_user_func_array(Array, Array)
-#6 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(45): Illuminate\\Routing\\Controller->callAction('show', Array)
-#7 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(219): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\LowonganController), 'show')
-#8 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(176): Illuminate\\Routing\\Route->runController()
-#9 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(680): Illuminate\\Routing\\Route->run()
+#0 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(45): Illuminate\\View\\Engines\\CompilerEngine->handleViewException(Object(ErrorException), 1)
+#1 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(59): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('D:\\\\Data\\\\Project...', Array)
+#2 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(142): Illuminate\\View\\Engines\\CompilerEngine->get('D:\\\\Data\\\\Project...', Array)
+#3 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(125): Illuminate\\View\\View->getContents()
+#4 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(90): Illuminate\\View\\View->renderContents()
+#5 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(42): Illuminate\\View\\View->render()
+#6 D:\\Data\\Project\\Laravel\\SPK\\vendor\\symfony\\http-foundation\\Response.php(202): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#7 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(748): Symfony\\Component\\HttpFoundation\\Response->__construct(Object(Illuminate\\View\\View))
+#8 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(720): Illuminate\\Routing\\Router::toResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#9 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(680): Illuminate\\Routing\\Router->prepareResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
 #10 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(30): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
 #11 D:\\Data\\Project\\Laravel\\SPK\\app\\Http\\Middleware\\Admin.php(23): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
 #12 D:\\Data\\Project\\Laravel\\SPK\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): App\\Http\\Middleware\\Admin->handle(Object(Illuminate\\Http\\Request), Object(Closure))

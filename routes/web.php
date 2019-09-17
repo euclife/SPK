@@ -45,6 +45,7 @@ Route::middleware(['auth','admin'])->group(function () {
 	Route::patch('/lowongan/edit/{id}', 'LowonganController@update');
 	Route::delete('/lowongan/hapus/{id}', 'LowonganController@destroy');
 	Route::get('/lowongan/{id}', 'LowonganController@show');
+	Route::get('/lowongan/compile/{id}', 'LowonganController@compile');
 	Route::get('/profile/{id}', 'PelamarController@show');
 	
 	Route::group(['prefix' => 'soal'], function () {
