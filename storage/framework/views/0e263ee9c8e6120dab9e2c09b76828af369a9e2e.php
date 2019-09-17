@@ -127,7 +127,7 @@
                                             </li>
 										</ul>
 										<?php elseif($pelamar->status == 3): ?>
-										Selamat! Anda Lolos Silahkan Bawa Kartu Peserta dan CV Ke PT. INTI
+										Kami akan segera menghubungi anda.
                                         <?php endif; ?>
                                     </h5>
                                 </div>
@@ -135,7 +135,7 @@
 
                             <td class="text-right col-md-2">
                                 <?php if($pelamar->status == 1): ?>
-                                <a href="<?php echo e(url('test')); ?>" class="btn bg-danger-300"><i
+                                <a href="<?php echo e(url('mundur')); ?>" class="btn bg-danger-300"><i
                                         class="icon-statistics position-left"></i> Mengundurkan Diri</a>
                                 <?php elseif($pelamar->status == 2): ?>
                                 <button class="btn bg-danger-300" id="start-exam"

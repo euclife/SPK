@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 03, 2019 at 06:56 PM
+-- Generation Time: Sep 17, 2019 at 06:21 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.19
 
@@ -21,6 +21,31 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_spk`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bobot_minimal`
+--
+
+CREATE TABLE `bobot_minimal` (
+  `id` int(11) NOT NULL,
+  `kriteria` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bobot` double NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `bobot_minimal`
+--
+
+INSERT INTO `bobot_minimal` (`id`, `kriteria`, `bobot`, `created_at`, `updated_at`) VALUES
+(1, 'C1', 0.3, NULL, NULL),
+(2, 'C2', 0.3, NULL, NULL),
+(3, 'C3', 0.1, NULL, NULL),
+(4, 'C4', 0.15, NULL, NULL),
+(5, 'C5', 0.15, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -47,7 +72,20 @@ CREATE TABLE `jawab` (
 
 INSERT INTO `jawab` (`id`, `id_soal`, `id_pelamar`, `id_lowongan`, `pilihan`, `score`, `status`, `revisi`, `created_at`, `updated_at`) VALUES
 (1, 1, 2, 1, 'A', '2.00', '1', 1, '2019-08-28 15:09:44', '2019-08-28 15:09:51'),
-(2, 2, 1, 1, 'C', '0.00', '0', 0, '2019-09-03 18:54:17', '2019-09-03 18:54:17');
+(2, 2, 3, 1, 'B', '2.00', '0', 7, '2019-09-03 18:54:17', '2019-09-05 10:14:37'),
+(3, 3, 3, 1, 'A', '0.00', '0', 4, '2019-09-05 05:24:24', '2019-09-05 10:14:39'),
+(4, 2, 3, 1, 'A', '0.00', '0', 0, '2019-09-05 10:32:57', '2019-09-05 10:32:57'),
+(5, 3, 3, 1, 'B', '20.00', '0', 0, '2019-09-05 10:33:00', '2019-09-05 10:33:00'),
+(6, 4, 3, 1, 'D', '0.00', '0', 0, '2019-09-05 10:33:03', '2019-09-05 10:33:03'),
+(7, 5, 3, 1, 'B', '20.00', '0', 0, '2019-09-05 10:33:05', '2019-09-05 10:33:05'),
+(8, 6, 3, 1, 'B', '20.00', '0', 0, '2019-09-05 10:33:08', '2019-09-05 10:33:08'),
+(9, 7, 3, 1, 'B', '20.00', '0', 0, '2019-09-05 10:33:10', '2019-09-05 10:33:10'),
+(10, 8, 3, 1, 'B', '20.00', '0', 0, '2019-09-05 10:33:13', '2019-09-05 10:33:13'),
+(11, 9, 3, 1, 'B', '20.00', '0', 0, '2019-09-05 10:33:15', '2019-09-05 10:33:15'),
+(12, 10, 3, 1, 'B', '20.00', '0', 0, '2019-09-05 10:33:17', '2019-09-05 10:33:17'),
+(13, 11, 3, 1, 'B', '20.00', '0', 0, '2019-09-05 10:33:21', '2019-09-05 10:33:21'),
+(14, 2, 5, 2, 'A', '0.00', '0', 0, '2019-09-06 00:15:39', '2019-09-06 00:15:39'),
+(15, 3, 5, 2, 'B', '20.00', '0', 0, '2019-09-06 00:15:41', '2019-09-06 00:15:41');
 
 -- --------------------------------------------------------
 
@@ -69,7 +107,8 @@ CREATE TABLE `lowongan` (
 --
 
 INSERT INTO `lowongan` (`id_lowongan`, `posisi`, `keterangan`, `tanggal_selesai`, `created_at`, `updated_at`) VALUES
-(1, 'Administrasi', 'Keterangan', '2019-09-16 00:00:00', '2019-09-03 11:00:07', '2019-08-26 12:49:08');
+(1, 'Administrasi', 'Keterangan', '2019-09-16 00:00:00', '2019-09-03 11:00:07', '2019-08-26 12:49:08'),
+(2, 'IT', 'OKOK', '2020-09-10 00:00:00', '2019-09-06 00:08:44', '2019-09-06 00:08:44');
 
 -- --------------------------------------------------------
 
@@ -91,7 +130,9 @@ CREATE TABLE `lowongan_syarat` (
 
 INSERT INTO `lowongan_syarat` (`id_syarat`, `id_lowongan`, `nama_syarat`, `created_at`, `updated_at`) VALUES
 (28, 1, 'Usia min 2 tahun pelangaman', '2019-08-26 19:49:08', '2019-08-26 19:49:08'),
-(29, 1, 'Cantik', '2019-08-26 19:49:08', '2019-08-26 19:49:08');
+(29, 1, 'Cantik', '2019-08-26 19:49:08', '2019-08-26 19:49:08'),
+(30, 2, 'Edan', '2019-09-06 07:08:44', '2019-09-06 07:08:44'),
+(31, 2, 'Wadaw', '2019-09-06 07:08:44', '2019-09-06 07:08:44');
 
 -- --------------------------------------------------------
 
@@ -104,6 +145,41 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `nilai_pelamar`
+--
+
+CREATE TABLE `nilai_pelamar` (
+  `id` int(11) NOT NULL,
+  `id_pelamar` int(11) NOT NULL,
+  `id_lowongan` int(11) NOT NULL,
+  `c1` double DEFAULT '0',
+  `c2` double DEFAULT '0',
+  `c3` double DEFAULT '0',
+  `c4` double DEFAULT '0',
+  `c5` double DEFAULT '0',
+  `hasil_c1` double DEFAULT '0',
+  `hasil_c2` double DEFAULT '0',
+  `hasil_c3` double DEFAULT '0',
+  `hasil_c4` double DEFAULT '0',
+  `hasil_c5` double DEFAULT '0',
+  `nilai` double DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `nilai_pelamar`
+--
+
+INSERT INTO `nilai_pelamar` (`id`, `id_pelamar`, `id_lowongan`, `c1`, `c2`, `c3`, `c4`, `c5`, `hasil_c1`, `hasil_c2`, `hasil_c3`, `hasil_c4`, `hasil_c5`, `nilai`, `created_at`, `updated_at`) VALUES
+(1, 4, 2, 0.5, 0.5, 0.2, 0.5, 0.5, 1, 1, 0.2, 1, 1, 0.92, '2019-09-17 17:47:36', '2019-09-17 18:02:03'),
+(2, 5, 2, 0.5, 0, 0.4, 0.5, 0.5, 1, 0, 0.4, 1, 1, 0.64, '2019-09-17 17:47:36', '2019-09-17 18:02:03'),
+(3, 2, 2, 0.5, 0.5, 1, 0.5, 0.5, 1, 1, 1, 1, 1, 1, '2019-09-17 18:02:03', '2019-09-17 18:02:03'),
+(4, 3, 2, 0.3, 0.3, 0.6, 0.5, 0.5, 0.6, 0.6, 0.6, 1, 1, 0.72, '2019-09-17 18:02:03', '2019-09-17 18:02:03');
 
 -- --------------------------------------------------------
 
@@ -141,7 +217,7 @@ CREATE TABLE `pelamar` (
   `status` int(11) NOT NULL,
   `ipk` double NOT NULL,
   `umur` int(11) NOT NULL,
-  `umum` int(11) DEFAULT NULL,
+  `umum` double DEFAULT '0',
   `point` int(11) DEFAULT NULL,
   `kondisi` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL,
@@ -153,8 +229,10 @@ CREATE TABLE `pelamar` (
 --
 
 INSERT INTO `pelamar` (`id`, `user_id`, `lowongan_id`, `surat_lamaran`, `cv`, `ijasah`, `status`, `ipk`, `umur`, `umum`, `point`, `kondisi`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'ada', 'ada', 'ada', 2, 4.5, 12, NULL, 70, 'active', '2019-08-20 17:00:00', '2019-08-20 17:00:00'),
-(2, 2, 1, 'ada', 'ada', 'ada', 2, 3.6, 21, 80, 70, NULL, '2019-08-20 17:00:00', '2019-08-20 17:00:00');
+(2, 2, 2, 'ada', 'ada', 'ada', 2, 3.6, 21, 1, 70, 'not active', '2019-08-20 17:00:00', '2019-09-17 18:20:15'),
+(3, 1, 2, 'ada', 'ada', 'ada', 2, 1.2, 25, 0.6, 73, 'active', '2019-08-20 17:00:00', '2019-09-05 10:33:23'),
+(4, 1, 2, 'user-120190905221403.pdf', 'user-120190905221403.pdf', 'user-120190905221403.pdf', 1, 3.2, 22, 0.2, 7, 'active', '2019-09-05 15:14:03', '2019-09-05 15:14:03'),
+(5, 6, 2, 'user-620190906071433.pdf', 'user-620190906071433.pdf', 'user-620190906071433.pdf', 2, 3, 20, 0.4, 6, 'active', '2019-09-06 00:14:33', '2019-09-06 00:14:33');
 
 -- --------------------------------------------------------
 
@@ -180,8 +258,16 @@ CREATE TABLE `soal` (
 --
 
 INSERT INTO `soal` (`id_soal`, `pertanyaan`, `pila`, `pilb`, `pilc`, `pild`, `kunci`, `score`, `created_at`, `updated_at`) VALUES
-(2, 'Apa itu Lisan?', 'itu adalah unta', 'itu adalah untb', 'itu adalah untc', 'itu adalah untb', 'B', '2.00', '2019-09-02 03:04:55', '2019-09-02 03:04:55'),
-(3, 'Apa itu Lisan?', 'itu adalah unta', 'itu adalah untb', 'itu adalah untc', 'itu adalah untb', 'B', '2.00', '2019-09-02 03:04:55', '2019-09-02 03:04:55');
+(2, 'Apa itu Lisan?', 'itu adalah unta', 'itu adalah untb', 'itu adalah untc', 'itu adalah untb', 'B', '0.10', '2019-09-02 03:04:55', '2019-09-02 03:04:55'),
+(3, 'Apa itu Lisan?', 'itu adalah unta', 'itu adalah untb', 'itu adalah untc', 'itu adalah untb', 'B', '0.10', '2019-09-02 03:04:55', '2019-09-02 03:04:55'),
+(4, 'Apa itu Lisan?', 'itu adalah unta', 'itu adalah untb', 'itu adalah untc', 'itu adalah untb', 'B', '0.10', '2019-09-02 03:04:55', '2019-09-02 03:04:55'),
+(5, 'Apa itu Lisan?', 'itu adalah unta', 'itu adalah untb', 'itu adalah untc', 'itu adalah untb', 'B', '0.10', '2019-09-02 03:04:55', '2019-09-02 03:04:55'),
+(6, 'Apa itu Lisan?', 'itu adalah unta', 'itu adalah untb', 'itu adalah untc', 'itu adalah untb', 'B', '0.10', '2019-09-02 03:04:55', '2019-09-02 03:04:55'),
+(7, 'Apa itu Lisan?', 'itu adalah unta', 'itu adalah untb', 'itu adalah untc', 'itu adalah untb', 'B', '0.10', '2019-09-02 03:04:55', '2019-09-02 03:04:55'),
+(8, 'Apa itu Lisan?', 'itu adalah unta', 'itu adalah untb', 'itu adalah untc', 'itu adalah untb', 'B', '0.10', '2019-09-02 03:04:55', '2019-09-02 03:04:55'),
+(9, 'Apa itu Lisan?', 'itu adalah unta', 'itu adalah untb', 'itu adalah untc', 'itu adalah untb', 'B', '0.10', '2019-09-02 03:04:55', '2019-09-02 03:04:55'),
+(10, 'Apa itu Lisan?', 'itu adalah unta', 'itu adalah untb', 'itu adalah untc', 'itu adalah untb', 'B', '0.10', '2019-09-02 03:04:55', '2019-09-02 03:04:55'),
+(11, 'Apa itu Lisan?', 'itu adalah unta', 'itu adalah untb', 'itu adalah untc', 'itu adalah untb', 'B', '0.10', '2019-09-02 03:04:55', '2019-09-02 03:04:55');
 
 -- --------------------------------------------------------
 
@@ -213,15 +299,21 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `no_telp`, `email`, `tempat_lahir`, `tgl_lahir`, `jenis_kelamin`, `alamat`, `agama`, `foto`, `level`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'maul', '0808321', 'maul@gmail.com', 'BANDUNG', '2019-09-16', 'PRIA', 'JL. MUARARAJEUN LAMA III NO. 21\r\nJL. MANGLID NO 33', 'ISLAM', 'user-120190903175913.png', 'USER', NULL, '$2y$10$IlI5w37lnvbpIKI5xkx9meJvwrJHjpCSpKhQdYMJ0Rx.ue4HMBadK', 'srsUdREU3vFlM9M0QieoVEowx4w3Q4IZOLHTzfCvbJ2Ox6yYMUi1FFy895Pk', NULL, '2019-09-03 10:59:13'),
+(1, 'maul', '0808321', 'maul@gmail.com', 'BANDUNG', '2019-09-16', 'PRIA', 'JL. MUARARAJEUN LAMA III NO. 21\r\nJL. MANGLID NO 33', 'ISLAM', 'user-120190903175913.png', 'USER', NULL, '$2y$10$IlI5w37lnvbpIKI5xkx9meJvwrJHjpCSpKhQdYMJ0Rx.ue4HMBadK', '95NeCfgiBihHcYg0dnov8YHpweffJVKkAPuVjfPUsMbY7aLTGMh0VLv2ENr5', NULL, '2019-09-03 10:59:13'),
 (2, 'Chan', 'asd', 'chandraramdhanpurnama@gmail.com', 'sad', '2019-06-12', 'PRIA', 'asd', 'BUDHA', 'user-220190813190429.jpg', 'ADMIN', '2019-06-20 18:14:25', '$2y$10$IlI5w37lnvbpIKI5xkx9meJvwrJHjpCSpKhQdYMJ0Rx.ue4HMBadK', NULL, '2019-05-12 18:41:58', '2019-08-13 12:04:29'),
 (3, 'Maulana', NULL, '900maulana@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, 'ADMIN', '2019-05-15 13:19:23', '$2y$10$dhDlkGHVb3nJ2mXeIz29D.L8jNbzPntCCrxl.uo4jO11Di3SGyAn.', NULL, '2019-05-15 13:17:09', '2019-05-15 13:19:23'),
-(6, 'user1', NULL, 'satuuser55@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, 'USER', '2019-06-20 00:22:40', '$2y$10$6tHmqxIXxDGDFLo4ShQ4se8X.0GazV6oSpd79OiQJGDYw/iSbIegC', NULL, '2019-06-19 09:21:07', '2019-06-20 00:22:40'),
+(6, 'User1', '34892483247', 'satuuser55@gmail.com', 'Bandung', '1998-09-12', 'PRIA', 'JL. MUARARAJEUN LAMA III NO. 21\r\nJL. MANGLID NO 33', 'ISLAM', 'user-620190906071115.png', 'USER', '2019-06-20 00:22:40', '$2y$10$6tHmqxIXxDGDFLo4ShQ4se8X.0GazV6oSpd79OiQJGDYw/iSbIegC', NULL, '2019-06-19 09:21:07', '2019-09-06 00:11:15'),
 (7, 'najich', NULL, 'chandraramdhanpurnama@gmail.com2', NULL, NULL, NULL, NULL, NULL, NULL, 'USER', '2019-06-20 13:19:11', '$2y$10$IlI5w37lnvbpIKI5xkx9meJvwrJHjpCSpKhQdYMJ0Rx.ue4HMBadK', NULL, '2019-06-20 13:16:58', '2019-06-20 13:19:11');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `bobot_minimal`
+--
+ALTER TABLE `bobot_minimal`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `jawab`
@@ -248,6 +340,12 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `nilai_pelamar`
+--
+ALTER TABLE `nilai_pelamar`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `pelamar`
 --
 ALTER TABLE `pelamar`
@@ -270,22 +368,28 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `bobot_minimal`
+--
+ALTER TABLE `bobot_minimal`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `jawab`
 --
 ALTER TABLE `jawab`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `lowongan`
 --
 ALTER TABLE `lowongan`
-  MODIFY `id_lowongan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_lowongan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `lowongan_syarat`
 --
 ALTER TABLE `lowongan_syarat`
-  MODIFY `id_syarat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_syarat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -294,16 +398,22 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `nilai_pelamar`
+--
+ALTER TABLE `nilai_pelamar`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `pelamar`
 --
 ALTER TABLE `pelamar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `soal`
 --
 ALTER TABLE `soal`
-  MODIFY `id_soal` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_soal` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `users`

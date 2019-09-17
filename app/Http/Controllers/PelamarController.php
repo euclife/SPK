@@ -184,6 +184,14 @@ class PelamarController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+    }
+
+    public function mundur()
+    {
+        $user = Pelamar::where('user_id',Auth::user()->id)->where('kondisi','active')->first();
+        $user->kondisi = "not active";
+        $user->save();
+        return redirect()->back();
     }
 }

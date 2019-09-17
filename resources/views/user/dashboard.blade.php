@@ -127,7 +127,7 @@
                                             </li>
 										</ul>
 										@elseif($pelamar->status == 3)
-										Selamat! Anda Lolos Silahkan Bawa Kartu Peserta dan CV Ke PT. INTI
+										Kami akan segera menghubungi anda.
                                         @endif
                                     </h5>
                                 </div>
@@ -135,7 +135,7 @@
 
                             <td class="text-right col-md-2">
                                 @if ($pelamar->status == 1)
-                                <a href="{{url('test')}}" class="btn bg-danger-300"><i
+                                <a href="{{url('mundur')}}" class="btn bg-danger-300"><i
                                         class="icon-statistics position-left"></i> Mengundurkan Diri</a>
                                 @elseif ($pelamar->status == 2)
                                 <button class="btn bg-danger-300" id="start-exam"

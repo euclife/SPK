@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
 	Route::post('/soal/kirim','SoalController@kirim');
 	Route::get('/test', 'SoalController@kirim');
 	Route::get('/done', 'SoalController@done');
+	Route::get('/mundur', 'PelamarController@mundur');
 });
 
 Route::middleware(['auth','admin'])->group(function () {
