@@ -48,6 +48,8 @@ Route::middleware(['auth','admin'])->group(function () {
 	Route::get('/lowongan/{id}', 'LowonganController@show');
 	Route::get('/lowongan/compile/{id}', 'LowonganController@compile');
 	Route::get('/profile/{id}', 'PelamarController@show');
+	Route::get('/pelamar/lolos/{id}', 'PelamarController@lolos');
+	Route::get('/pelamar/gagal/{id}', 'PelamarController@mundurAdmin');
 	
 	Route::group(['prefix' => 'soal'], function () {
 			Route::get('/', 'SoalController@index');

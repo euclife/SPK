@@ -104,8 +104,9 @@ class LowonganController extends Controller
             ->where('kondisi', 'active')
             ->get();
         $hasil = $pelamar->sortBy(['nilai.nilai','ASC']);
+        $belum = $pelamar->where('status',1);
         $bobot = Bobot::all();
-        return view('admin/lowongan/detail', compact('lowongan', 'pelamar', 'bobot', 'hasil'));
+        return view('admin/lowongan/detail', compact('lowongan', 'pelamar', 'bobot', 'hasil','belum'));
     }
 
     /**

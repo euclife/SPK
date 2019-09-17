@@ -128,10 +128,10 @@ class PelamarController extends Controller
             $pelamar->point += 1;
         }
 
-        $pelamar->status = 2;
+        $pelamar->status = 1;
 
         $pelamar->save();
-        return redirect('/dashboard')->with('success', 'Profil Anda Berhasil di Perbaharui');
+        return redirect('/dashboard')->with('success', 'Behasil Daftar');
     
     }
 
@@ -193,5 +193,21 @@ class PelamarController extends Controller
         $user->kondisi = "not active";
         $user->save();
         return redirect()->back();
+    }
+
+    public function mundurAdmin($id)
+    {
+        $user = Pelamar::find($id);
+        $user->kondisi = "not active";
+        $user->save();
+        return redirect('admin/lowongan/' . $user->lowongan_id);
+    }
+
+    public function lolos($id)
+    {
+        $user = Pelamar::find($id);
+        $user->status = 2;
+        $user->save();
+        return redirect('admin/lowongan/'.$user->lowongan_id);
     }
 }

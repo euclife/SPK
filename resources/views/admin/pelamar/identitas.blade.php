@@ -71,9 +71,12 @@
                     </tr>
 
                 </table>
-                <a href="{{ url('pelamar/lolos/') }}/{{ $pelamar->id }}" class="btn btn-success">Lolos Tahap
-                    Selanjutnya</a>
-                <a href="{{ url('pelamar/gagal/') }}/{{ $pelamar->id }}" class="btn btn-danger">Gagal</a>
+                @if ($pelamar->status == 1)
+                    <a href="{{ url('admin/pelamar/lolos/') }}/{{ $pelamar->id }}" class="btn btn-success">Lolos Tahap
+                        Selanjutnya</a>
+                    <a href="{{ url('admin/pelamar/gagal/') }}/{{ $pelamar->id }}" class="btn btn-danger">Gagal</a>
+                @endif
+                
             </div>
         </div>
     </div>

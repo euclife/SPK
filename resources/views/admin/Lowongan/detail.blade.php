@@ -227,6 +227,32 @@
             </div>
         </div>
         <div class="col-md-12">
+            <div class="panel panel-flat border-top-danger">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Pelamar yang belum di Cek</h6>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-lg text-nowrap text-center">
+                        <thead class="bg-danger ">
+                            <tr>
+                                <th class="text-center">Nama</th>
+                                <th class="text-center">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($belum as $key => $value)
+                            <tr>
+                                <td>{{$value->user->name}}</td>
+                                <td><a class="btn bg-teal-400" href="{{ url('admin/profile') }}/{{ $value->id }}">Profil</a></td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
             <div class="panel panel-flat border-top-indigo">
                 <div class="panel-heading">
                     <h6 class="panel-title">Nilai Bobot Minimal</h6>

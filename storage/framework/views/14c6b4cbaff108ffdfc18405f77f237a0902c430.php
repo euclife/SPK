@@ -71,9 +71,12 @@
                     </tr>
 
                 </table>
-                <a href="<?php echo e(url('pelamar/lolos/')); ?>/<?php echo e($pelamar->id); ?>" class="btn btn-success">Lolos Tahap
-                    Selanjutnya</a>
-                <a href="<?php echo e(url('pelamar/gagal/')); ?>/<?php echo e($pelamar->id); ?>" class="btn btn-danger">Gagal</a>
+                <?php if($pelamar->status == 1): ?>
+                    <a href="<?php echo e(url('admin/pelamar/lolos/')); ?>/<?php echo e($pelamar->id); ?>" class="btn btn-success">Lolos Tahap
+                        Selanjutnya</a>
+                    <a href="<?php echo e(url('admin/pelamar/gagal/')); ?>/<?php echo e($pelamar->id); ?>" class="btn btn-danger">Gagal</a>
+                <?php endif; ?>
+                
             </div>
         </div>
     </div>
